@@ -7,9 +7,9 @@
 仓库按来源分为两类：
 
 - `skill/`：原有通用技能。
-- `cyg_skill/`：新合并的 cyg 系列技能。
+- `personal_skill/`：新合并的个人技能。
 
-共 40 个技能：`skill/` 38 个，`cyg_skill/` 2 个。
+共 40 个技能：`skill/` 38 个，`personal_skill/` 2 个。
 
 ## 通用技能（skill/）
 
@@ -81,12 +81,12 @@
 | [software-architect](skill/software-architect/SKILL.md) | 系统设计、技术选型与架构权衡。 |
 | [competitive-programming-expert](skill/competitive-programming-expert/SKILL.md) | 算法竞赛解题、复杂度分析与优化。 |
 
-## cyg 系列技能（cyg_skill/）
+## 个人技能（personal_skill/）
 
 | 技能 | 说明 |
 |---|---|
-| [cpp-code-standard](cyg_skill/cpp-code-standard/SKILL.md) | C/C++ 命名、排版、注释、类型及现代 C++ 用法规范。 |
-| [installer-extract](cyg_skill/installer-extract/SKILL.md) | Windows 安装包解包部署、快捷方式、启动验证与更新处理。 |
+| [cpp-code-standard](personal_skill/cpp-code-standard/SKILL.md) | C/C++ 命名、排版、注释、类型及现代 C++ 用法规范。 |
+| [installer-extract](personal_skill/installer-extract/SKILL.md) | Windows 安装包解包部署、快捷方式、启动验证与更新处理。 |
 
 ## 安装
 
@@ -95,7 +95,7 @@
 ```text
 请从 https://github.com/Miaoge-Ge/agent-skills 安装全部技能。
 
-仓库使用标准 Agent Skills 格式，技能分布在 skill/ 和 cyg_skill/ 两个目录，每个技能目录包含 SKILL.md 和可选的 references 等支撑文件。
+仓库使用标准 Agent Skills 格式，技能分布在 skill/ 和 personal_skill/ 两个目录，每个技能目录包含 SKILL.md 和可选的 references 等支撑文件。
 请先读取目标技能的 SKILL.md，再把完整技能目录（包括 references 等全部文件）复制到当前工具支持的用户级技能目录。
 如果已存在同名技能，先比较版本，保留本地自定义修改。
 完成后列出已安装技能的名称、版本和安装路径。
@@ -104,7 +104,7 @@
 只安装一个技能时，把提示词里的“全部技能”和“指定技能”换成具体路径，例如：
 
 ```text
-请从 https://github.com/Miaoge-Ge/agent-skills 安装 cyg_skill/cpp-code-standard 技能。
+请从 https://github.com/Miaoge-Ge/agent-skills 安装 personal_skill/cpp-code-standard 技能。
 
 仓库使用标准 Agent Skills 格式。请先读取该目录下的 SKILL.md，再把完整技能目录（包括 references 等全部文件）复制到当前工具支持的用户级技能目录。
 如果已存在同名技能，先比较版本，保留本地自定义修改。
@@ -119,7 +119,7 @@ agent-skills/
 │   ├── cpp-expert/
 │   │   └── SKILL.md
 │   └── ...
-├── cyg_skill/        # 新合并的 cyg 系列技能，2 个
+├── personal_skill/        # 新合并的个人技能，2 个
 │   ├── cpp-code-standard/
 │   │   ├── SKILL.md
 │   │   └── references/

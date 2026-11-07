@@ -7,9 +7,9 @@ A collection of standard Agent Skills for AI coding assistants. Every skill is a
 The repository is split by origin:
 
 - `skill/`: the original universal skills.
-- `cyg_skill/`: newly merged cyg-series skills.
+- `personal_skill/`: newly merged personal skills.
 
-40 skills in total: 38 under `skill/` and 2 under `cyg_skill/`.
+40 skills in total: 38 under `skill/` and 2 under `personal_skill/`.
 
 ## Universal Skills (skill/)
 
@@ -81,12 +81,12 @@ The repository is split by origin:
 | [software-architect](skill/software-architect/SKILL.md) | System design, technology selection, and architecture trade-offs. |
 | [competitive-programming-expert](skill/competitive-programming-expert/SKILL.md) | Algorithmic problem solving, complexity analysis, and optimization. |
 
-## cyg-series Skills (cyg_skill/)
+## Personal Skills (personal_skill/)
 
 | Skill | Description |
 |---|---|
-| [cpp-code-standard](cyg_skill/cpp-code-standard/SKILL.md) | C/C++ naming, formatting, comments, types, and modern C++ practices. |
-| [installer-extract](cyg_skill/installer-extract/SKILL.md) | Windows installer extraction and deployment, shortcuts, launch verification, and updates. |
+| [cpp-code-standard](personal_skill/cpp-code-standard/SKILL.md) | C/C++ naming, formatting, comments, types, and modern C++ practices. |
+| [installer-extract](personal_skill/installer-extract/SKILL.md) | Windows installer extraction and deployment, shortcuts, launch verification, and updates. |
 
 ## Installation
 
@@ -95,7 +95,7 @@ Send the prompt below to a coding assistant with network and file access to inst
 ```text
 Install all skills from https://github.com/Miaoge-Ge/agent-skills.
 
-The repository uses the standard Agent Skills format. Skills live under skill/ and cyg_skill/, and every skill directory contains a SKILL.md plus optional supporting files such as references/.
+The repository uses the standard Agent Skills format. Skills live under skill/ and personal_skill/, and every skill directory contains a SKILL.md plus optional supporting files such as references/.
 Read each target skill's SKILL.md first, then copy the complete skill directory (including references and all other supporting files) into the user-level skills directory supported by this tool.
 If a skill with the same name already exists, compare versions first and preserve local customizations.
 When done, list the installed skill names, versions, and installation paths.
@@ -104,7 +104,7 @@ When done, list the installed skill names, versions, and installation paths.
 To install a single skill, replace "all skills" with a concrete path, for example:
 
 ```text
-Install the skill cyg_skill/cpp-code-standard from https://github.com/Miaoge-Ge/agent-skills.
+Install the skill personal_skill/cpp-code-standard from https://github.com/Miaoge-Ge/agent-skills.
 
 The repository uses the standard Agent Skills format. Read the SKILL.md in that directory first, then copy the complete skill directory (including references and all other supporting files) into the user-level skills directory supported by this tool.
 If a skill with the same name already exists, compare versions first and preserve local customizations.
@@ -119,7 +119,7 @@ agent-skills/
 │   ├── cpp-expert/
 │   │   └── SKILL.md
 │   └── ...
-├── cyg_skill/        # newly merged cyg-series skills (2)
+├── personal_skill/        # newly merged personal skills (2)
 │   ├── cpp-code-standard/
 │   │   ├── SKILL.md
 │   │   └── references/
