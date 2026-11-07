@@ -2,7 +2,6 @@
 /personal/
 
 # Local merge/backup scratch directories.
-/_merge/
 /_backup/
 
 # Python bytecode
