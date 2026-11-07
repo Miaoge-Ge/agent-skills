@@ -1,0 +1,3 @@
+interface:
+  display_name: "应用解包部署"
+  short_description: "诊断安装器启动失败，识别安装包并完成可回退的用户级解包部署"

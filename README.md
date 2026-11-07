@@ -14,7 +14,7 @@
 
 ## 🇬🇧 English
 
-A curated collection of refined skill definitions that turn your AI coding assistant into a domain-specific expert. Distributed as **Claude Code plugins** through a built-in plugin marketplace, and also usable as plain skills in Open Code, Cursor, and Trae.
+A curated collection of expert skills and coding standards that turn your AI coding assistant into a domain-specific expert. Distributed as **Claude Code plugins** through a built-in plugin marketplace, installable with the `skills` CLI, and also usable as plain skill files in Open Code, Cursor, and Trae.
 
 Each skill provides structured, high-quality context — when to engage, when not to, concrete guidance, and runnable examples — so your assistant behaves like a focused expert instead of a generalist.
 
@@ -29,6 +29,8 @@ coding-agent-skills/
 │   │   ├── .claude-plugin/plugin.json
 │   │   └── skills/competitive-programming-expert/SKILL.md
 │   ├── cpp-expert/ …
+│   ├── cpp-code-standard/        # C/C++ coding-standard skill
+│   ├── installer-extract/        # Windows installer extraction & deployment
 │   ├── python-expert/ …
 │   ├── deep-learning-expert/ …
 │   ├── llm-testing-expert/ …
@@ -36,14 +38,15 @@ coding-agent-skills/
 │   ├── github-master/ …
 │   └── threejs/                  # bundles all 10 Three.js skills
 │       └── skills/threejs-*/SKILL.md
-└── rules/                        # Cursor-style coding-standard rules (not a plugin)
+├── rules/                        # Cursor-style coding-standard rules (not a plugin)
+└── skills.sh.json                # skill discovery paths for the `skills` CLI
 ```
 
 Each plugin is a self-contained directory with a `.claude-plugin/plugin.json` manifest; its skills live in `skills/<slug>/SKILL.md`. The marketplace name is **`ai-expert-skills`**.
 
 ### Plugins Included
 
-**28 plugins** (37 skills) in the `ai-expert-skills` marketplace, grouped by category.
+**30 plugins** (39 skills) in the `ai-expert-skills` marketplace, grouped by category.
 
 **Languages**
 
@@ -103,6 +106,13 @@ Each plugin is a self-contained directory with a `.claude-plugin/plugin.json` ma
 | **software-architect** | System design, technology selection, trade-off analysis. |
 | **competitive-programming-expert** | Algorithmic problem solving, complexity analysis, optimization. |
 
+**Standards & Utilities**
+
+| Plugin | Description |
+|--------|-------------|
+| **cpp-code-standard** | C/C++ naming, formatting, comments, and type rules for writing, modifying, and reviewing code. |
+| **installer-extract** | Extract Windows installers without running them; deploy, create shortcuts, verify startup, and handle updates. |
+
 ### Install via Claude Code (recommended)
 
 Add the marketplace once, then install any plugin from it.
@@ -130,6 +140,20 @@ claude plugin install cpp-expert@ai-expert-skills
 Update later with `/plugin marketplace update ai-expert-skills`. Manage installs in the `/plugin` menu.
 
 > **Local development:** from a clone of this repo you can register the marketplace by path — `claude plugin marketplace add ./` — then `claude plugin install <name>@ai-expert-skills`.
+
+### Install with the `skills` CLI
+
+The same skills can be installed with [Vercel's `skills` CLI](https://github.com/vercel-labs/skills), without publishing an npm package:
+
+```bash
+# All skills to Codex, user-level
+npx --yes skills add Miaoge-Ge/coding-agent-skills --skill '*' --agent codex --global --yes
+
+# One skill to Claude Code, project-level
+npx --yes skills add Miaoge-Ge/coding-agent-skills --skill cpp-code-standard --agent claude-code
+```
+
+Replace `codex` with `claude-code`, `cursor`, or another supported agent; remove `--global` to install into the current project. Add `--list` instead of `--yes` to see every available skill without installing.
 
 ### Use without the plugin system
 
@@ -188,6 +212,10 @@ The body of a **general skill** follows a consistent layout:
 
 Workflow-heavy skills (`software-architect`, `deep-learning-expert`, `llm-testing-expert`, `competitive-programming-expert`) additionally include `Input`/`Output` contracts, step-by-step `Execution Steps`, and `Failure Handling`. The Three.js skills are example-driven, leading with a runnable quick start.
 
+### Local-only skills
+
+Skills kept for personal use live under `personal/` and are excluded by `.gitignore`; they are never published from this repository. Only the universal skills listed above are tracked.
+
 ### License
 
 MIT — see [LICENSE](LICENSE).
@@ -198,7 +226,7 @@ MIT — see [LICENSE](LICENSE).
 
 ## 🇨🇳 中文
 
-一套精心打磨的技能定义，可将你的 AI 编程助手变成特定领域的专家。以 **Claude Code 插件**形式通过内置插件市场分发，同时也能作为普通技能用于 Open Code、Cursor、Trae。
+一套精心打磨的专家技能与代码规范，可将你的 AI 编程助手变成特定领域的专家。以 **Claude Code 插件**形式通过内置插件市场分发，也可用 `skills` CLI 安装，同时能作为普通技能文件用于 Open Code、Cursor、Trae。
 
 每个技能都提供结构化、高质量的上下文——何时启用、何时不启用、具体指导以及可运行示例——让助手表现得像一位聚焦的专家，而不是泛泛而谈。
 
@@ -213,6 +241,8 @@ coding-agent-skills/
 │   │   ├── .claude-plugin/plugin.json
 │   │   └── skills/competitive-programming-expert/SKILL.md
 │   ├── cpp-expert/ …
+│   ├── cpp-code-standard/        # C/C++ 代码规范技能
+│   ├── installer-extract/        # Windows 安装包解包与部署
 │   ├── python-expert/ …
 │   ├── deep-learning-expert/ …
 │   ├── llm-testing-expert/ …
@@ -220,14 +250,15 @@ coding-agent-skills/
 │   ├── github-master/ …
 │   └── threejs/                  # 打包全部 10 个 Three.js 技能
 │       └── skills/threejs-*/SKILL.md
-└── rules/                        # Cursor 风格代码规范（不属于插件）
+├── rules/                        # Cursor 风格代码规范（不属于插件）
+└── skills.sh.json                # `skills` CLI 的技能发现路径
 ```
 
 每个插件都是独立目录，含 `.claude-plugin/plugin.json` 清单；其技能位于 `skills/<slug>/SKILL.md`。市场名称为 **`ai-expert-skills`**。
 
 ### 包含的插件
 
-`ai-expert-skills` 市场共 **28 个插件**(37 个技能),按品类分组。
+`ai-expert-skills` 市场共 **30 个插件**(39 个技能),按品类分组。
 
 **编程语言**
 
@@ -287,6 +318,13 @@ coding-agent-skills/
 | **software-architect** | 系统设计、技术选型与架构权衡分析。 |
 | **competitive-programming-expert** | 算法解题、复杂度分析与优化。 |
 
+**规范与工具**
+
+| 插件 | 描述 |
+|------|------|
+| **cpp-code-standard** | C/C++ 命名、排版、注释与类型规范，用于编写、修改和审查代码。 |
+| **installer-extract** | 不运行安装器解出 Windows 应用：部署、创建快捷方式、启动验证与更新处理。 |
+
 ### 通过 Claude Code 安装（推荐）
 
 只需添加一次市场，之后即可按需安装其中的插件。
@@ -314,6 +352,20 @@ claude plugin install cpp-expert@ai-expert-skills
 之后用 `/plugin marketplace update ai-expert-skills` 更新；在 `/plugin` 菜单中管理已安装插件。
 
 > **本地开发：** 在本仓库的克隆中可用路径注册市场——`claude plugin marketplace add ./`——再执行 `claude plugin install <name>@ai-expert-skills`。
+
+### 用 `skills` CLI 安装
+
+同一批技能可用 [Vercel `skills` CLI](https://github.com/vercel-labs/skills) 安装，无需发布 npm 包：
+
+```bash
+# 全部技能安装到 Codex 用户级目录
+npx --yes skills add Miaoge-Ge/coding-agent-skills --skill '*' --agent codex --global --yes
+
+# 只装一个技能到 Claude Code 项目级目录
+npx --yes skills add Miaoge-Ge/coding-agent-skills --skill cpp-code-standard --agent claude-code
+```
+
+把 `codex` 换成 `claude-code`、`cursor` 或其他受支持的工具；去掉 `--global` 安装到当前项目。把 `--yes` 换成 `--list` 可只列出全部技能而不安装。
 
 ### 不使用插件系统时
 
@@ -371,6 +423,10 @@ description: "何时启用，含触发关键词；含冒号时需加引号。"
 ```
 
 工作流型技能（`software-architect`、`deep-learning-expert`、`llm-testing-expert`、`competitive-programming-expert`）还包含 `Input`/`Output` 契约、分步 `Execution Steps` 与 `Failure Handling`。Three.js 系列以示例驱动，以可运行的快速上手开头。
+
+### 自用技能
+
+自用技能放在 `personal/`，由 `.gitignore` 排除，不会随本仓库发布；仓库只跟踪上面列出的通用技能。
 
 ### 许可证
 

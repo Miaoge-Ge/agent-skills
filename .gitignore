@@ -1,0 +1,10 @@
+# Local-only personal skills: never published from this repository.
+/personal/
+
+# Local merge/backup scratch directories.
+/_merge/
+/_backup/
+
+# Python bytecode
+__pycache__/
+*.py[cod]

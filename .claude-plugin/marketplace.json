@@ -315,6 +315,30 @@
         "owasp",
         "appsec"
       ]
+    },
+    {
+      "name": "cpp-code-standard",
+      "source": "./plugins/cpp-code-standard",
+      "description": "C/C++ code standard: naming, formatting, comments, and type rules for writing, modifying, and reviewing self-authored code.",
+      "category": "coding",
+      "tags": [
+        "cpp",
+        "c",
+        "code-standard",
+        "style-guide"
+      ]
+    },
+    {
+      "name": "installer-extract",
+      "source": "./plugins/installer-extract",
+      "description": "Extract and deploy Windows applications from installers without running them, including shortcuts, launch verification, and update handling.",
+      "category": "devops",
+      "tags": [
+        "windows",
+        "installer",
+        "extract",
+        "deploy"
+      ]
     }
   ]
 }
