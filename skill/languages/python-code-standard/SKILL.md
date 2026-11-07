@@ -2,7 +2,7 @@
 name: python-code-standard
 description: 按统一规范编写、修改和审查 Python 代码，检查类型标注、异常处理、命名、结构与常见性能问题；用于用户明确要求采用本规范，或仓库已声明采用本规范的工程。
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Python 代码规范
@@ -45,6 +45,16 @@ metadata:
 ## 文档
 
 - 公开 API 使用 Google 或 NumPy 风格 docstring，说明参数类型、返回值和可能抛出的异常。
+
+## 自动检查
+
+技能自带轻量检查脚本，覆盖语法、参数/返回值类型标注、裸 `except`、可变默认参数和通配导入：
+
+```bash
+python scripts/check_python.py path/to/module.py
+```
+
+脚本用于快速自查，不替代 `mypy`、`ruff` 或项目测试；严格检查公开 API docstring 时加 `--strict`。
 
 ## 示例
 

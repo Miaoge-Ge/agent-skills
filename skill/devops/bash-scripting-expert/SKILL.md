@@ -1,6 +1,8 @@
 ---
 name: bash-scripting-expert
 description: "Expert Bash scripting: robust, safe, portable shell scripts. Trigger keywords: bash, shell script, sh, quoting, word splitting, set -euo pipefail, trap, IFS, getopts, mktemp, shellcheck, POSIX, CLI, automation. Use for writing/debugging shell scripts and automation, or fixing quoting, exit-code, and portability bugs."
+metadata:
+  version: "1.1.0"
 ---
 
 # Bash Scripting Expert
@@ -73,6 +75,14 @@ find "$input_dir" -type f -name '*.log' -print0 |
 mv -- "$tmp" "$out_file"
 trap - EXIT
 printf 'wrote %s\n' "$out_file"
+```
+
+## 自动检查
+
+`scripts/check_script.sh` 对给定脚本运行 `bash -n`（或 `sh -n`），并在安装 ShellCheck 时额外运行 `shellcheck -x`：
+
+```bash
+./scripts/check_script.sh path/to/script.sh
 ```
 
 ## See Also

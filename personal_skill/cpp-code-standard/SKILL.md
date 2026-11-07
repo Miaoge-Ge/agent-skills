@@ -2,7 +2,7 @@
 name: cpp-code-standard
 description: "按统一规范编写、修改和审查自写 C/C++ 代码，检查命名、排版、注释、类型及现代 C++ 用法。用于用户明确要求采用本规范，或仓库已声明采用本规范的工程。"
 metadata:
-  version: "1.0.2"
+  version: "1.0.3"
 ---
 
 # C/C++ 代码规范
@@ -25,6 +25,16 @@ metadata:
 - 简单流程直接使用函数和清晰的资源清理路径；仅在需要维护状态、表达对象关系或多态接口时引入类。
 - 公共函数不包含具体任务的业务数据；共享流程按实际复用需求提取，已有明确实现要求时按要求执行。
 - 不修改第三方或生成代码，不扩大为无关重命名、批量转码或整体重排。格式化前确认配置符合规则，格式化后检查差异。
+
+## 自动检查
+
+`scripts/check_headers.py` 检查 C/C++ 文件头的 Doxygen `@file`/`@brief`、头文件包含保护，以及头文件中的 `using namespace`：
+
+```bash
+python scripts/check_headers.py path/to/include
+```
+
+加 `--strict` 时会额外检查头文件是否包含 `@brief`；脚本只做快速自查，不替代编译器、clang-tidy 或项目检查。
 
 ## 审查输出
 
