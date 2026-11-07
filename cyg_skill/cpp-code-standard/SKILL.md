@@ -2,7 +2,7 @@
 name: cpp-code-standard
 description: "按统一规范编写、修改和审查自写 C/C++ 代码，检查命名、排版、注释、类型及现代 C++ 用法。用于用户明确要求采用本规范，或仓库已声明采用本规范的工程。"
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # C/C++ 代码规范
