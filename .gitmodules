@@ -1,0 +1,4 @@
+[submodule "cyg_skill"]
+	path = cyg_skill
+	url = https://github.com/Miaoge-Ge/cyg-skills.git
+	branch = main

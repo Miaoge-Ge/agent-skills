@@ -1,6 +1,3 @@
-# Local-only cyg skills: never published from this repository.
-/cyg_skill/
-
 # Local merge/backup scratch directories.
 /_backup/
 

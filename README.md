@@ -125,6 +125,7 @@ agent-skills/
 │   │   └── scripts/check_headers.py
 │   └── installer-extract/
 │       └── SKILL.md
+├── cyg_skill/          # 私有 submodule，本仓库只存指针
 ├── scripts/
 │   └── validate_skills.py
 ├── skills.sh.json
@@ -132,6 +133,8 @@ agent-skills/
 ├── README.en.md
 └── LICENSE
 ```
+
+`cyg_skill/` 是指向私有仓库 [cyg-skills](https://github.com/Miaoge-Ge/cyg-skills) 的 submodule：本仓库只保存一个提交指针，目录内容不在公开代码中。没有该私有仓库权限时，克隆会跳过它，属于预期行为。
 
 ## 脚本
 

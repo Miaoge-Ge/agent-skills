@@ -125,6 +125,7 @@ agent-skills/
 │   │   └── scripts/check_headers.py
 │   └── installer-extract/
 │       └── SKILL.md
+├── cyg_skill/          # private submodule, pointer only
 ├── scripts/
 │   └── validate_skills.py
 ├── skills.sh.json
@@ -132,6 +133,8 @@ agent-skills/
 ├── README.en.md
 └── LICENSE
 ```
+
+`cyg_skill/` is a submodule pointing at the private [cyg-skills](https://github.com/Miaoge-Ge/cyg-skills) repository: this public repository stores only a commit pointer, never the files. Without access to that private repository, cloning skips it, which is expected.
 
 ## Scripts
 
