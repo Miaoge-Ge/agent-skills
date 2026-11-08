@@ -1,377 +1,163 @@
-# AI Expert Skills / AI 专家技能库
+# Agent Skills
 
-**Repository:** https://github.com/Miaoge-Ge/coding-agent-skills
+[简体中文](README.md) | [English](README.en.md)
 
-[English](#english) | [中文](#chinese)
+面向 AI 编程助手的 Agent Skills 合集：仓库自带 **2 个** 可直接安装的技能，另收录 **25 个** 第三方精选技能。
+
+- [本仓库技能](#本仓库技能)
+- [精选技能目录](#精选技能目录)
+- [安装](#安装)
+- [目录结构](#目录结构)
+- [脚本](#脚本)
+- [使用示例](#使用示例)
+- [版本与维护](#版本与维护)
+
+## 本仓库技能
+
+两个技能都位于 `personal_skill/`，每个技能是独立目录，包含 `SKILL.md` 和配套的 `scripts/`、`references/` 等文件。
+
+| 技能 | 说明 |
+|---|---|
+| [cpp-code-standard](personal_skill/cpp-code-standard/SKILL.md) | C/C++ 命名、排版、注释、类型及现代 C++ 用法规范，附文件头检查脚本。 |
+| [installer-extract](personal_skill/installer-extract/SKILL.md) | Windows 安装包解包部署、快捷方式、启动验证与更新处理。 |
+
+## 精选技能目录
+
+本仓库只做索引，不包含这些技能的代码；版权与协议归上游仓库所有，使用前请阅读对应仓库的 LICENSE。
+
+### 办公（4）
+
+| 技能 | 说明 |
+|---|---|
+| [ppt-master](https://github.com/hugohe3/ppt-master) | 根据文档或主题生成可编辑的原生 PowerPoint 演示文稿，支持图表、转场、动画与讲稿旁白。 |
+| [answer-me-with-html](https://github.com/QingYunA/answer-me-with-html) | 把复杂问题的解答转化为图文并茂的单页 HTML。 |
+| [patent-disclosure-skill](https://github.com/handsomestWei/patent-disclosure-skill) | 中国专利点挖掘与交底书（发明 / 实用 / 外观）编写，辅助解读专利、追踪政策与审查答复。 |
+| [SoftwareCopyright-Skill](https://github.com/Fokkyp/SoftwareCopyright-Skill) | 读取本地项目，自动生成中国软件著作权申请所需的全套 .docx 材料（申请表、操作手册、代码材料等）。 |
+
+> 其中 `SoftwareCopyright-Skill` 使用 AGPL-3.0，分发或修改前请确认合规。
+
+### 编程（21）
+
+#### 代码质量与效率（3）
+
+| 技能 | 说明 |
+|---|---|
+| [ponytail](https://github.com/DietrichGebert/ponytail) | 精简代码、减少过度设计与冗余复杂度，支持代码审查。 |
+| [caveman](https://github.com/JuliusBrussee/caveman) | 精简 AI 编程助手回复并压缩上下文，降低 Token 消耗。 |
+| [i-have-adhd](https://github.com/ayghri/i-have-adhd) | 让编程智能体把答案放在最前面，输出更短、更直给，对 ADHD 友好。 |
+
+#### 设计与可视化（4）
+
+| 技能 | 说明 |
+|---|---|
+| [archify](https://github.com/tt-a1i/archify) | 将想法、方案和代码架构转化为交互式可视化图表。 |
+| [hallmark](https://github.com/Nutlope/hallmark) | 网页界面设计与优化，减少 AI 生成页面的模板化风格。 |
+| [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | 为 AI 编程助手提供专业 UI/UX 设计能力。 |
+| [Understand-Anything](https://github.com/Egonex-AI/Understand-Anything) | 把代码或资料转换为可交互、可搜索、可提问的知识图谱。 |
+
+#### 逆向与安全（3）
+
+| 技能 | 说明 |
+|---|---|
+| [reagent](https://github.com/Dryxio/reagent) | AI 逆向工程智能体，从二进制程序重建并验证 C/C++ 代码。 |
+| [rea](https://github.com/morluto/rea) | 逆向工程与软件行为分析工具集，覆盖应用行为与原生二进制。 |
+| [security-audit-skill](https://github.com/cloudflare/security-audit-skill) | 代码与架构安全审计，支持漏洞验证和结构化报告。 |
+
+#### 网站克隆（1）
+
+| 技能 | 说明 |
+|---|---|
+| [ai-website-cloner-template](https://github.com/JCodesMore/ai-website-cloner-template) | 一条命令克隆任意网站。 |
+
+#### 智能体与工程方法（2）
+
+| 技能 | 说明 |
+|---|---|
+| [ECC](https://github.com/affaan-m/ECC) | 面向 Claude Code、Codex 等智能体的性能优化系统：技能、本能、记忆、安全与研究优先开发。 |
+| [superpowers](https://github.com/obra/superpowers) | 面向智能体的技能框架与软件开发方法论，覆盖从构思到交付的完整流程。 |
+
+#### 技能合集（8）
+
+| 技能 | 说明 |
+|---|---|
+| [anthropics/skills](https://github.com/anthropics/skills) | Anthropic 官方 Agent Skills 示例合集，覆盖文档、设计、MCP、Web 测试等场景。 |
+| [openai/skills](https://github.com/openai/skills) | OpenAI Codex 官方技能目录，包含 curated 与 experimental 技能；上游已标记弃用。 |
+| [google-gemini/gemini-skills](https://github.com/google-gemini/gemini-skills) | Gemini API、SDK 与模型 / Agent 交互的官方技能合集。 |
+| [zai-org/GLM-skills](https://github.com/zai-org/GLM-skills) | GLM 系列模型的官方技能合集，覆盖多模态、OCR、视觉等。 |
+| [MiniMax-AI/skills](https://github.com/MiniMax-AI/skills) | MiniMax 官方 Agent Skills 合集。 |
+| [TheQtCompanyRnD/agent-skills](https://github.com/TheQtCompanyRnD/agent-skills) | Qt 官方 AI 编程技能集合，辅助 Qt / QML 开发与质量检查。 |
+| [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 面向 AI 编程智能体的生产级工程技能合集，覆盖定义、计划、构建、验证、评审与交付。 |
+| [mattpocock/skills](https://github.com/mattpocock/skills) | 面向真实工程的技能合集，来自作者日常使用的 .agents 目录。 |
+
+## 安装
+
+下面的提示词只安装本仓库自带的 2 个技能。精选目录中的第三方技能请按各自仓库的 README 安装。
+
+把提示词发给具备联网和文件操作能力的编程助手：
+
+```text
+请从 https://github.com/Miaoge-Ge/agent-skills 安装仓库自带的全部技能。
+
+仓库使用标准 Agent Skills 格式，技能位于 personal_skill/ 目录。
+请递归查找该目录下所有包含 SKILL.md 的技能目录，先读取 SKILL.md，再把完整技能目录（包括 references、scripts 等全部文件）复制到当前工具支持的用户级技能目录。
+如果已存在同名技能，先比较版本，保留本地自定义修改。
+完成后列出已安装技能的名称、版本和安装路径。
+```
+
+只安装一个技能时，把提示词里的路径换成目标技能目录，例如：
+
+```text
+请从 https://github.com/Miaoge-Ge/agent-skills 安装 personal_skill/cpp-code-standard 技能。
+
+仓库使用标准 Agent Skills 格式。请先读取该目录下的 SKILL.md，再把完整技能目录（包括 references、scripts 等全部文件）复制到当前工具支持的用户级技能目录。
+如果已存在同名技能，先比较版本，保留本地自定义修改。
+完成后报告技能名称、版本和安装路径。
+```
+
+## 目录结构
+
+```text
+agent-skills/
+├── personal_skill/
+│   ├── cpp-code-standard/
+│   │   ├── SKILL.md
+│   │   ├── references/
+│   │   └── scripts/check_headers.py
+│   └── installer-extract/
+│       └── SKILL.md
+├── scripts/
+│   └── validate_skills.py
+├── skills.sh.json
+├── README.md
+├── README.en.md
+└── LICENSE
+```
+
+## 脚本
+
+| 脚本 | 用途 |
+|---|---|
+| `scripts/validate_skills.py` | 校验全部技能的 frontmatter、名称、版本、相对链接和发现路径。 |
+| `personal_skill/cpp-code-standard/scripts/check_headers.py` | 检查 C/C++ 文件头、头文件包含保护和头文件中的 `using namespace`。 |
 
 ```bash
-# Quick start in Claude Code
-/plugin marketplace add Miaoge-Ge/coding-agent-skills
-/plugin install cpp-expert@ai-expert-skills
+python scripts/validate_skills.py
 ```
 
-<a name="english"></a>
+## 使用示例
 
-## 🇬🇧 English
-
-A curated collection of refined skill definitions that turn your AI coding assistant into a domain-specific expert. Distributed as **Claude Code plugins** through a built-in plugin marketplace, and also usable as plain skills in Open Code, Cursor, and Trae.
-
-Each skill provides structured, high-quality context — when to engage, when not to, concrete guidance, and runnable examples — so your assistant behaves like a focused expert instead of a generalist.
-
-### Repository Layout
-
-```
-coding-agent-skills/
-├── .claude-plugin/
-│   └── marketplace.json          # marketplace catalog (lists all plugins)
-├── plugins/
-│   ├── competitive-programming-expert/
-│   │   ├── .claude-plugin/plugin.json
-│   │   └── skills/competitive-programming-expert/SKILL.md
-│   ├── cpp-expert/ …
-│   ├── python-expert/ …
-│   ├── deep-learning-expert/ …
-│   ├── llm-testing-expert/ …
-│   ├── software-architect/ …
-│   ├── github-master/ …
-│   └── threejs/                  # bundles all 10 Three.js skills
-│       └── skills/threejs-*/SKILL.md
-└── rules/                        # Cursor-style coding-standard rules (not a plugin)
+```text
+用 cpp-code-standard 检查当前 C/C++ 修改，先不要改代码。
 ```
 
-Each plugin is a self-contained directory with a `.claude-plugin/plugin.json` manifest; its skills live in `skills/<slug>/SKILL.md`. The marketplace name is **`ai-expert-skills`**.
-
-### Plugins Included
-
-**28 plugins** (37 skills) in the `ai-expert-skills` marketplace, grouped by category.
-
-**Languages**
-
-| Plugin | Description |
-|--------|-------------|
-| **typescript-expert** | TypeScript type system, generics, narrowing, and strict-mode safety. |
-| **python-expert** | Pythonic code, typing, async, standard-library usage, performance. |
-| **cpp-expert** | Modern C++ (17/20/23), memory safety, RAII, move semantics, performance. |
-| **rust-expert** | Ownership, lifetimes, traits, async, and idiomatic error handling. |
-| **go-expert** | Idiomatic Go: goroutines, channels, interfaces, error handling. |
-
-**Frontend**
-
-| Plugin | Description |
-|--------|-------------|
-| **react-expert** | Modern React (18/19): hooks, patterns, state, performance, Server Components. |
-| **nextjs-expert** | Next.js App Router, Server Components, server actions, caching. |
-| **tailwind-expert** | Tailwind CSS utility-first styling, responsive design, theming. |
-| **accessibility-expert** | Web a11y: WCAG, semantic HTML, ARIA, keyboard, screen readers. |
-| **threejs** *(10 skills)* | Full Three.js set: fundamentals, geometry, materials, lighting, textures, animation, loaders, shaders, post-processing, interaction. |
-
-**Backend & Data**
-
-| Plugin | Description |
-|--------|-------------|
-| **nodejs-backend-expert** | Node.js services (Express/Fastify/Hono): routing, middleware, auth, async. |
-| **api-design-expert** | REST/GraphQL design: resources, versioning, pagination, errors, contracts. |
-| **sql-expert** | SQL queries, schema design, indexing, query optimization, transactions. |
-
-**AI / LLM**
-
-| Plugin | Description |
-|--------|-------------|
-| **prompt-engineering-expert** | Prompt structure, few-shot, chain-of-thought, output formatting. |
-| **rag-expert** | Chunking, embeddings, vector/hybrid search, reranking, grounding. |
-| **llm-testing-expert** | Evaluation strategies, prompt engineering, red teaming, regression testing. |
-| **deep-learning-expert** | Model architecture, training strategies, debugging, paper interpretation. |
-
-**DevOps**
-
-| Plugin | Description |
-|--------|-------------|
-| **docker-expert** | Dockerfiles, multi-stage builds, image optimization, Compose. |
-| **kubernetes-expert** | Workloads, Services, ConfigMaps, probes, resources, troubleshooting. |
-| **bash-scripting-expert** | Robust, safe shell scripts: quoting, error handling, POSIX patterns. |
-| **github-master** | Git workflows, repo management, PRs, GitHub Actions CI/CD. |
-
-**Quality & Craft**
-
-| Plugin | Description |
-|--------|-------------|
-| **testing-expert** | Unit/integration/e2e, TDD, mocking, fixtures, coverage. |
-| **debugging-expert** | Systematic root-cause analysis: reproduce, bisect, fix the cause. |
-| **refactoring-expert** | Safe, incremental, behavior-preserving cleanup and tech-debt paydown. |
-| **performance-expert** | Profiling and optimizing CPU/memory/I/O/rendering, measure-first. |
-| **security-expert** | Secure coding & review (OWASP Top 10), authn/authz, secrets. |
-| **software-architect** | System design, technology selection, trade-off analysis. |
-| **competitive-programming-expert** | Algorithmic problem solving, complexity analysis, optimization. |
-
-### Install via Claude Code (recommended)
-
-Add the marketplace once, then install any plugin from it.
-
-```bash
-# 1. Register the marketplace (from the GitHub repo)
-/plugin marketplace add Miaoge-Ge/coding-agent-skills
-
-# 2. Install the plugins you want
-/plugin install cpp-expert@ai-expert-skills
-/plugin install threejs@ai-expert-skills
-/plugin install software-architect@ai-expert-skills
-
-# Or browse and install interactively
-/plugin
+```text
+用 installer-extract 解包安装包，并验证快捷方式和启动。
 ```
 
-Equivalent non-interactive CLI:
+## 版本与维护
 
-```bash
-claude plugin marketplace add Miaoge-Ge/coding-agent-skills
-claude plugin install cpp-expert@ai-expert-skills
-```
+版本号写在各技能 `SKILL.md` 的 `metadata.version` 中。新增或修改技能时同步更新版本号、本 README 的技能列表，并运行 `scripts/validate_skills.py`。新增或更新精选目录时，同步修改两个 README 中的列表与数量。
 
-Update later with `/plugin marketplace update ai-expert-skills`. Manage installs in the `/plugin` menu.
-
-> **Local development:** from a clone of this repo you can register the marketplace by path — `claude plugin marketplace add ./` — then `claude plugin install <name>@ai-expert-skills`.
-
-### Use without the plugin system
-
-The skills are plain `SKILL.md` files, so you can also copy them directly:
-
-- **Claude Code / Open Code:** copy `plugins/<plugin>/skills/<slug>/` into `.claude/skills/` (project) or `~/.claude/skills/` (global).
-- **Cursor:** copy into `.cursor/skills/`.
-- **Trae:** copy into `.trae/skills/`.
-
-For the Three.js bundle, copy the individual skill folders under `plugins/threejs/skills/`.
-
-### Coding-Standard Rules
-
-`rules/` holds Cursor-style rules that auto-attach by file glob (they are **not** part of the Claude Code plugins):
-
-| Rule | Scope | File |
-|------|-------|------|
-| **cpp-style-guide** | `*.cpp,*.hpp,*.h,*.cc,*.cxx` | [View](rules/cpp-style-guide.md) |
-| **python-style-guide** | `*.py,*.pyi` | [View](rules/python-style-guide.md) |
-
-Place them where your editor expects rule files (e.g., Cursor's `.cursor/rules/`).
-
-### How It Works
-
-Once a plugin is installed, Claude Code auto-discovers its skills and engages the right one based on each skill's `description`. Example triggers:
-
-- Create a 3D scene → `threejs` (fundamentals)
-- Add lighting and shadows → `threejs` (lighting)
-- Load a GLTF model → `threejs` (loaders + animation)
-- Solve a contest problem → `competitive-programming-expert`
-- Design a distributed system → `software-architect`
-
-### Skill File Structure
-
-Each `SKILL.md` uses YAML frontmatter plus Markdown:
-
-```markdown
----
-name: skill-slug          # [a-z0-9-]+, matches its directory name
-description: "When to engage, with trigger keywords. Quoted when it contains a colon."
----
-```
-
-The body of a **general skill** follows a consistent layout:
-
-```markdown
-# Skill Title
-
-## Role / Description    # who the expert is
-## When to Use           # concrete activation triggers
-## When NOT to Use       # boundaries + which skill to defer to
-## Guidelines            # the actual expertise
-## Examples              # runnable code / patterns
-## See Also              # cross-references to related skills
-```
-
-Workflow-heavy skills (`software-architect`, `deep-learning-expert`, `llm-testing-expert`, `competitive-programming-expert`) additionally include `Input`/`Output` contracts, step-by-step `Execution Steps`, and `Failure Handling`. The Three.js skills are example-driven, leading with a runnable quick start.
-
-### License
-
-MIT — see [LICENSE](LICENSE).
-
----
-
-<a name="chinese"></a>
-
-## 🇨🇳 中文
-
-一套精心打磨的技能定义，可将你的 AI 编程助手变成特定领域的专家。以 **Claude Code 插件**形式通过内置插件市场分发，同时也能作为普通技能用于 Open Code、Cursor、Trae。
-
-每个技能都提供结构化、高质量的上下文——何时启用、何时不启用、具体指导以及可运行示例——让助手表现得像一位聚焦的专家，而不是泛泛而谈。
-
-### 仓库结构
-
-```
-coding-agent-skills/
-├── .claude-plugin/
-│   └── marketplace.json          # 市场目录（列出全部插件）
-├── plugins/
-│   ├── competitive-programming-expert/
-│   │   ├── .claude-plugin/plugin.json
-│   │   └── skills/competitive-programming-expert/SKILL.md
-│   ├── cpp-expert/ …
-│   ├── python-expert/ …
-│   ├── deep-learning-expert/ …
-│   ├── llm-testing-expert/ …
-│   ├── software-architect/ …
-│   ├── github-master/ …
-│   └── threejs/                  # 打包全部 10 个 Three.js 技能
-│       └── skills/threejs-*/SKILL.md
-└── rules/                        # Cursor 风格代码规范（不属于插件）
-```
-
-每个插件都是独立目录，含 `.claude-plugin/plugin.json` 清单；其技能位于 `skills/<slug>/SKILL.md`。市场名称为 **`ai-expert-skills`**。
-
-### 包含的插件
-
-`ai-expert-skills` 市场共 **28 个插件**(37 个技能),按品类分组。
-
-**编程语言**
-
-| 插件 | 描述 |
-|------|------|
-| **typescript-expert** | TypeScript 类型系统、泛型、类型收窄与严格模式安全。 |
-| **python-expert** | Pythonic 代码、类型标注、异步、标准库与性能优化。 |
-| **cpp-expert** | 现代 C++（17/20/23）、内存安全、RAII、移动语义、性能调优。 |
-| **rust-expert** | 所有权、生命周期、trait、异步与地道的错误处理。 |
-| **go-expert** | 地道 Go：goroutine、channel、接口与错误处理。 |
-
-**前端**
-
-| 插件 | 描述 |
-|------|------|
-| **react-expert** | 现代 React（18/19）：hooks、模式、状态、性能、Server Components。 |
-| **nextjs-expert** | Next.js App Router、Server Components、server actions、缓存。 |
-| **tailwind-expert** | Tailwind CSS 工具类样式、响应式、主题与设计系统。 |
-| **accessibility-expert** | Web 无障碍：WCAG、语义化 HTML、ARIA、键盘与读屏。 |
-| **threejs** *(10 个技能)* | 完整 Three.js 套件：基础、几何体、材质、灯光、纹理、动画、加载器、着色器、后处理、交互。 |
-
-**后端与数据**
-
-| 插件 | 描述 |
-|------|------|
-| **nodejs-backend-expert** | Node.js 服务（Express/Fastify/Hono）：路由、中间件、鉴权、异步。 |
-| **api-design-expert** | REST/GraphQL 设计：资源建模、版本化、分页、错误、契约。 |
-| **sql-expert** | SQL 查询、表结构设计、索引、查询优化与事务。 |
-
-**AI / 大模型**
-
-| 插件 | 描述 |
-|------|------|
-| **prompt-engineering-expert** | 提示词结构、few-shot、思维链、输出格式化。 |
-| **rag-expert** | 分块、embedding、向量/混合检索、重排序与答案接地。 |
-| **llm-testing-expert** | 评测策略、提示词工程、红队测试与回归测试。 |
-| **deep-learning-expert** | 模型架构设计、训练策略、调试与论文解读。 |
-
-**DevOps**
-
-| 插件 | 描述 |
-|------|------|
-| **docker-expert** | Dockerfile、多阶段构建、镜像优化、Compose。 |
-| **kubernetes-expert** | 工作负载、Service、ConfigMap、探针、资源与排障。 |
-| **bash-scripting-expert** | 健壮安全的 shell 脚本:引号、错误处理、POSIX 模式。 |
-| **github-master** | Git 工作流、仓库管理、PR 与 GitHub Actions CI/CD。 |
-
-**质量与工程素养**
-
-| 插件 | 描述 |
-|------|------|
-| **testing-expert** | 单元/集成/端到端、TDD、mock、fixture、覆盖率。 |
-| **debugging-expert** | 系统化根因分析:复现、二分定位、修因不修表。 |
-| **refactoring-expert** | 安全、增量、保持行为的重构与技术债清理。 |
-| **performance-expert** | CPU/内存/IO/渲染性能剖析与优化,先测量后优化。 |
-| **security-expert** | 安全编码与审查(OWASP Top 10)、鉴权、密钥。 |
-| **software-architect** | 系统设计、技术选型与架构权衡分析。 |
-| **competitive-programming-expert** | 算法解题、复杂度分析与优化。 |
-
-### 通过 Claude Code 安装（推荐）
-
-只需添加一次市场，之后即可按需安装其中的插件。
-
-```bash
-# 1. 注册市场（从 GitHub 仓库）
-/plugin marketplace add Miaoge-Ge/coding-agent-skills
-
-# 2. 安装你需要的插件
-/plugin install cpp-expert@ai-expert-skills
-/plugin install threejs@ai-expert-skills
-/plugin install software-architect@ai-expert-skills
-
-# 或交互式浏览安装
-/plugin
-```
-
-等价的非交互式 CLI：
-
-```bash
-claude plugin marketplace add Miaoge-Ge/coding-agent-skills
-claude plugin install cpp-expert@ai-expert-skills
-```
-
-之后用 `/plugin marketplace update ai-expert-skills` 更新；在 `/plugin` 菜单中管理已安装插件。
-
-> **本地开发：** 在本仓库的克隆中可用路径注册市场——`claude plugin marketplace add ./`——再执行 `claude plugin install <name>@ai-expert-skills`。
-
-### 不使用插件系统时
-
-技能本质上就是 `SKILL.md` 文件，也可以直接复制使用：
-
-- **Claude Code / Open Code：** 将 `plugins/<plugin>/skills/<slug>/` 复制到 `.claude/skills/`（项目级）或 `~/.claude/skills/`（全局）。
-- **Cursor：** 复制到 `.cursor/skills/`。
-- **Trae：** 复制到 `.trae/skills/`。
-
-对于 Three.js 套件，复制 `plugins/threejs/skills/` 下的各技能文件夹即可。
-
-### 代码规范规则
-
-`rules/` 存放 Cursor 风格规则，按文件 glob 自动挂载（**不**属于 Claude Code 插件）：
-
-| 规则 | 适用范围 | 文件 |
-|------|----------|------|
-| **cpp-style-guide** | `*.cpp,*.hpp,*.h,*.cc,*.cxx` | [查看](rules/cpp-style-guide.md) |
-| **python-style-guide** | `*.py,*.pyi` | [查看](rules/python-style-guide.md) |
-
-将其放到编辑器期望的规则目录（例如 Cursor 的 `.cursor/rules/`）。
-
-### 工作原理
-
-插件安装后，Claude Code 会自动发现其技能，并根据每个技能的 `description` 启用最匹配的那个。常见触发示例：
-
-- 搭建 3D 场景 → `threejs`（基础）
-- 添加灯光与阴影 → `threejs`（灯光）
-- 加载 GLTF 模型 → `threejs`（加载器 + 动画）
-- 解算法竞赛题 → `competitive-programming-expert`
-- 设计分布式系统 → `software-architect`
-
-### 技能文件结构
-
-每个 `SKILL.md` 由 YAML frontmatter 加 Markdown 正文组成：
-
-```markdown
----
-name: skill-slug          # [a-z0-9-]+，与目录名一致
-description: "何时启用，含触发关键词；含冒号时需加引号。"
----
-```
-
-**通用技能**正文采用统一布局：
-
-```markdown
-# 技能标题
-
-## Role / Description    # 该专家是谁
-## When to Use           # 具体触发条件
-## When NOT to Use       # 边界，以及应转交哪个技能
-## Guidelines            # 核心专业知识
-## Examples              # 可运行代码 / 模式
-## See Also              # 关联技能交叉引用
-```
-
-工作流型技能（`software-architect`、`deep-learning-expert`、`llm-testing-expert`、`competitive-programming-expert`）还包含 `Input`/`Output` 契约、分步 `Execution Steps` 与 `Failure Handling`。Three.js 系列以示例驱动，以可运行的快速上手开头。
-
-### 许可证
+## 许可证
 
 MIT —— 见 [LICENSE](LICENSE)。
