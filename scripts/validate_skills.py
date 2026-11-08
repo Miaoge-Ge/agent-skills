@@ -20,7 +20,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-CONTAINERS = [ROOT / "skill", ROOT / "personal_skill"]
+CONTAINERS = [ROOT / "personal_skill"]
 NAME_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 LINK_RE = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 FRONTMATTER_RE = re.compile(r"^---\r?\n(.*?)\r?\n---\r?\n", re.DOTALL)
