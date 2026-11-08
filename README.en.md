@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [English](README.en.md)
 
-A collection of Agent Skills for AI coding assistants: **2** installable skills in this repository plus **25** curated third-party skills.
+A collection of Agent Skills for AI coding assistants: **2** installable skills (C/C++ standards, Windows installer extraction) plus **25** curated third-party skills.
 
 - [Repository skills](#repository-skills)
 - [Curated catalog](#curated-catalog)
@@ -73,7 +73,7 @@ This repository only indexes these skills; the code, copyright, and licenses rem
 
 | Skill | Description |
 |---|---|
-| [ECC](https://github.com/affaan-m/ECC) | A performance-optimization system for agent harnesses: skills, instincts, memory, security, and research-first development for Claude Code, Codex, and more. |
+| [ECC](https://github.com/affaan-m/ECC) | A performance-optimization system for mainstream coding agents: skills, instincts, memory, security, and research-first development. |
 | [superpowers](https://github.com/obra/superpowers) | An agentic skills framework and software-development methodology covering the full path from idea to delivery. |
 
 #### Skill collections (8)
