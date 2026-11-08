@@ -2,34 +2,44 @@
 
 [简体中文](README.md) | [English](README.en.md)
 
-A practical collection of Agent Skills for AI coding assistants. Every skill is a self-contained directory with a `SKILL.md` plus `scripts/`, `references/`, and other supporting files.
+A collection of Agent Skills for AI coding assistants: **2** installable skills in this repository plus a maintained index of **23** third-party skills.
 
-**2 skills** in total, both under `personal_skill/`.
+- [Repository skills](#repository-skills)
+- [Curated catalog](#curated-catalog)
+- [Installation](#installation)
+- [Repository layout](#repository-layout)
+- [Scripts](#scripts)
+- [Usage examples](#usage-examples)
+- [Versioning](#versioning)
 
-It also maintains a [curated third-party skill catalog](catalog/README.en.md) with 23 skills (4 office, 19 coding).
+## Repository skills
 
-## Skills
+Both skills live under `personal_skill/`; each is a self-contained directory with a `SKILL.md` plus `scripts/`, `references/`, and other supporting files.
 
 | Skill | Description |
 |---|---|
 | [cpp-code-standard](personal_skill/cpp-code-standard/SKILL.md) | C/C++ naming, formatting, comments, types, and modern C++ practices, with a header checker. |
 | [installer-extract](personal_skill/installer-extract/SKILL.md) | Windows installer extraction and deployment, shortcuts, launch verification, and updates. |
 
-## Curated Skill Catalog
+## Curated catalog
 
-Beyond the skills bundled here, the repo indexes 23 third-party skills worth using:
+An index of 23 third-party skills worth using, grouped by purpose. This repository only indexes them; the code, copyright, and licenses remain with the upstream repositories.
 
-- **Office**: PPT generation, HTML answers for hard questions, patent disclosures, and software copyright materials.
-- **Coding**: code trimming, token compression, architecture diagrams, UI/UX design, reverse engineering, security audits, website cloning, knowledge graphs, agent methods, and the Anthropic / OpenAI / MiniMax / Qt / Addy Osmani / Matt Pocock collections.
+| Category | Count | Coverage |
+|---|---|---|
+| [Office](catalog/office.en.md) | 4 | Presentations, HTML answers, patent disclosures, software copyright materials |
+| [Coding](catalog/coding.en.md) | 19 | Code quality, design and visualization, reverse engineering and security, website cloning, agent methods, skill collections |
 
-See [catalog/README.en.md](catalog/README.en.md) for the full list: [Office](catalog/office.en.md) (4) and [Coding](catalog/coding.en.md) (19); the Chinese version is [catalog/README.md](catalog/README.md).
+See [catalog/README.en.md](catalog/README.en.md) for the full list, licenses, and usage notes; the Chinese version is [catalog/README.md](catalog/README.md).
 
 ## Installation
 
-Send the prompt below to a coding assistant with network and file access to install every skill:
+The prompt below installs only the 2 skills bundled in this repository. Third-party skills in the catalog must be installed from their own repositories.
+
+Send this prompt to a coding assistant with network and file access:
 
 ```text
-Install all skills from https://github.com/Miaoge-Ge/agent-skills.
+Install all bundled skills from https://github.com/Miaoge-Ge/agent-skills.
 
 The repository uses the standard Agent Skills format. Skills live under personal_skill/.
 Recursively find every skill directory containing a SKILL.md under that folder, read the SKILL.md first, then copy the complete skill directory (including references, scripts, and all other supporting files) into the user-level skills directory supported by this tool.
@@ -47,7 +57,7 @@ If a skill with the same name already exists, compare versions first and preserv
 When done, report the skill name, version, and installation path.
 ```
 
-## Repository Layout
+## Repository layout
 
 ```text
 agent-skills/
@@ -58,8 +68,6 @@ agent-skills/
 │   │   └── scripts/check_headers.py
 │   └── installer-extract/
 │       └── SKILL.md
-├── scripts/
-│   └── validate_skills.py
 ├── catalog/
 │   ├── README.md
 │   ├── README.en.md
@@ -67,6 +75,8 @@ agent-skills/
 │   ├── office.en.md
 │   ├── coding.md
 │   └── coding.en.md
+├── scripts/
+│   └── validate_skills.py
 ├── skills.sh.json
 ├── README.md
 ├── README.en.md
@@ -84,7 +94,7 @@ agent-skills/
 python scripts/validate_skills.py
 ```
 
-## Usage Examples
+## Usage examples
 
 ```text
 Use cpp-code-standard to check my current C/C++ changes, and do not modify code yet.

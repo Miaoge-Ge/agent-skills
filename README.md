@@ -2,13 +2,19 @@
 
 [简体中文](README.md) | [English](README.en.md)
 
-面向 AI 编程助手的实用 Agent Skills 合集。每个技能都是独立目录，包含 `SKILL.md` 和配套的 `scripts/`、`references/` 等文件。
+面向 AI 编程助手的 Agent Skills 合集：仓库自带 **2 个** 可直接安装的技能，另维护一份 **23 个** 第三方精选技能目录。
 
-共 **2 个技能**：`personal_skill/` 下的 2 个个人技能。
+- [本仓库技能](#本仓库技能)
+- [精选技能目录](#精选技能目录)
+- [安装](#安装)
+- [目录结构](#目录结构)
+- [脚本](#脚本)
+- [使用示例](#使用示例)
+- [版本与维护](#版本与维护)
 
-另维护一份 [精选技能目录](catalog/README.md)，收录 23 个第三方技能（办公 4 个、编程 19 个）。
+## 本仓库技能
 
-## 技能
+两个技能都位于 `personal_skill/`，每个技能是独立目录，包含 `SKILL.md` 和配套的 `scripts/`、`references/` 等文件。
 
 | 技能 | 说明 |
 |---|---|
@@ -17,19 +23,23 @@
 
 ## 精选技能目录
 
-除本仓库自带的技能外，另按用途整理了 23 个值得使用的第三方技能：
+按用途收录 23 个值得使用的第三方技能。本仓库只做索引，不包含这些技能的代码；版权与协议归上游仓库所有。
 
-- **办公**：PPT 生成、复杂问题 HTML 解答、专利交底书、软件著作权材料。
-- **编程**：代码精简、Token 压缩、架构可视化、UI/UX 设计、逆向工程、安全审计、网站克隆、知识图谱、智能体方法，以及 Anthropic / OpenAI / MiniMax / Qt / Addy Osmani / Matt Pocock 等技能合集。
+| 分类 | 数量 | 内容 |
+|---|---|---|
+| [办公](catalog/office.md) | 4 | PPT 生成、复杂问题 HTML 解答、专利交底书、软件著作权材料 |
+| [编程](catalog/coding.md) | 19 | 代码质量、设计可视化、逆向安全、网站克隆、智能体方法、技能合集 |
 
-完整列表见 [catalog/README.md](catalog/README.md)：[办公](catalog/office.md) 4 个、[编程](catalog/coding.md) 19 个；英文版见 [catalog/README.en.md](catalog/README.en.md)。
+完整列表、协议说明与使用方式见 [catalog/README.md](catalog/README.md)；英文版见 [catalog/README.en.md](catalog/README.en.md)。
 
 ## 安装
 
-把下面的提示词发给具备联网和文件操作能力的编程助手，安装全部技能：
+下面的提示词只安装本仓库自带的 2 个技能。精选目录中的第三方技能请按各自仓库的 README 安装。
+
+把提示词发给具备联网和文件操作能力的编程助手：
 
 ```text
-请从 https://github.com/Miaoge-Ge/agent-skills 安装全部技能。
+请从 https://github.com/Miaoge-Ge/agent-skills 安装仓库自带的全部技能。
 
 仓库使用标准 Agent Skills 格式，技能位于 personal_skill/ 目录。
 请递归查找该目录下所有包含 SKILL.md 的技能目录，先读取 SKILL.md，再把完整技能目录（包括 references、scripts 等全部文件）复制到当前工具支持的用户级技能目录。
@@ -58,8 +68,6 @@ agent-skills/
 │   │   └── scripts/check_headers.py
 │   └── installer-extract/
 │       └── SKILL.md
-├── scripts/
-│   └── validate_skills.py
 ├── catalog/
 │   ├── README.md
 │   ├── README.en.md
@@ -67,6 +75,8 @@ agent-skills/
 │   ├── office.en.md
 │   ├── coding.md
 │   └── coding.en.md
+├── scripts/
+│   └── validate_skills.py
 ├── skills.sh.json
 ├── README.md
 ├── README.en.md
