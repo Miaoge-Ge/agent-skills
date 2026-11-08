@@ -6,7 +6,7 @@
 
 共 **2 个技能**：`personal_skill/` 下的 2 个个人技能。
 
-另维护一份 [精选技能目录](CATALOG.md)，收录 17 个第三方技能（办公 3 个、编程 14 个）。
+另维护一份 [精选技能目录](catalog/README.md)，收录 23 个第三方技能（办公 4 个、编程 19 个）。
 
 ## 技能
 
@@ -17,12 +17,12 @@
 
 ## 精选技能目录
 
-除本仓库自带的技能外，另按用途整理了 17 个值得使用的第三方技能：
+除本仓库自带的技能外，另按用途整理了 23 个值得使用的第三方技能：
 
-- **办公**：PPT 生成、复杂问题 HTML 解答、专利交底书。
-- **编程**：代码精简、Token 压缩、架构可视化、UI/UX 设计、逆向工程、安全审计、网站克隆、知识图谱，以及 Anthropic / OpenAI / MiniMax / Qt 官方技能合集。
+- **办公**：PPT 生成、复杂问题 HTML 解答、专利交底书、软件著作权材料。
+- **编程**：代码精简、Token 压缩、架构可视化、UI/UX 设计、逆向工程、安全审计、网站克隆、知识图谱、智能体方法，以及 Anthropic / OpenAI / MiniMax / Qt / Addy Osmani / Matt Pocock 等技能合集。
 
-完整列表、简介与开源协议见 [CATALOG.md](CATALOG.md)；英文版见 [CATALOG.en.md](CATALOG.en.md)。
+完整列表见 [catalog/README.md](catalog/README.md)：[办公](catalog/office.md) 4 个、[编程](catalog/coding.md) 19 个；英文版见 [catalog/README.en.md](catalog/README.en.md)。
 
 ## 安装
 
@@ -60,8 +60,13 @@ agent-skills/
 │       └── SKILL.md
 ├── scripts/
 │   └── validate_skills.py
-├── CATALOG.md
-├── CATALOG.en.md
+├── catalog/
+│   ├── README.md
+│   ├── README.en.md
+│   ├── office.md
+│   ├── office.en.md
+│   ├── coding.md
+│   └── coding.en.md
 ├── skills.sh.json
 ├── README.md
 ├── README.en.md
@@ -91,7 +96,7 @@ python scripts/validate_skills.py
 
 ## 版本与维护
 
-版本号写在各技能 `SKILL.md` 的 `metadata.version` 中。新增或修改技能时同步更新版本号、本 README 的技能列表，并运行 `scripts/validate_skills.py`。新增或更新精选目录时，同步修改 `CATALOG.md` 与 `CATALOG.en.md` 以及上方的数量。
+版本号写在各技能 `SKILL.md` 的 `metadata.version` 中。新增或修改技能时同步更新版本号、本 README 的技能列表，并运行 `scripts/validate_skills.py`。新增或更新精选目录时，同步修改 `catalog/` 下的分类页与根 README 中的数量。
 
 ## 许可证
 

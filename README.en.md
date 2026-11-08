@@ -6,7 +6,7 @@ A practical collection of Agent Skills for AI coding assistants. Every skill is 
 
 **2 skills** in total, both under `personal_skill/`.
 
-It also maintains a [curated third-party skill catalog](CATALOG.en.md) with 17 skills (3 office, 14 coding).
+It also maintains a [curated third-party skill catalog](catalog/README.en.md) with 23 skills (4 office, 19 coding).
 
 ## Skills
 
@@ -17,12 +17,12 @@ It also maintains a [curated third-party skill catalog](CATALOG.en.md) with 17 s
 
 ## Curated Skill Catalog
 
-Beyond the skills bundled here, the repo indexes 17 third-party skills worth using:
+Beyond the skills bundled here, the repo indexes 23 third-party skills worth using:
 
-- **Office**: PPT generation, HTML answers for hard questions, and patent disclosures.
-- **Coding**: code trimming, token compression, architecture diagrams, UI/UX design, reverse engineering, security audits, website cloning, knowledge graphs, and the Anthropic / OpenAI / MiniMax / Qt official collections.
+- **Office**: PPT generation, HTML answers for hard questions, patent disclosures, and software copyright materials.
+- **Coding**: code trimming, token compression, architecture diagrams, UI/UX design, reverse engineering, security audits, website cloning, knowledge graphs, agent methods, and the Anthropic / OpenAI / MiniMax / Qt / Addy Osmani / Matt Pocock collections.
 
-See [CATALOG.en.md](CATALOG.en.md) for the full list, descriptions, and licenses; the Chinese version is [CATALOG.md](CATALOG.md).
+See [catalog/README.en.md](catalog/README.en.md) for the full list: [Office](catalog/office.en.md) (4) and [Coding](catalog/coding.en.md) (19); the Chinese version is [catalog/README.md](catalog/README.md).
 
 ## Installation
 
@@ -60,8 +60,13 @@ agent-skills/
 │       └── SKILL.md
 ├── scripts/
 │   └── validate_skills.py
-├── CATALOG.md
-├── CATALOG.en.md
+├── catalog/
+│   ├── README.md
+│   ├── README.en.md
+│   ├── office.md
+│   ├── office.en.md
+│   ├── coding.md
+│   └── coding.en.md
 ├── skills.sh.json
 ├── README.md
 ├── README.en.md
@@ -91,7 +96,7 @@ Use installer-extract to unpack the installer and verify shortcuts and launch.
 
 ## Versioning
 
-Versions are recorded in each skill's `metadata.version` inside `SKILL.md`. When adding or updating a skill, bump its version, update the skill list in both READMEs, and run `scripts/validate_skills.py`. When adding or updating catalog entries, also update `CATALOG.md`, `CATALOG.en.md`, and the counts above.
+Versions are recorded in each skill's `metadata.version` inside `SKILL.md`. When adding or updating a skill, bump its version, update the skill list in both READMEs, and run `scripts/validate_skills.py`. When adding or updating catalog entries, also update the pages under `catalog/` and the counts in the root READMEs.
 
 ## License
 
