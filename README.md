@@ -9,6 +9,8 @@
 - `skill/`：3 个通用技能。
 - `personal_skill/`：2 个个人技能。
 
+另维护一份 [精选技能目录](CATALOG.md)，收录 17 个第三方技能（办公 3 个、编程 14 个）。
+
 ## 技能
 
 ### 编程语言（languages/）
@@ -35,6 +37,15 @@
 |---|---|
 | [cpp-code-standard](personal_skill/cpp-code-standard/SKILL.md) | C/C++ 命名、排版、注释、类型及现代 C++ 用法规范，附文件头检查脚本。 |
 | [installer-extract](personal_skill/installer-extract/SKILL.md) | Windows 安装包解包部署、快捷方式、启动验证与更新处理。 |
+
+## 精选技能目录
+
+除本仓库自带的技能外，另按用途整理了 17 个值得使用的第三方技能：
+
+- **办公**：PPT 生成、复杂问题 HTML 解答、专利交底书。
+- **编程**：代码精简、Token 压缩、架构可视化、UI/UX 设计、逆向工程、安全审计、网站克隆、知识图谱，以及 Anthropic / OpenAI / MiniMax / Qt 官方技能合集。
+
+完整列表、简介与开源协议见 [CATALOG.md](CATALOG.md)；英文版见 [CATALOG.en.md](CATALOG.en.md)。
 
 ## 安装
 
@@ -86,6 +97,8 @@ agent-skills/
 │       └── SKILL.md
 ├── scripts/
 │   └── validate_skills.py
+├── CATALOG.md
+├── CATALOG.en.md
 ├── skills.sh.json
 ├── README.md
 ├── README.en.md
@@ -118,7 +131,7 @@ python scripts/validate_skills.py
 
 ## 版本与维护
 
-版本号写在各技能 `SKILL.md` 的 `metadata.version` 中。新增或修改技能时同步更新版本号、本 README 的技能列表，并运行 `scripts/validate_skills.py`。
+版本号写在各技能 `SKILL.md` 的 `metadata.version` 中。新增或修改技能时同步更新版本号、本 README 的技能列表，并运行 `scripts/validate_skills.py`。新增或更新精选目录时，同步修改 `CATALOG.md` 与 `CATALOG.en.md` 以及上方的数量。
 
 ## 许可证
 

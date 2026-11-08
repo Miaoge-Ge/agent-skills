@@ -9,6 +9,8 @@ A practical collection of Agent Skills for AI coding assistants. The `skill/` fo
 - `skill/`: 3 universal skills.
 - `personal_skill/`: 2 personal skills.
 
+It also maintains a [curated third-party skill catalog](CATALOG.en.md) with 17 skills (3 office, 14 coding).
+
 ## Skills
 
 ### Languages (languages/)
@@ -35,6 +37,15 @@ A practical collection of Agent Skills for AI coding assistants. The `skill/` fo
 |---|---|
 | [cpp-code-standard](personal_skill/cpp-code-standard/SKILL.md) | C/C++ naming, formatting, comments, types, and modern C++ practices, with a header checker. |
 | [installer-extract](personal_skill/installer-extract/SKILL.md) | Windows installer extraction and deployment, shortcuts, launch verification, and updates. |
+
+## Curated Skill Catalog
+
+Beyond the skills bundled here, the repo indexes 17 third-party skills worth using:
+
+- **Office**: PPT generation, HTML answers for hard questions, and patent disclosures.
+- **Coding**: code trimming, token compression, architecture diagrams, UI/UX design, reverse engineering, security audits, website cloning, knowledge graphs, and the Anthropic / OpenAI / MiniMax / Qt official collections.
+
+See [CATALOG.en.md](CATALOG.en.md) for the full list, descriptions, and licenses; the Chinese version is [CATALOG.md](CATALOG.md).
 
 ## Installation
 
@@ -86,6 +97,8 @@ agent-skills/
 │       └── SKILL.md
 ├── scripts/
 │   └── validate_skills.py
+├── CATALOG.md
+├── CATALOG.en.md
 ├── skills.sh.json
 ├── README.md
 ├── README.en.md
@@ -118,7 +131,7 @@ Use threejs to add lights and shadows to the scene.
 
 ## Versioning
 
-Versions are recorded in each skill's `metadata.version` inside `SKILL.md`. When adding or updating a skill, bump its version, update the skill list in both READMEs, and run `scripts/validate_skills.py`.
+Versions are recorded in each skill's `metadata.version` inside `SKILL.md`. When adding or updating a skill, bump its version, update the skill list in both READMEs, and run `scripts/validate_skills.py`. When adding or updating catalog entries, also update `CATALOG.md`, `CATALOG.en.md`, and the counts above.
 
 ## License
 
