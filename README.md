@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [English](README.en.md)
 
-面向 AI 编程助手的 Agent Skills 合集：仓库自带 **2 个** 可直接安装的技能（C/C++ 规范、Windows 安装包处理），另收录 **25 个** 第三方精选技能。
+面向 AI 编程助手的 Agent Skills 合集：仓库自带 **2 个** 可直接安装的技能（C/C++ 规范、Windows 安装包处理），另收录 **26 个** 第三方精选技能。
 
 - [本仓库技能](#本仓库技能)
 - [精选技能目录](#精选技能目录)
@@ -36,7 +36,7 @@
 
 > 其中 `SoftwareCopyright-Skill` 使用 AGPL-3.0，分发或修改前请确认合规。
 
-### 编程（21）
+### 编程（22）
 
 #### 代码质量与效率（3）
 
@@ -46,11 +46,12 @@
 | [caveman](https://github.com/JuliusBrussee/caveman) | 精简 AI 编程助手回复并压缩上下文，降低 Token 消耗。 |
 | [i-have-adhd](https://github.com/ayghri/i-have-adhd) | 让编程智能体把答案放在最前面，输出更短、更直给，对 ADHD 友好。 |
 
-#### 设计与可视化（4）
+#### 设计与可视化（5）
 
 | 技能 | 说明 |
 |---|---|
 | [archify](https://github.com/tt-a1i/archify) | 将想法、方案和代码架构转化为交互式可视化图表。 |
+| [diagram-design](https://github.com/cathrynlavery/diagram-design) | 面向主流编程智能体的编辑级图表设计：45 种图表类型，输出自包含 HTML + SVG。 |
 | [hallmark](https://github.com/Nutlope/hallmark) | 网页界面设计与优化，减少 AI 生成页面的模板化风格。 |
 | [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | 为 AI 编程助手提供专业 UI/UX 设计能力。 |
 | [Understand-Anything](https://github.com/Egonex-AI/Understand-Anything) | 把代码或资料转换为可交互、可搜索、可提问的知识图谱。 |

@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [English](README.en.md)
 
-A collection of Agent Skills for AI coding assistants: **2** installable skills (C/C++ standards, Windows installer extraction) plus **25** curated third-party skills.
+A collection of Agent Skills for AI coding assistants: **2** installable skills (C/C++ standards, Windows installer extraction) plus **26** curated third-party skills.
 
 - [Repository skills](#repository-skills)
 - [Curated catalog](#curated-catalog)
@@ -36,7 +36,7 @@ This repository only indexes these skills; the code, copyright, and licenses rem
 
 > `SoftwareCopyright-Skill` is licensed under AGPL-3.0; check compliance before redistributing or modifying it.
 
-### Coding (21)
+### Coding (22)
 
 #### Code quality and efficiency (3)
 
@@ -46,11 +46,12 @@ This repository only indexes these skills; the code, copyright, and licenses rem
 | [caveman](https://github.com/JuliusBrussee/caveman) | Compress coding-agent replies and context to cut token usage. |
 | [i-have-adhd](https://github.com/ayghri/i-have-adhd) | Puts the answer first and keeps coding-agent output short and direct — ADHD-friendly. |
 
-#### Design and visualization (4)
+#### Design and visualization (5)
 
 | Skill | Description |
 |---|---|
 | [archify](https://github.com/tt-a1i/archify) | Turn ideas, plans, and architectures into interactive diagrams. |
+| [diagram-design](https://github.com/cathrynlavery/diagram-design) | Editorial diagram design for coding agents: 45 diagram types as self-contained HTML + SVG. |
 | [hallmark](https://github.com/Nutlope/hallmark) | Web UI design and polish that avoids templated AI-generated looks. |
 | [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Professional UI/UX design intelligence for coding agents. |
 | [Understand-Anything](https://github.com/Egonex-AI/Understand-Anything) | Convert code into an interactive, searchable, queryable knowledge graph. |
