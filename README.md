@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [English](README.en.md)
 
-面向 AI 编程助手的 Agent Skills 合集：仓库自带 **2 个** 可直接安装的技能（C/C++ 规范、Windows 安装包处理），另收录 **26 个** 第三方精选技能。
+面向 AI 编程助手的 Agent Skills 合集：仓库自带 **3 个** 可直接安装的技能（C/C++ 规范、Git 工作流规范、Windows 安装包处理），另收录 **26 个** 第三方精选技能。
 
 - [本仓库技能](#本仓库技能)
 - [精选技能目录](#精选技能目录)
@@ -14,11 +14,12 @@
 
 ## 本仓库技能
 
-两个技能都位于 `personal_skill/`，每个技能是独立目录，包含 `SKILL.md` 和配套的 `scripts/`、`references/` 等文件。
+三个技能都位于 `personal_skill/`，每个技能是独立目录，包含 `SKILL.md` 和配套的 `scripts/`、`references/` 等文件。
 
 | 技能 | 说明 |
 |---|---|
 | [cpp-code-standard](personal_skill/cpp-code-standard/SKILL.md) | C/C++ 命名、排版、注释、类型及现代 C++ 用法规范，附文件头检查脚本。 |
+| [git-workflow-standard](personal_skill/git-workflow-standard/SKILL.md) | Git 工作流规范：Conventional Commits 提交信息、分支命名、合并与发布、历史安全，附提交校验、暂存区扫描和钩子安装脚本。 |
 | [installer-extract](personal_skill/installer-extract/SKILL.md) | Windows 安装包解包部署、快捷方式、启动验证与更新处理。 |
 
 ## 精选技能目录
@@ -92,7 +93,7 @@
 
 ## 安装
 
-下面的提示词只安装本仓库自带的 2 个技能。精选目录中的第三方技能请按各自仓库的 README 安装。
+下面的提示词只安装本仓库自带的 3 个技能。精选目录中的第三方技能请按各自仓库的 README 安装。
 
 把提示词发给具备联网和文件操作能力的编程助手：
 
@@ -124,6 +125,11 @@ agent-skills/
 │   │   ├── SKILL.md
 │   │   ├── references/
 │   │   └── scripts/check_headers.py
+│   ├── git-workflow-standard/
+│   │   ├── SKILL.md
+│   │   ├── references/
+│   │   ├── scripts/
+│   │   └── tests/
 │   └── installer-extract/
 │       └── SKILL.md
 ├── cyg_skill/          # 私有 submodule，本仓库只存指针
@@ -143,6 +149,7 @@ agent-skills/
 |---|---|
 | `scripts/validate_skills.py` | 校验全部技能的 frontmatter、名称、版本、相对链接和发现路径。 |
 | `personal_skill/cpp-code-standard/scripts/check_headers.py` | 检查 C/C++ 文件头、头文件包含保护和头文件中的 `using namespace`。 |
+| `personal_skill/git-workflow-standard/scripts/` | `commit_msg_lint.py` 校验 Conventional Commits；`git_guard.py` 扫描暂存区的密钥、大文件和冲突标记；`install_hooks.py` 安装或卸载 commit-msg / pre-commit 钩子。 |
 
 ```bash
 python scripts/validate_skills.py
@@ -158,9 +165,13 @@ python scripts/validate_skills.py
 用 installer-extract 解包安装包，并验证快捷方式和启动。
 ```
 
+```text
+用 git-workflow-standard 检查当前分支的提交信息，并按 Conventional Commits 生成提交。
+```
+
 ## 版本与维护
 
-版本号写在各技能 `SKILL.md` 的 `metadata.version` 中。新增或修改技能时同步更新版本号、本 README 的技能列表，并运行 `scripts/validate_skills.py`。新增或更新精选目录时，同步修改两个 README 中的列表与数量。
+版本号写在各技能 `SKILL.md` 的 `metadata.version` 中。新增或修改技能时同步更新版本号、本 README 的技能列表，并运行 `scripts/validate_skills.py`。带自动化测试的技能在发布前运行自己的测试，例如 `cd personal_skill/git-workflow-standard && python -m unittest discover -s tests`。新增或更新精选目录时，同步修改两个 README 中的列表与数量。
 
 ## 许可证
 

@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [English](README.en.md)
 
-A collection of Agent Skills for AI coding assistants: **2** installable skills (C/C++ standards, Windows installer extraction) plus **26** curated third-party skills.
+A collection of Agent Skills for AI coding assistants: **3** installable skills (C/C++ standards, Git workflow standards, Windows installer extraction) plus **26** curated third-party skills.
 
 - [Repository skills](#repository-skills)
 - [Curated catalog](#curated-catalog)
@@ -14,11 +14,12 @@ A collection of Agent Skills for AI coding assistants: **2** installable skills 
 
 ## Repository skills
 
-Both skills live under `personal_skill/`; each is a self-contained directory with a `SKILL.md` plus `scripts/`, `references/`, and other supporting files.
+All three skills live under `personal_skill/`; each is a self-contained directory with a `SKILL.md` plus `scripts/`, `references/`, and other supporting files.
 
 | Skill | Description |
 |---|---|
 | [cpp-code-standard](personal_skill/cpp-code-standard/SKILL.md) | C/C++ naming, formatting, comments, types, and modern C++ practices, with a header checker. |
+| [git-workflow-standard](personal_skill/git-workflow-standard/SKILL.md) | Git workflow standards: Conventional Commits, branch naming, merging and releases, and history safety, with commit linting, index scanning, and hook installation scripts. |
 | [installer-extract](personal_skill/installer-extract/SKILL.md) | Windows installer extraction and deployment, shortcuts, launch verification, and updates. |
 
 ## Curated catalog
@@ -92,7 +93,7 @@ This repository only indexes these skills; the code, copyright, and licenses rem
 
 ## Installation
 
-The prompt below installs only the 2 skills bundled in this repository. Third-party skills in the catalog must be installed from their own repositories.
+The prompt below installs only the 3 skills bundled in this repository. Third-party skills in the catalog must be installed from their own repositories.
 
 Send this prompt to a coding assistant with network and file access:
 
@@ -124,6 +125,11 @@ agent-skills/
 │   │   ├── SKILL.md
 │   │   ├── references/
 │   │   └── scripts/check_headers.py
+│   ├── git-workflow-standard/
+│   │   ├── SKILL.md
+│   │   ├── references/
+│   │   ├── scripts/
+│   │   └── tests/
 │   └── installer-extract/
 │       └── SKILL.md
 ├── cyg_skill/          # private submodule, pointer only
@@ -143,6 +149,7 @@ agent-skills/
 |---|---|
 | `scripts/validate_skills.py` | Validate frontmatter, names, versions, relative links, and discovery paths for all skills. |
 | `personal_skill/cpp-code-standard/scripts/check_headers.py` | Check C/C++ file headers, include guards, and `using namespace` in headers. |
+| `personal_skill/git-workflow-standard/scripts/` | `commit_msg_lint.py` validates Conventional Commits; `git_guard.py` scans the index for secrets, large files, and conflict markers; `install_hooks.py` installs or removes the commit-msg and pre-commit hooks. |
 
 ```bash
 python scripts/validate_skills.py
@@ -158,9 +165,13 @@ Use cpp-code-standard to check my current C/C++ changes, and do not modify code 
 Use installer-extract to unpack the installer and verify shortcuts and launch.
 ```
 
+```text
+Use git-workflow-standard to check the commit messages on this branch and write a Conventional Commits commit.
+```
+
 ## Versioning
 
-Versions are recorded in each skill's `metadata.version` inside `SKILL.md`. When adding or updating a skill, bump its version, update the skill list in both READMEs, and run `scripts/validate_skills.py`. When adding or updating catalog entries, also update the lists and counts in both READMEs.
+Versions are recorded in each skill's `metadata.version` inside `SKILL.md`. When adding or updating a skill, bump its version, update the skill list in both READMEs, and run `scripts/validate_skills.py`. Skills with automated tests should run their suite before release, for example `cd personal_skill/git-workflow-standard && python -m unittest discover -s tests`. When adding or updating catalog entries, also update the lists and counts in both READMEs.
 
 ## License
 
