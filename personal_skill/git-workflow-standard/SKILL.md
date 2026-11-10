@@ -120,6 +120,11 @@ python scripts/install_hooks.py
 
 ```bash
 python -m unittest discover -s tests -v
+```
+
+在本仓库内修改时，再运行仓库级校验：
+
+```bash
 python ../../scripts/validate_skills.py
 ```
 
