@@ -293,8 +293,8 @@ def print_human(results: list[Result], quiet: bool) -> None:
             if not quiet:
                 label = result.sha[:8] if result.sha else "-"
                 print(f"OK   {label}  {shorten(result.header)}")
-                for warning in result.warnings:
-                    print(f"  warning: {warning}")
+            for warning in result.warnings:
+                print(f"  warning: {warning}")
             continue
         label = result.sha[:8] if result.sha else "-"
         print(f"FAIL {label}  {shorten(result.header)}")

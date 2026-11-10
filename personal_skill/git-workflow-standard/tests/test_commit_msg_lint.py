@@ -308,6 +308,12 @@ class TestCli(unittest.TestCase):
         self.assertEqual(0, completed.returncode)
         self.assertEqual("", completed.stdout.strip())
 
+    def test_quiet_still_shows_warnings(self) -> None:
+        message = "feat: add login\n\n" + "x" * 80
+        completed = run_script("commit_msg_lint.py", "--message", message, "--quiet")
+        self.assertEqual(0, completed.returncode)
+        self.assertIn("warning:", completed.stdout)
+
     def test_json_output(self) -> None:
         completed = run_script("commit_msg_lint.py", "--message", "feat: add login", "--json")
         self.assertEqual(0, completed.returncode)
