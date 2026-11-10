@@ -1,0 +1,4 @@
+# Scratch directories created by the test suite.
+work/
+.tmp/
+__pycache__/
