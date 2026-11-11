@@ -5,7 +5,7 @@
 一套面向 AI 编程助手的 Agent Skills：把工程规范写成智能体可执行的指令，让它在写 C/C++、处理 Git 提交和部署 Windows 环境时保持一致的习惯；同时整理了一份按用途分类的第三方技能索引，供继续探索。自带技能遵循标准 Agent Skills 格式，复制到支持该格式的工具中即可使用。
 
 - [本仓库技能](#本仓库技能)
-- [精选技能目录](#精选技能目录)
+- [第三方技能](#第三方技能)
 - [安装](#安装)
 - [目录结构](#目录结构)
 - [脚本](#脚本)
@@ -22,47 +22,15 @@
 | [git-workflow-standard](personal_skill/git-workflow-standard/SKILL.md) | Git 工作流规范：Conventional Commits 提交信息、分支命名、合并与发布、历史安全，附提交校验、暂存区扫描和钩子安装脚本。 |
 | [installer-extract](personal_skill/installer-extract/SKILL.md) | Windows 安装包解包部署、快捷方式、启动验证与更新处理。 |
 
-## 精选技能目录
+## 第三方技能
 
-按用途收录第三方技能与工具；每个条目的仓库链接、一句话说明和协议见 [catalog/](catalog/README.md) 下按类型划分的分类页。本仓库只做索引，不包含这些技能的代码；版权与协议归上游仓库所有，使用前请阅读对应仓库的 LICENSE。
+第三方技能与工具按用途整理在 [third_parity_skill/](third_parity_skill/README.md)：[中文版](third_parity_skill/README.md) | [English](third_parity_skill/README.en.md)。
 
-### 办公（4） · [详情](catalog/office.md)
-
-[ppt-master](https://github.com/hugohe3/ppt-master)、[answer-me-with-html](https://github.com/QingYunA/answer-me-with-html)、[patent-disclosure-skill](https://github.com/handsomestWei/patent-disclosure-skill)、[SoftwareCopyright-Skill](https://github.com/Fokkyp/SoftwareCopyright-Skill)
-
-> `SoftwareCopyright-Skill` 使用 AGPL-3.0，分发或修改前请确认合规。
-
-### 代码质量与效率（3） · [详情](catalog/code-quality.md)
-
-[ponytail](https://github.com/DietrichGebert/ponytail)、[caveman](https://github.com/JuliusBrussee/caveman)、[i-have-adhd](https://github.com/ayghri/i-have-adhd)
-
-### 设计与可视化（5） · [详情](catalog/design.md)
-
-[archify](https://github.com/tt-a1i/archify)、[diagram-design](https://github.com/cathrynlavery/diagram-design)、[hallmark](https://github.com/Nutlope/hallmark)、[ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)、[Understand-Anything](https://github.com/Egonex-AI/Understand-Anything)
-
-### 逆向与安全（4） · [详情](catalog/reverse-engineering.md)
-
-[reagent](https://github.com/Dryxio/reagent)、[rea](https://github.com/morluto/rea)、[security-audit-skill](https://github.com/cloudflare/security-audit-skill)、[craft-anything](https://github.com/storytold/craft-anything)
-
-### 网站克隆（1） · [详情](catalog/website-cloning.md)
-
-[ai-website-cloner-template](https://github.com/JCodesMore/ai-website-cloner-template)
-
-### 数据采集（1） · [详情](catalog/data-collection.md)
-
-[Scrapling](https://github.com/D4Vinci/Scrapling)
-
-### 智能体与工程方法（2） · [详情](catalog/agent-methods.md)
-
-[ECC](https://github.com/affaan-m/ECC)、[superpowers](https://github.com/obra/superpowers)
-
-### 技能合集（8） · [详情](catalog/collections.md)
-
-[anthropics/skills](https://github.com/anthropics/skills)、[openai/skills](https://github.com/openai/skills)、[google-gemini/gemini-skills](https://github.com/google-gemini/gemini-skills)、[zai-org/GLM-skills](https://github.com/zai-org/GLM-skills)、[MiniMax-AI/skills](https://github.com/MiniMax-AI/skills)、[TheQtCompanyRnD/agent-skills](https://github.com/TheQtCompanyRnD/agent-skills)、[addyosmani/agent-skills](https://github.com/addyosmani/agent-skills)、[mattpocock/skills](https://github.com/mattpocock/skills)
+本仓库只做索引，不包含这些技能的代码；版权与协议归上游仓库所有，使用前请阅读对应仓库的 LICENSE。
 
 ## 安装
 
-下面的提示词只安装本仓库自带的技能。精选目录中的第三方技能请按各自仓库的 README 安装。
+下面的提示词只安装本仓库自带的技能。第三方技能请按各自仓库的 README 安装。
 
 把提示词发给具备联网和文件操作能力的编程助手：
 
@@ -101,16 +69,9 @@ agent-skills/
 │   │   └── tests/
 │   └── installer-extract/
 │       └── SKILL.md
-├── catalog/            # 第三方精选技能索引，按类型分页
-│   ├── README.md / README.en.md
-│   ├── office.md / office.en.md
-│   ├── code-quality.md / code-quality.en.md
-│   ├── design.md / design.en.md
-│   ├── reverse-engineering.md / reverse-engineering.en.md
-│   ├── website-cloning.md / website-cloning.en.md
-│   ├── data-collection.md / data-collection.en.md
-│   ├── agent-methods.md / agent-methods.en.md
-│   └── collections.md / collections.en.md
+├── third_parity_skill/ # 第三方技能索引
+│   ├── README.md
+│   └── README.en.md
 ├── cyg_skill/          # 私有 submodule，本仓库只存指针
 ├── scripts/
 │   └── validate_skills.py
@@ -150,7 +111,7 @@ python scripts/validate_skills.py
 
 ## 版本与维护
 
-版本号写在各技能 `SKILL.md` 的 `metadata.version` 中。新增或修改技能时同步更新版本号、本 README 的技能列表，并运行 `scripts/validate_skills.py`。带自动化测试的技能在发布前运行自己的测试，例如 `cd personal_skill/git-workflow-standard && python -m unittest discover -s tests`。新增或更新精选目录时，同步修改对应分类页、[catalog/README.md](catalog/README.md) 的数量，以及两个 README 中的技能清单。
+版本号写在各技能 `SKILL.md` 的 `metadata.version` 中。新增或修改技能时同步更新版本号、本 README 的技能列表，并运行 `scripts/validate_skills.py`。带自动化测试的技能在发布前运行自己的测试，例如 `cd personal_skill/git-workflow-standard && python -m unittest discover -s tests`。新增或更新第三方技能时，同步修改 [third_parity_skill/README.md](third_parity_skill/README.md) 与 [third_parity_skill/README.en.md](third_parity_skill/README.en.md)。
 
 ## 许可证
 
