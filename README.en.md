@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [English](README.en.md)
 
-A collection of Agent Skills for AI coding assistants: **3** installable skills (C/C++ standards, Git workflow standards, Windows installer extraction) plus **28** curated third-party skills and tools.
+Agent Skills for AI coding assistants: engineering standards written as instructions an agent can follow, so C/C++, Git commits, and Windows deployments stay consistent; plus a curated, use-based index of third-party skills to explore. Bundled skills follow the standard Agent Skills format and work in any tool that supports it.
 
 - [Repository skills](#repository-skills)
 - [Curated catalog](#curated-catalog)
@@ -14,7 +14,7 @@ A collection of Agent Skills for AI coding assistants: **3** installable skills 
 
 ## Repository skills
 
-All three skills live under `personal_skill/`; each is a self-contained directory with a `SKILL.md` plus `scripts/`, `references/`, and other supporting files.
+All bundled skills live under `personal_skill/`; each is a self-contained directory with a `SKILL.md` plus `scripts/`, `references/`, and other supporting files.
 
 | Skill | Description |
 |---|---|
@@ -24,7 +24,7 @@ All three skills live under `personal_skill/`; each is a self-contained director
 
 ## Curated catalog
 
-**28** third-party skills and tools, grouped by use; repository links, one-line descriptions, and licenses live on the per-type pages under [catalog/](catalog/README.en.md). This repository only indexes these skills; the code, copyright, and licenses remain with the upstream repositories. Read the upstream LICENSE before use.
+Third-party skills and tools, grouped by use; repository links, one-line descriptions, and licenses live on the per-type pages under [catalog/](catalog/README.en.md). This repository only indexes these skills; the code, copyright, and licenses remain with the upstream repositories. Read the upstream LICENSE before use.
 
 ### Office (4) · [details](catalog/office.en.md)
 
@@ -62,7 +62,7 @@ All three skills live under `personal_skill/`; each is a self-contained director
 
 ## Installation
 
-The prompt below installs only the 3 skills bundled in this repository. Third-party skills in the catalog must be installed from their own repositories.
+The prompt below installs only the skills bundled in this repository. Third-party skills in the catalog must be installed from their own repositories.
 
 Send this prompt to a coding assistant with network and file access:
 

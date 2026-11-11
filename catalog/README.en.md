@@ -1,6 +1,6 @@
 # Curated Skill Catalog
 
-A maintained index of **28** third-party Agent Skills and tools, grouped into 8 categories.
+A maintained index of third-party Agent Skills and tools, grouped into 8 categories.
 
 This directory is an index only; all skill code lives in its upstream repository. Copyright and licenses belong to the respective authors and organizations. Read the upstream LICENSE before using, modifying, or redistributing a skill. Inclusion here does not imply endorsement and does not change the upstream license.
 
