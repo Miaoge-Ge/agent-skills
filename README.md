@@ -8,9 +8,7 @@
 - [第三方技能](#第三方技能)
 - [安装](#安装)
 - [目录结构](#目录结构)
-- [脚本](#脚本)
 - [使用示例](#使用示例)
-- [版本与维护](#版本与维护)
 
 ## 本仓库技能
 
@@ -81,19 +79,7 @@ agent-skills/
 └── LICENSE
 ```
 
-`cyg_skill/` 是指向私有仓库 [cyg-skills](https://github.com/Miaoge-Ge/cyg-skills) 的 submodule：本仓库只保存一个提交指针，目录内容不在公开代码中。没有该私有仓库权限时，克隆会跳过它，属于预期行为。
-
-## 脚本
-
-| 脚本 | 用途 |
-|---|---|
-| `scripts/validate_skills.py` | 校验全部技能的 frontmatter、名称、版本、相对链接和发现路径。 |
-| `personal_skill/cpp-code-standard/scripts/check_headers.py` | 检查 C/C++ 文件头、头文件包含保护和头文件中的 `using namespace`。 |
-| `personal_skill/git-workflow-standard/scripts/` | `commit_msg_lint.py` 校验 Conventional Commits；`git_guard.py` 扫描暂存区的密钥、大文件和冲突标记；`install_hooks.py` 安装或卸载 commit-msg / pre-commit 钩子。 |
-
-```bash
-python scripts/validate_skills.py
-```
+`cyg_skill/` 是指向私有仓库 [cyg-skills](https://github.com/Miaoge-Ge/cyg-skills) 的 submodule：本仓库只保存一个提交指针，目录内容不在公开代码中。
 
 ## 使用示例
 
@@ -108,10 +94,6 @@ python scripts/validate_skills.py
 ```text
 用 git-workflow-standard 检查当前分支的提交信息，并按 Conventional Commits 生成提交。
 ```
-
-## 版本与维护
-
-版本号写在各技能 `SKILL.md` 的 `metadata.version` 中。新增或修改技能时同步更新版本号、本 README 的技能列表，并运行 `scripts/validate_skills.py`。带自动化测试的技能在发布前运行自己的测试，例如 `cd personal_skill/git-workflow-standard && python -m unittest discover -s tests`。新增或更新第三方技能时，同步修改 [third_parity_skill/README.md](third_parity_skill/README.md) 与 [third_parity_skill/README.en.md](third_parity_skill/README.en.md)。
 
 ## 许可证
 

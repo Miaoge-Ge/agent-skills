@@ -13,8 +13,6 @@
 | [patent-disclosure-skill](https://github.com/handsomestWei/patent-disclosure-skill) | 中国专利点挖掘与交底书（发明 / 实用 / 外观）编写，辅助解读专利、追踪政策与审查答复。 |
 | [SoftwareCopyright-Skill](https://github.com/Fokkyp/SoftwareCopyright-Skill) | 读取本地项目，自动生成中国软件著作权申请所需的全套 .docx 材料（申请表、操作手册、代码材料等）。 |
 
-> `SoftwareCopyright-Skill` 使用 AGPL-3.0；分发或修改前请阅读其 LICENSE。
-
 ## 代码质量与效率
 
 | 技能 | 说明 |
@@ -82,19 +80,8 @@
 - 直接把 `SKILL.md` 所在目录复制到用户级技能目录；
 - 克隆仓库后按上游 README 的说明使用。
 
-部分条目是可直接调用的工具或框架（如 `Scrapling`、`craft-anything`），按上游文档安装后通过 CLI 或 MCP 使用。具体命令、依赖和限制请以对应仓库的 README 为准；本目录不复制上游代码。
-
 ## 收录标准
 
 - 有明确的仓库地址和 LICENSE。
 - 仍在维护或仍有参考价值；上游已弃用的项目会在说明中标注。
 - 同一仓库只收录一次，按主要用途归类。
-
-## 协议说明
-
-多数项目使用 MIT / Apache-2.0 / BSD-3-Clause；`SoftwareCopyright-Skill` 使用 **AGPL-3.0**，属于 copyleft 协议，修改和分发前请确认合规。协议信息核对于 2026 年 11 月，后续变化以各仓库为准。
-
-## 维护
-
-- 新增或移除条目时，同步更新本页与英文版 [README.en.md](README.en.md)；两个根目录 README 只需要保留指向本目录的链接。
-- 新增条目必须包含：技能名、仓库链接、一句话说明；有特殊协议的注明协议。

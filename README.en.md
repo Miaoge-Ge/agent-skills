@@ -8,9 +8,7 @@ Agent Skills for AI coding assistants: engineering standards written as instruct
 - [Third-party skills](#third-party-skills)
 - [Installation](#installation)
 - [Repository layout](#repository-layout)
-- [Scripts](#scripts)
 - [Usage examples](#usage-examples)
-- [Versioning](#versioning)
 
 ## Repository skills
 
@@ -81,19 +79,7 @@ agent-skills/
 └── LICENSE
 ```
 
-`cyg_skill/` is a submodule pointing at the private [cyg-skills](https://github.com/Miaoge-Ge/cyg-skills) repository: this public repository stores only a commit pointer, never the files. Without access to that private repository, cloning skips it, which is expected.
-
-## Scripts
-
-| Script | Purpose |
-|---|---|
-| `scripts/validate_skills.py` | Validate frontmatter, names, versions, relative links, and discovery paths for all skills. |
-| `personal_skill/cpp-code-standard/scripts/check_headers.py` | Check C/C++ file headers, include guards, and `using namespace` in headers. |
-| `personal_skill/git-workflow-standard/scripts/` | `commit_msg_lint.py` validates Conventional Commits; `git_guard.py` scans the index for secrets, large files, and conflict markers; `install_hooks.py` installs or removes the commit-msg and pre-commit hooks. |
-
-```bash
-python scripts/validate_skills.py
-```
+`cyg_skill/` is a submodule pointing at the private [cyg-skills](https://github.com/Miaoge-Ge/cyg-skills) repository: this public repository stores only a commit pointer, never the files.
 
 ## Usage examples
 
@@ -108,10 +94,6 @@ Use installer-extract to unpack the installer and verify shortcuts and launch.
 ```text
 Use git-workflow-standard to check the commit messages on this branch and write a Conventional Commits commit.
 ```
-
-## Versioning
-
-Versions are recorded in each skill's `metadata.version` inside `SKILL.md`. When adding or updating a skill, bump its version, update the skill list in both READMEs, and run `scripts/validate_skills.py`. Skills with automated tests should run their suite before release, for example `cd personal_skill/git-workflow-standard && python -m unittest discover -s tests`. When adding or updating third-party entries, update [third_parity_skill/README.md](third_parity_skill/README.md) and [third_parity_skill/README.en.md](third_parity_skill/README.en.md).
 
 ## License
 

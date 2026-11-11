@@ -13,8 +13,6 @@ A maintained index of third-party Agent Skills and tools, grouped into 8 categor
 | [patent-disclosure-skill](https://github.com/handsomestWei/patent-disclosure-skill) | Chinese patent mining and disclosure drafting (invention / utility model / design), with patent reading, policy tracking, and office-action support. |
 | [SoftwareCopyright-Skill](https://github.com/Fokkyp/SoftwareCopyright-Skill) | Read a local project and generate the full set of .docx materials for a Chinese software copyright application (application form, manual, source-code excerpts, and more). |
 
-> `SoftwareCopyright-Skill` is licensed under AGPL-3.0; read its LICENSE before redistributing or modifying it.
-
 ## Code quality and efficiency
 
 | Skill | Description |
@@ -82,19 +80,8 @@ Each upstream repository defines its own installation method, commonly one of:
 - copy the directory containing `SKILL.md` into your user-level skills directory;
 - clone the repository and follow its README.
 
-Some entries are tools or frameworks you call directly (such as `Scrapling` and `craft-anything`); install them per their own docs and use their CLI or MCP interface. Check the upstream README for exact commands, dependencies, and limitations. This index does not copy upstream code.
-
 ## Inclusion criteria
 
 - A public repository and a LICENSE.
 - Still maintained, or still useful; deprecated projects are marked in their description.
 - One entry per repository, filed under its primary use.
-
-## Licenses
-
-Most projects use MIT / Apache-2.0 / BSD-3-Clause. `SoftwareCopyright-Skill` uses **AGPL-3.0**, a copyleft license; check compliance before modifying or redistributing it. License information was verified in November 2026 and follows each upstream repository thereafter.
-
-## Maintenance
-
-- When adding or removing an entry, update this page and the Chinese version [README.md](README.md); the two root READMEs only need to keep linking to this directory.
-- Each entry must include a skill name, repository link, and one-line description; note any special license.
