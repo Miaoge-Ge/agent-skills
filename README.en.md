@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [English](README.en.md)
 
-A collection of Agent Skills for AI coding assistants: **3** installable skills (C/C++ standards, Git workflow standards, Windows installer extraction) plus **26** curated third-party skills.
+A collection of Agent Skills for AI coding assistants: **3** installable skills (C/C++ standards, Git workflow standards, Windows installer extraction) plus **28** curated third-party skills and tools.
 
 - [Repository skills](#repository-skills)
 - [Curated catalog](#curated-catalog)
@@ -24,72 +24,41 @@ All three skills live under `personal_skill/`; each is a self-contained director
 
 ## Curated catalog
 
-This repository only indexes these skills; the code, copyright, and licenses remain with the upstream repositories. Read the upstream LICENSE before use.
+**28** third-party skills and tools, grouped by use; repository links, one-line descriptions, and licenses live on the per-type pages under [catalog/](catalog/README.en.md). This repository only indexes these skills; the code, copyright, and licenses remain with the upstream repositories. Read the upstream LICENSE before use.
 
-### Office (4)
+### Office (4) · [details](catalog/office.en.md)
 
-| Skill | Description |
-|---|---|
-| [ppt-master](https://github.com/hugohe3/ppt-master) | Turn documents or topics into editable native PowerPoint decks, with charts, transitions, animations, and narration from speaker notes. |
-| [answer-me-with-html](https://github.com/QingYunA/answer-me-with-html) | Answer hard questions with a single, readable HTML page. |
-| [patent-disclosure-skill](https://github.com/handsomestWei/patent-disclosure-skill) | Chinese patent mining and disclosure drafting (invention / utility model / design), with patent reading, policy tracking, and office-action support. |
-| [SoftwareCopyright-Skill](https://github.com/Fokkyp/SoftwareCopyright-Skill) | Read a local project and generate the full set of .docx materials for a Chinese software copyright application (application form, manual, source-code excerpts, and more). |
+[ppt-master](https://github.com/hugohe3/ppt-master), [answer-me-with-html](https://github.com/QingYunA/answer-me-with-html), [patent-disclosure-skill](https://github.com/handsomestWei/patent-disclosure-skill), [SoftwareCopyright-Skill](https://github.com/Fokkyp/SoftwareCopyright-Skill)
 
 > `SoftwareCopyright-Skill` is licensed under AGPL-3.0; check compliance before redistributing or modifying it.
 
-### Coding (22)
+### Code quality and efficiency (3) · [details](catalog/code-quality.en.md)
 
-#### Code quality and efficiency (3)
+[ponytail](https://github.com/DietrichGebert/ponytail), [caveman](https://github.com/JuliusBrussee/caveman), [i-have-adhd](https://github.com/ayghri/i-have-adhd)
 
-| Skill | Description |
-|---|---|
-| [ponytail](https://github.com/DietrichGebert/ponytail) | Trim code, over-engineering, and redundant complexity; supports code review. |
-| [caveman](https://github.com/JuliusBrussee/caveman) | Compress coding-agent replies and context to cut token usage. |
-| [i-have-adhd](https://github.com/ayghri/i-have-adhd) | Puts the answer first and keeps coding-agent output short and direct — ADHD-friendly. |
+### Design and visualization (5) · [details](catalog/design.en.md)
 
-#### Design and visualization (5)
+[archify](https://github.com/tt-a1i/archify), [diagram-design](https://github.com/cathrynlavery/diagram-design), [hallmark](https://github.com/Nutlope/hallmark), [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill), [Understand-Anything](https://github.com/Egonex-AI/Understand-Anything)
 
-| Skill | Description |
-|---|---|
-| [archify](https://github.com/tt-a1i/archify) | Turn ideas, plans, and architectures into interactive diagrams. |
-| [diagram-design](https://github.com/cathrynlavery/diagram-design) | Editorial diagram design for coding agents: 45 diagram types as self-contained HTML + SVG. |
-| [hallmark](https://github.com/Nutlope/hallmark) | Web UI design and polish that avoids templated AI-generated looks. |
-| [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Professional UI/UX design intelligence for coding agents. |
-| [Understand-Anything](https://github.com/Egonex-AI/Understand-Anything) | Convert code into an interactive, searchable, queryable knowledge graph. |
+### Reverse engineering and security (4) · [details](catalog/reverse-engineering.en.md)
 
-#### Reverse engineering and security (3)
+[reagent](https://github.com/Dryxio/reagent), [rea](https://github.com/morluto/rea), [security-audit-skill](https://github.com/cloudflare/security-audit-skill), [craft-anything](https://github.com/storytold/craft-anything)
 
-| Skill | Description |
-|---|---|
-| [reagent](https://github.com/Dryxio/reagent) | AI reverse-engineering agent that reconstructs and validates C/C++ from binaries. |
-| [rea](https://github.com/morluto/rea) | Reverse-engineering and behavior-analysis toolkit for apps and native binaries. |
-| [security-audit-skill](https://github.com/cloudflare/security-audit-skill) | Code and architecture security audits with verified findings and structured reports. |
+### Website cloning (1) · [details](catalog/website-cloning.en.md)
 
-#### Website cloning (1)
+[ai-website-cloner-template](https://github.com/JCodesMore/ai-website-cloner-template)
 
-| Skill | Description |
-|---|---|
-| [ai-website-cloner-template](https://github.com/JCodesMore/ai-website-cloner-template) | Clone any website with one command. |
+### Data collection (1) · [details](catalog/data-collection.en.md)
 
-#### Agent methods (2)
+[Scrapling](https://github.com/D4Vinci/Scrapling)
 
-| Skill | Description |
-|---|---|
-| [ECC](https://github.com/affaan-m/ECC) | A performance-optimization system for mainstream coding agents: skills, instincts, memory, security, and research-first development. |
-| [superpowers](https://github.com/obra/superpowers) | An agentic skills framework and software-development methodology covering the full path from idea to delivery. |
+### Agent methods (2) · [details](catalog/agent-methods.en.md)
 
-#### Skill collections (8)
+[ECC](https://github.com/affaan-m/ECC), [superpowers](https://github.com/obra/superpowers)
 
-| Skill | Description |
-|---|---|
-| [anthropics/skills](https://github.com/anthropics/skills) | Anthropic's official Agent Skills examples for documents, design, MCP, web testing, and more. |
-| [openai/skills](https://github.com/openai/skills) | OpenAI Codex official skill catalog with curated and experimental skills; deprecated upstream. |
-| [google-gemini/gemini-skills](https://github.com/google-gemini/gemini-skills) | Official skills for the Gemini API, SDK, and model/agent interactions. |
-| [zai-org/GLM-skills](https://github.com/zai-org/GLM-skills) | Official skills for the GLM family of models, covering multimodal, OCR, vision, and more. |
-| [MiniMax-AI/skills](https://github.com/MiniMax-AI/skills) | MiniMax official Agent Skills collection. |
-| [TheQtCompanyRnD/agent-skills](https://github.com/TheQtCompanyRnD/agent-skills) | Qt's official AI engineering skills for Qt / QML development and quality checks. |
-| [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | Production-grade engineering skills for AI coding agents, covering define, plan, build, verify, review, and ship. |
-| [mattpocock/skills](https://github.com/mattpocock/skills) | Everyday engineering skills from the author's own .agents directory. |
+### Skill collections (8) · [details](catalog/collections.en.md)
+
+[anthropics/skills](https://github.com/anthropics/skills), [openai/skills](https://github.com/openai/skills), [google-gemini/gemini-skills](https://github.com/google-gemini/gemini-skills), [zai-org/GLM-skills](https://github.com/zai-org/GLM-skills), [MiniMax-AI/skills](https://github.com/MiniMax-AI/skills), [TheQtCompanyRnD/agent-skills](https://github.com/TheQtCompanyRnD/agent-skills), [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills), [mattpocock/skills](https://github.com/mattpocock/skills)
 
 ## Installation
 
@@ -132,6 +101,16 @@ agent-skills/
 │   │   └── tests/
 │   └── installer-extract/
 │       └── SKILL.md
+├── catalog/            # third-party skill index, one page per type
+│   ├── README.md / README.en.md
+│   ├── office.md / office.en.md
+│   ├── code-quality.md / code-quality.en.md
+│   ├── design.md / design.en.md
+│   ├── reverse-engineering.md / reverse-engineering.en.md
+│   ├── website-cloning.md / website-cloning.en.md
+│   ├── data-collection.md / data-collection.en.md
+│   ├── agent-methods.md / agent-methods.en.md
+│   └── collections.md / collections.en.md
 ├── cyg_skill/          # private submodule, pointer only
 ├── scripts/
 │   └── validate_skills.py
@@ -171,7 +150,7 @@ Use git-workflow-standard to check the commit messages on this branch and write 
 
 ## Versioning
 
-Versions are recorded in each skill's `metadata.version` inside `SKILL.md`. When adding or updating a skill, bump its version, update the skill list in both READMEs, and run `scripts/validate_skills.py`. Skills with automated tests should run their suite before release, for example `cd personal_skill/git-workflow-standard && python -m unittest discover -s tests`. When adding or updating catalog entries, also update the lists and counts in both READMEs.
+Versions are recorded in each skill's `metadata.version` inside `SKILL.md`. When adding or updating a skill, bump its version, update the skill list in both READMEs, and run `scripts/validate_skills.py`. Skills with automated tests should run their suite before release, for example `cd personal_skill/git-workflow-standard && python -m unittest discover -s tests`. When adding or updating catalog entries, also update the matching category page, the counts in [catalog/README.en.md](catalog/README.en.md), and the skill list in both root READMEs.
 
 ## License
 
