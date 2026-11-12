@@ -61,6 +61,8 @@ Star counts are GitHub data as of 2026-11-12; entries are sorted by stars in des
 | --- | --- | ---: |
 | [superpowers](https://github.com/obra/superpowers) | An agentic skills framework and software-development methodology covering the full path from idea to delivery. | 316,301 |
 | [ECC](https://github.com/affaan-m/ECC) | A performance-optimization system for mainstream coding agents: skills, instincts, memory, security, and research-first development. | 301,366 |
+| [agent-browser](https://github.com/vercel-labs/agent-browser) | Browser automation CLI for AI agents: reads pages as an accessibility tree with element refs, then acts one command at a time and re-reads the result. | 49,864 |
+| [improve](https://github.com/shadcn/improve) | Use your most capable model to audit a codebase and write self-contained implementation plans for cheaper models to execute; the skill never implements anything itself. | 10,870 |
 
 ## Skill collections
 

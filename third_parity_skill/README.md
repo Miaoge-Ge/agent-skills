@@ -61,6 +61,8 @@ Star 数取自 GitHub，统计于 2026-11-12，每个分类按 Star 数降序排
 | --- | --- | ---: |
 | [superpowers](https://github.com/obra/superpowers) | 面向智能体的技能框架与软件开发方法论，覆盖从构思到交付的完整流程。 | 316,301 |
 | [ECC](https://github.com/affaan-m/ECC) | 面向主流编程智能体的性能优化系统：技能、本能、记忆、安全与研究优先开发。 | 301,366 |
+| [agent-browser](https://github.com/vercel-labs/agent-browser) | 面向 AI 智能体的浏览器自动化 CLI：把页面读成带引用的无障碍树，逐条命令操作元素并回读结果。 | 49,864 |
+| [improve](https://github.com/shadcn/improve) | 让能力最强的模型审计代码库并为低成本模型编写可执行的实施计划；只产出计划，不直接改代码。 | 10,870 |
 
 ## 技能合集
 
