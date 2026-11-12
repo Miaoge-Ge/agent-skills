@@ -42,6 +42,7 @@ Star counts are GitHub data as of 2026-11-12; entries are sorted by stars in des
 | [rea](https://github.com/morluto/rea) | Reverse engineering and behavior analysis | 452,705 |
 | [security-audit-skill](https://github.com/cloudflare/security-audit-skill) | Code and architecture security audit | 70,361 |
 | [craft-anything](https://github.com/storytold/craft-anything) | Study and rebuild any software | 28,371 |
+| [jailbreaks](https://github.com/togg53192-cmd/jailbreaks) | Jailbreak prompts and persona setups | 16,400 |
 | [reagent](https://github.com/Dryxio/reagent) | Binary to validated C/C++ | 2,426 |
 
 ## Website cloning

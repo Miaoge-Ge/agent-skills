@@ -42,6 +42,7 @@ Star 数取自 GitHub，统计于 2026-11-12，每个分类按 Star 数降序排
 | [rea](https://github.com/morluto/rea) | 逆向与行为分析 | 452,705 |
 | [security-audit-skill](https://github.com/cloudflare/security-audit-skill) | 代码安全审计 | 70,361 |
 | [craft-anything](https://github.com/storytold/craft-anything) | 软件研究与重建 | 28,371 |
+| [jailbreaks](https://github.com/togg53192-cmd/jailbreaks) | 越狱提示词与角色设定 | 16,400 |
 | [reagent](https://github.com/Dryxio/reagent) | 二进制逆向重建 | 2,426 |
 
 ## 网站克隆
