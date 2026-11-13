@@ -20,6 +20,7 @@ Star counts are GitHub data as of 2026-11-13; entries are sorted by stars in des
 | [OfficeCLI](https://github.com/iOfficeAI/OfficeCLI) | OfficeCLI is the first and best Office… | 1.0.161 | 33,261 |
 | [Auto-claude-code-research-in-sleep](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) | ARIS ⚔️ (Auto-Research-In-Sleep) — Ligh… | 0.4.28 | 19,141 |
 | [academic-research-skills-codex](https://github.com/Imbad0202/academic-research-skills-codex) | Codex-native Academic Research Skills s… | 3.24.2 | 14,514 |
+| [no-ai-slop](https://github.com/petergyang/no-ai-slop) | Remove AI slop from writing | 1.0.6 | 13,461 |
 | [patent-disclosure-skill](https://github.com/handsomestWei/patent-disclosure-skill) | Chinese patent disclosure drafting | 5.2.1 | 13,416 |
 | [figures4papers](https://github.com/ChenLiu-1996/figures4papers) | My Python scripts to make high-quality… | main@e78584f | 11,217 |
 | [SoftwareCopyright-Skill](https://github.com/Fokkyp/SoftwareCopyright-Skill) | Software copyright application materials | 2.6 | 6,351 |
@@ -68,6 +69,7 @@ Star counts are GitHub data as of 2026-11-13; entries are sorted by stars in des
 | [hallmark](https://github.com/Nutlope/hallmark) | Web UI design and polish | 2.0.0 | 54,328 |
 | [claude-code-templates](https://github.com/davila7/claude-code-templates) | Open-source registry and CLI for Claude… | 1.29.7 | 33,467 |
 | [frontend-slides](https://github.com/zarazhangrui/frontend-slides) | Create beautiful slides on the web usin… | 2.1.0 | 32,294 |
+| [video-use](https://github.com/browser-use/video-use) | Edit videos with coding agents | main@43cfc56 | 30,999 |
 | [guizang-ppt-skill](https://github.com/op7418/guizang-ppt-skill) | AI-agent Skill for generating polished… | 1.1.0 | 29,755 |
 | [huashu-design](https://github.com/alchaincyf/huashu-design) | Huashu Design 3.0 · 在 agent 里打一句话，拿回能交付… | 3.3.0 | 29,413 |
 | [planning-with-files](https://github.com/OthmanAdi/planning-with-files) | Persistent file-based planning for AI c… | 3.28.1 | 28,039 |
@@ -80,6 +82,7 @@ Star counts are GitHub data as of 2026-11-13; entries are sorted by stars in des
 | [garden-skills](https://github.com/ConardLi/garden-skills) | ConardLi's open-source Skills collectio… | 0.2.0 | 15,076 |
 | [Kami](https://github.com/tw93/Kami) | 👩‍🚒 Good content deserves good paper. L… | 1.20.0 | 12,535 |
 | [genoffice](https://github.com/genspark-ai/genoffice) | Free, open-source AI Office suite: Docs… | 0.13.18 | 12,294 |
+| [fireworks-tech-graph](https://github.com/yizhiyanhua-ai/fireworks-tech-graph) | Technical diagrams from natural language | 1.2.0 | 11,988 |
 | [visual-explainer](https://github.com/nicobailon/visual-explainer) | Agent skill that generates rich HTML pa… | 0.15.0 | 11,066 |
 | [drawio-skill](https://github.com/Agents365-ai/drawio-skill) | Agent skill that turns natural language… | 3.4.4 | 10,758 |
 | [Claude-Red](https://github.com/SnailSploit/Claude-Red) | claude-red is a curated library of offe… | 0.3.0 | 10,686 |
@@ -115,7 +118,9 @@ Star counts are GitHub data as of 2026-11-13; entries are sorted by stars in des
 | --- | --- | --- | ---: |
 | [Scrapling](https://github.com/D4Vinci/Scrapling) | Adaptive web scraping framework | 0.5.1 | 102,405 |
 | [ego-lite](https://github.com/citrolabs/ego-lite) | The fastest browser for AI agents to ru… | 2.2.0 | 22,770 |
+| [claude-video](https://github.com/bradautomates/claude-video) | Video evidence for agents: frames and transcript | 0.3.2 | 20,693 |
 | [Skill_Seekers](https://github.com/yusufkaraaslan/Skill_Seekers) | Convert documentation websites, GitHub… | 3.10.0 | 15,305 |
+| [a-stock-data](https://github.com/simonlin1212/a-stock-data) | A-share market data toolkit | 3.10.4 | 11,790 |
 | [geo-seo-claude](https://github.com/zubair-trabzada/geo-seo-claude) | GEO-first SEO skill for Claude Code. Co… | main@989cae0 | 11,663 |
 
 ## Agent methods
@@ -145,6 +150,7 @@ Star counts are GitHub data as of 2026-11-13; entries are sorted by stars in des
 | [watermarks-remover](https://github.com/guillaumemeyer/watermarks-remover) | A privacy-first app that strips AI wate… | 0.7.0 | 27,329 |
 | [anatomy](https://github.com/wheresryan22/anatomy) | An agent skill for creating detailed, i… | 1.1.0 | 27,074 |
 | [distilly](https://github.com/titanwings/distilly) | Distilly — Distill how they think into… | 0.01 | 26,555 |
+| [compound-engineering-plugin](https://github.com/EveryInc/compound-engineering-plugin) | Engineering skills plugin | 3.38.1 | 26,063 |
 | [google/skills](https://github.com/google/skills) | Agent Skills for Google products and te… | main@85f227e | 24,124 |
 | [Humanizer-zh](https://github.com/op7418/Humanizer-zh) | Humanizer 的汉化版本，Claude Code Skills，旨在消除… | main@f4518a8 | 22,760 |
 | [brag](https://github.com/latent-spaces/brag) | You built it. Now brag. Turn the projec… | 0.5.0 | 21,348 |
