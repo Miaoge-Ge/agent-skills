@@ -16,12 +16,20 @@ Usage:
     python scripts/scan_skill_repos.py --min-stars 5000 --limit 50
     python scripts/scan_skill_repos.py --apply             # write both catalog docs
     python scripts/scan_skill_repos.py --report candidates.md
+    python scripts/scan_skill_repos.py --json              # machine-readable output
+    python scripts/scan_skill_repos.py --query "topic:agent-skills" \
+        --exclude some/repo                                # custom search
+    python scripts/scan_skill_repos.py --refresh --refresh-stars-only --apply
 
 Notes:
   * ``--apply`` copies the upstream GitHub description verbatim, so auto-added
     rows may be English in the Chinese catalog. Review and translate them before
     committing if that matters.
-  * Descriptions are truncated to keep one skill per table row.
+  * Descriptions are truncated to keep one skill per table row; literal pipes are
+    escaped so they do not break the table.
+  * Candidates without a license are skipped unless ``--allow-no-license`` is set.
+  * ``--refresh`` re-reads stars (and versions unless ``--refresh-stars-only``)
+    for every repository already in the catalog and re-sorts each category.
   * On Windows, the console may misdecode UTF-8 output; use ``--report <path>``
     or set ``PYTHONIOENCODING=utf-8``.
 """
@@ -33,6 +41,7 @@ import json
 import re
 import subprocess
 import sys
+import time
 from pathlib import Path
 from urllib.parse import quote
 
@@ -77,18 +86,25 @@ DEFAULT_CATEGORY = ("智能体与工程方法", "Agent methods", [
 ])
 
 
-def gh_json(path: str):
-    """Run ``gh api <path>`` and parse JSON, raising on failure."""
-    proc = subprocess.run(
-        ["gh", "api", path],
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        errors="replace",
-    )
-    if proc.returncode != 0:
-        raise RuntimeError(proc.stderr.strip() or f"gh api failed: {path}")
-    return json.loads(proc.stdout)
+def gh_json(path: str, retries: int = 3):
+    """Run ``gh api <path>`` and parse JSON, retrying on rate limits."""
+    last_error = ""
+    for attempt in range(retries):
+        proc = subprocess.run(
+            ["gh", "api", path],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+        if proc.returncode == 0:
+            return json.loads(proc.stdout)
+        last_error = proc.stderr.strip() or f"gh api failed: {path}"
+        if "rate limit" in last_error.lower() or "secondary rate" in last_error.lower():
+            time.sleep(5 * (attempt + 1))
+            continue
+        break
+    raise RuntimeError(last_error)
 
 
 def try_gh_json(path: str):
@@ -205,7 +221,7 @@ def infer_category(repo: dict) -> tuple[str, str]:
 
 def display_name(repo: dict) -> str:
     name = repo["name"]
-    if name.lower() in {"skills", "agent-skills", "agent_skills", "agent-skills"}:
+    if name.lower() in {"skills", "agent-skills", "agent_skills"}:
         return repo["full_name"]
     return name
 
@@ -214,13 +230,24 @@ def shorten(text: str, limit: int = 40) -> str:
     text = re.sub(r"\s+", " ", text or "").strip().replace("|", "\\|")
     if len(text) <= limit:
         return text
-    return text[: limit - 1].rstrip() + "…"
+    cut = text[: limit - 1]
+    if " " in cut:
+        cut = cut.rsplit(" ", 1)[0]
+    return cut.rstrip(" ,;:-") + "…"
 
 
-def build_candidates(min_stars: int, limit: int, max_pages: int) -> list[dict]:
+def build_candidates(
+    min_stars: int,
+    limit: int,
+    max_pages: int,
+    queries: list[str] | None = None,
+    excludes: list[str] | None = None,
+    allow_no_license: bool = False,
+) -> list[dict]:
     known = existing_repos()
+    skipped = {value.lower() for value in (excludes or [])}
     found: dict[str, dict] = {}
-    for query in DEFAULT_QUERIES:
+    for query in (queries or DEFAULT_QUERIES):
         found.update(search(query, min_stars, max_pages))
 
     ranked = sorted(found.values(), key=lambda repo: repo.get("stargazers_count", 0), reverse=True)
@@ -231,11 +258,13 @@ def build_candidates(min_stars: int, limit: int, max_pages: int) -> list[dict]:
             break
         full_name = repo["full_name"]
         key = full_name.lower()
-        if key in known or key in seen:
+        if key in known or key in seen or key in skipped:
             continue
         if repo.get("archived") or repo.get("fork"):
             continue
         if repo.get("stargazers_count", 0) < min_stars:
+            continue
+        if not allow_no_license and not repo.get("license"):
             continue
         branch = repo.get("default_branch") or "main"
         if not is_skill_repo(repo):
@@ -259,9 +288,17 @@ def build_candidates(min_stars: int, limit: int, max_pages: int) -> list[dict]:
     return candidates
 
 
+def split_row(row: str) -> list[str]:
+    """Split a Markdown table row without breaking on escaped pipes."""
+    return [cell.strip() for cell in re.split(r"(?<!\\)\|", row.strip().strip("|"))]
+
+
+def join_row(cells: list[str]) -> str:
+    return "| " + " | ".join(cells) + " |"
+
+
 def parse_stars(row: str) -> int:
-    cells = [cell.strip() for cell in row.strip().strip("|").split("|")]
-    return int(cells[-1].replace(",", ""))
+    return int(split_row(row)[-1].replace(",", ""))
 
 
 def update_doc(path: Path, candidates: list[dict], heading_key: str) -> int:
@@ -303,6 +340,83 @@ def update_doc(path: Path, candidates: list[dict], heading_key: str) -> int:
     return updated
 
 
+def catalog_records(path: Path) -> list[dict]:
+    """Return unique catalog rows with their current version and stars."""
+    records: list[dict] = []
+    seen: set[str] = set()
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.startswith("| ["):
+            continue
+        cells = split_row(line)
+        if len(cells) != 4:
+            continue
+        match = re.search(r"github\.com/([^)]+)\)", cells[0])
+        if not match:
+            continue
+        repo = match.group(1)
+        if repo.lower() in seen:
+            continue
+        seen.add(repo.lower())
+        records.append({"repo": repo, "version": cells[2], "stars": int(cells[3].replace(",", ""))})
+    return records
+
+
+def refresh_metadata(records: list[dict], stars_only: bool = False) -> dict[str, dict]:
+    updates: dict[str, dict] = {}
+    for index, record in enumerate(records, start=1):
+        repo = record["repo"]
+        info = try_gh_json(f"repos/{repo}")
+        if not info:
+            continue
+        branch = info.get("default_branch") or "main"
+        version = record["version"] if stars_only else resolve_version(repo, branch)
+        updates[repo.lower()] = {"stars": info["stargazers_count"], "version": version}
+        if index % 25 == 0:
+            print(f"  refreshed {index}/{len(records)}", file=sys.stderr)
+    return updates
+
+
+def apply_refresh(path: Path, updates: dict[str, dict]) -> int:
+    """Rewrite version/star cells for existing rows and re-sort each section."""
+    lines = path.read_text(encoding="utf-8").splitlines()
+    changed = 0
+    i = 0
+    while i < len(lines):
+        if not lines[i].startswith("## "):
+            i += 1
+            continue
+        end = i + 1
+        while end < len(lines) and not lines[end].startswith("## "):
+            end += 1
+        block = lines[i:end]
+        row_indexes = [j for j, line in enumerate(block) if line.startswith("| [")]
+        if row_indexes:
+            first, last = row_indexes[0], row_indexes[-1]
+            rows = block[first : last + 1]
+            for j, row in enumerate(rows):
+                cells = split_row(row)
+                if len(cells) != 4:
+                    continue
+                match = re.search(r"github\.com/([^)]+)\)", cells[0])
+                if not match:
+                    continue
+                update = updates.get(match.group(1).lower())
+                if not update:
+                    continue
+                new_stars = f"{update['stars']:,}"
+                if cells[2] != update["version"] or cells[3] != new_stars:
+                    changed += 1
+                cells[2] = update["version"]
+                cells[3] = new_stars
+                rows[j] = join_row(cells)
+            rows.sort(key=parse_stars, reverse=True)
+            block[first : last + 1] = rows
+        lines[i:end] = block
+        i = end
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return changed
+
+
 def render_report(candidates: list[dict], min_stars: int) -> str:
     lines = [
         f"# Skill candidates (>= {min_stars:,} stars, not in catalog)",
@@ -328,13 +442,38 @@ def main() -> int:
     parser.add_argument("--min-stars", type=int, default=3000)
     parser.add_argument("--limit", type=int, default=50, help="max candidates to verify")
     parser.add_argument("--max-pages", type=int, default=3, help="search pages per query (100 repos/page)")
+    parser.add_argument("--query", action="append", default=[], help="search query (repeatable; replaces the defaults)")
+    parser.add_argument("--exclude", action="append", default=[], help="owner/repo to skip (repeatable)")
+    parser.add_argument("--allow-no-license", action="store_true", help="keep candidates without a license")
     parser.add_argument("--apply", action="store_true", help="merge candidates into both catalog docs")
+    parser.add_argument("--refresh", action="store_true", help="refresh stars and versions of existing rows")
+    parser.add_argument("--refresh-stars-only", action="store_true", help="skip version lookups during refresh")
+    parser.add_argument("--json", action="store_true", help="print candidates as JSON")
     parser.add_argument("--report", type=Path, help="write the Markdown report to this path")
     args = parser.parse_args()
 
-    candidates = build_candidates(args.min_stars, args.limit, args.max_pages)
+    if args.refresh or args.refresh_stars_only:
+        records = catalog_records(ZH_DOC)
+        updates = refresh_metadata(records, stars_only=args.refresh_stars_only)
+        print(f"refreshed metadata for {len(updates)} repositories", file=sys.stderr)
+        if args.apply:
+            zh_count = apply_refresh(ZH_DOC, updates)
+            en_count = apply_refresh(EN_DOC, updates)
+            print(f"updated {zh_count} Chinese rows and {en_count} English rows", file=sys.stderr)
+        else:
+            print("dry run: pass --apply to write the refreshed rows", file=sys.stderr)
+        return 0
+
+    candidates = build_candidates(
+        args.min_stars,
+        args.limit,
+        args.max_pages,
+        queries=args.query or None,
+        excludes=args.exclude,
+        allow_no_license=args.allow_no_license,
+    )
     report = render_report(candidates, args.min_stars)
-    print(report)
+    print(json.dumps(candidates, ensure_ascii=False, indent=2) if args.json else report)
 
     if args.report:
         args.report.write_text(report, encoding="utf-8")
