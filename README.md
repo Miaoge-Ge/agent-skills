@@ -14,11 +14,18 @@
 
 自带技能都位于 `personal_skill/`，每个技能是独立目录，包含 `SKILL.md` 和配套的 `scripts/`、`references/` 等文件。
 
-| 技能 | 说明 |
-|---|---|
-| [cpp-code-standard](personal_skill/cpp-code-standard/SKILL.md) | C/C++ 命名、排版、注释、类型及现代 C++ 用法规范，附文件头检查脚本。 |
-| [git-workflow-standard](personal_skill/git-workflow-standard/SKILL.md) | Git 工作流规范：Conventional Commits 提交信息、分支命名、合并与发布、历史安全，附提交校验、暂存区扫描和钩子安装脚本。 |
-| [installer-extract](personal_skill/installer-extract/SKILL.md) | Windows 安装包解包部署、快捷方式、启动验证与更新处理。 |
+| 技能 | 版本 | 说明 |
+|---|---|---|
+| [cpp-code-standard](personal_skill/cpp-code-standard/SKILL.md) | 1.0.3 | C/C++ 命名、排版、注释、类型及现代 C++ 用法规范，附文件头检查脚本。 |
+| [git-workflow-standard](personal_skill/git-workflow-standard/SKILL.md) | 1.0.0 | Git 工作流规范：Conventional Commits 提交信息、分支命名、合并与发布、历史安全，附提交校验、暂存区扫描和钩子安装脚本。 |
+| [installer-extract](personal_skill/installer-extract/SKILL.md) | 1.0.2 | Windows 安装包解包部署、快捷方式、启动验证与更新处理。 |
+
+`cyg_skill/` 是私有 submodule，包含以下技能（需要该私有仓库权限）：
+
+| 技能 | 版本 | 说明 |
+|---|---|---|
+| cyg-dlcp-template | 4.0.1 | P90 智能成票模板编写与校验。 |
+| cyg-dlcp-ticket-check | 1.3.0 | P90 测试站按调令独立成票验票。 |
 
 ## 第三方技能
 

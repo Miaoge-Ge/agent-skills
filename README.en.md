@@ -14,11 +14,18 @@ Agent Skills for AI coding assistants: engineering standards written as instruct
 
 All bundled skills live under `personal_skill/`; each is a self-contained directory with a `SKILL.md` plus `scripts/`, `references/`, and other supporting files.
 
-| Skill | Description |
-|---|---|
-| [cpp-code-standard](personal_skill/cpp-code-standard/SKILL.md) | C/C++ naming, formatting, comments, types, and modern C++ practices, with a header checker. |
-| [git-workflow-standard](personal_skill/git-workflow-standard/SKILL.md) | Git workflow standards: Conventional Commits, branch naming, merging and releases, and history safety, with commit linting, index scanning, and hook installation scripts. |
-| [installer-extract](personal_skill/installer-extract/SKILL.md) | Windows installer extraction and deployment, shortcuts, launch verification, and updates. |
+| Skill | Version | Description |
+|---|---|---|
+| [cpp-code-standard](personal_skill/cpp-code-standard/SKILL.md) | 1.0.3 | C/C++ naming, formatting, comments, types, and modern C++ practices, with a header checker. |
+| [git-workflow-standard](personal_skill/git-workflow-standard/SKILL.md) | 1.0.0 | Git workflow standards: Conventional Commits, branch naming, merging and releases, and history safety, with commit linting, index scanning, and hook installation scripts. |
+| [installer-extract](personal_skill/installer-extract/SKILL.md) | 1.0.2 | Windows installer extraction and deployment, shortcuts, launch verification, and updates. |
+
+`cyg_skill/` is a private submodule with these skills (requires access to the private repository):
+
+| Skill | Version | Description |
+|---|---|---|
+| cyg-dlcp-template | 4.0.1 | P90 ticketing template authoring and validation. |
+| cyg-dlcp-ticket-check | 1.3.0 | Independent ticketing and verification on the P90 test station. |
 
 ## Third-party skills
 
