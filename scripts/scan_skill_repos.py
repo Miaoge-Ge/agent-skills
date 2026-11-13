@@ -180,7 +180,10 @@ def search_code_repos(max_pages: int, max_repos: int) -> dict[str, dict]:
             repo = item.get("repository") or {}
             full_name = repo.get("full_name")
             if full_name:
-                repos.setdefault(full_name.lower(), {"full_name": full_name})
+                repos.setdefault(
+                    full_name.lower(),
+                    {"full_name": full_name, "_skill_path": item["path"]},
+                )
             if len(repos) >= max_repos:
                 break
         if len(repos) >= max_repos or len(items) < 100:
@@ -188,19 +191,43 @@ def search_code_repos(max_pages: int, max_repos: int) -> dict[str, dict]:
     return repos
 
 
-def is_skill_repo(repo: dict) -> bool:
+def find_skill(repo: dict) -> tuple[bool, str | None]:
+    """Return (has_skill_layout, SKILL.md path)."""
+    stored = repo.get("_skill_path")
+    if stored:
+        return True, stored
     full_name = repo["full_name"]
     branch = repo.get("default_branch") or "main"
     tree = try_gh_json(f"repos/{full_name}/git/trees/{branch}?recursive=1")
     for entry in (tree or {}).get("tree", []):
         if is_skill_path(entry["path"]):
-            return True
+            return True, entry["path"]
     names = {
         entry.get("name", "").lower()
         for entry in (try_gh_json(f"repos/{full_name}/contents") or [])
         if isinstance(entry, dict)
     }
-    return bool(names & {"skills", ".claude-plugin", "plugin.json"})
+    return bool(names & {"skills", ".claude-plugin", "plugin.json"}), None
+
+
+def verify_skill(repo: dict, skill_path: str) -> bool:
+    """Check that the SKILL.md has Agent Skills frontmatter and real content."""
+    entry = try_gh_json(f"repos/{repo['full_name']}/contents/{quote(skill_path)}")
+    if not entry or not entry.get("content"):
+        return False
+    try:
+        text = base64.b64decode(entry["content"]).decode("utf-8", errors="replace")
+    except Exception:
+        return False
+    match = re.match(r"^---\r?\n(.*?)\r?\n---", text, re.S)
+    if not match:
+        return False
+    frontmatter = match.group(1)
+    if not re.search(r"(?m)^name:\s*\S", frontmatter):
+        return False
+    if not re.search(r"(?m)^description:\s*\S", frontmatter):
+        return False
+    return len(text[match.end():].strip()) >= 100
 
 
 def normalize_tag(tag: str) -> str:
@@ -277,6 +304,7 @@ def build_candidates(
     code_search: bool = True,
     code_pages: int = 10,
     max_code_repos: int = 300,
+    verify: bool = True,
 ) -> list[dict]:
     known = existing_repos()
     skipped = {value.lower() for value in (excludes or [])}
@@ -291,6 +319,7 @@ def build_candidates(
                 continue
             info = try_gh_json(f"repos/{repo['full_name']}")
             if info:
+                info["_skill_path"] = repo.get("_skill_path")
                 found[key] = info
             if index % 50 == 0:
                 print(f"  fetched metadata {index}/{len(code_repos)}", file=sys.stderr)
@@ -312,7 +341,10 @@ def build_candidates(
         if not allow_no_license and not repo.get("license"):
             continue
         branch = repo.get("default_branch") or "main"
-        if not is_skill_repo(repo):
+        has_layout, skill_path = find_skill(repo)
+        if not has_layout:
+            continue
+        if verify and (not skill_path or not verify_skill(repo, skill_path)):
             continue
         seen.add(key)
         zh, en = infer_category(repo)
@@ -490,6 +522,7 @@ def main() -> int:
     parser.add_argument("--query", action="append", default=[], help="search query (repeatable; replaces the defaults)")
     parser.add_argument("--exclude", action="append", default=[], help="owner/repo to skip (repeatable)")
     parser.add_argument("--allow-no-license", action="store_true", help="keep candidates without a license")
+    parser.add_argument("--no-verify", dest="verify", action="store_false", help="skip SKILL.md frontmatter verification")
     parser.add_argument("--no-code-search", dest="code_search", action="store_false", help="disable filename:SKILL.md code search")
     parser.add_argument("--code-pages", type=int, default=10, help="code search pages (100 files/page)")
     parser.add_argument("--max-code-repos", type=int, default=300, help="max repositories to resolve from code search")
@@ -522,6 +555,7 @@ def main() -> int:
         code_search=args.code_search,
         code_pages=args.code_pages,
         max_code_repos=args.max_code_repos,
+        verify=args.verify,
     )
     report = render_report(candidates, args.min_stars)
     print(json.dumps(candidates, ensure_ascii=False, indent=2) if args.json else report)
