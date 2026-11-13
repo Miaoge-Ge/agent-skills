@@ -22,7 +22,7 @@
 
 ## 第三方技能
 
-第三方技能与工具按用途整理在 [third_parity_skill/](third_parity_skill/README.md)：[中文版](third_parity_skill/README.md) | [English](third_parity_skill/README.en.md)。
+第三方技能与工具按用途整理在 [third_party_skill/](third_party_skill/README.md)：[中文版](third_party_skill/README.md) | [English](third_party_skill/README.en.md)。
 
 本仓库只做索引，不包含这些技能的代码；版权与协议归上游仓库所有，使用前请阅读对应仓库的 LICENSE。
 
@@ -67,7 +67,7 @@ agent-skills/
 │   │   └── tests/
 │   └── installer-extract/
 │       └── SKILL.md
-├── third_parity_skill/ # 第三方技能索引
+├── third_party_skill/ # 第三方技能索引
 │   ├── README.md
 │   └── README.en.md
 ├── cyg_skill/          # 私有 submodule，本仓库只存指针

@@ -22,7 +22,7 @@ All bundled skills live under `personal_skill/`; each is a self-contained direct
 
 ## Third-party skills
 
-Third-party skills and tools are indexed by use under [third_parity_skill/](third_parity_skill/README.en.md): [Chinese](third_parity_skill/README.md) | [English](third_parity_skill/README.en.md).
+Third-party skills and tools are indexed by use under [third_party_skill/](third_party_skill/README.en.md): [Chinese](third_party_skill/README.md) | [English](third_party_skill/README.en.md).
 
 This repository only indexes these skills; the code, copyright, and licenses remain with the upstream repositories. Read the upstream LICENSE before use.
 
@@ -67,7 +67,7 @@ agent-skills/
 │   │   └── tests/
 │   └── installer-extract/
 │       └── SKILL.md
-├── third_parity_skill/ # third-party skill index
+├── third_party_skill/ # third-party skill index
 │   ├── README.md
 │   └── README.en.md
 ├── cyg_skill/          # private submodule, pointer only
