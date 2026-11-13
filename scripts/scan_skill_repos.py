@@ -2,10 +2,11 @@
 """Discover third-party Agent Skill repositories on GitHub.
 
 The script searches GitHub for skill-like repositories above a star threshold,
-verifies that they actually contain a ``SKILL.md`` (or a ``skills/`` /
-``.claude-plugin/`` layout), resolves a version, guesses a catalog category, and
-prints a Markdown report. With ``--apply`` it also merges the new rows into
-``third_party_skill/README.md`` and ``third_party_skill/README.en.md``.
+then also scans code for ``filename:SKILL.md`` so repositories whose name or
+description never says "skill" are still discovered. It verifies the layout,
+resolves a version, guesses a catalog category, and prints a Markdown report.
+With ``--apply`` it also merges the new rows into ``third_party_skill/README.md``
+and ``third_party_skill/README.en.md``.
 
 Requires the authenticated ``gh`` CLI (``gh auth login``), which keeps token
 handling out of this script and uses the same credentials as the rest of the
@@ -145,24 +146,54 @@ def search(query: str, min_stars: int, max_pages: int) -> dict[str, dict]:
     return results
 
 
-SKILL_TOPICS = {"agent-skills", "agent-skill", "claude-skills", "claude-skill", "skills", "skill"}
+def is_skill_path(path: str) -> bool:
+    """True for a root SKILL.md or a ``skills/<name>/SKILL.md`` layout.
+
+    This deliberately rejects lookalikes such as ``docs/skill/SKILL.md`` or
+    ``examples/demo/SKILL.md`` while accepting nested plugin layouts.
+    """
+    parts = path.split("/")
+    if len(parts) == 1:
+        return parts[0].lower() == "skill.md"
+    if len(parts) == 2:
+        return parts[0].lower() == "skills" and parts[1].lower() == "skill.md"
+    return parts[-3].lower() == "skills" and parts[-1].lower() == "skill.md"
 
 
-def is_skill_related(repo: dict) -> bool:
-    haystack = f"{repo.get('name', '')} {repo.get('description') or ''}".lower()
-    topics = {topic.lower() for topic in repo.get("topics", [])}
-    return "skill" in haystack or bool(topics & SKILL_TOPICS)
+def search_code_repos(max_pages: int, max_repos: int) -> dict[str, dict]:
+    """Find repositories that contain a SKILL.md, whatever the repo is called.
+
+    Repository search only matches names/descriptions/topics, so a skill repo
+    without the word "skill" in its metadata is invisible to it. Code search on
+    the file name closes that gap; metadata (stars, license) is fetched later.
+    """
+    repos: dict[str, dict] = {}
+    query = "filename:SKILL.md"
+    for page in range(1, max_pages + 1):
+        data = try_gh_json("search/code?q=" + quote(query) + f"&per_page=100&page={page}")
+        if not data:
+            break
+        items = data.get("items", [])
+        for item in items:
+            if not is_skill_path(item.get("path", "")):
+                continue
+            repo = item.get("repository") or {}
+            full_name = repo.get("full_name")
+            if full_name:
+                repos.setdefault(full_name.lower(), {"full_name": full_name})
+            if len(repos) >= max_repos:
+                break
+        if len(repos) >= max_repos or len(items) < 100:
+            break
+    return repos
 
 
 def is_skill_repo(repo: dict) -> bool:
-    if not is_skill_related(repo):
-        return False
     full_name = repo["full_name"]
     branch = repo.get("default_branch") or "main"
     tree = try_gh_json(f"repos/{full_name}/git/trees/{branch}?recursive=1")
     for entry in (tree or {}).get("tree", []):
-        parts = entry["path"].split("/")
-        if parts[-1].lower() == "skill.md" and len(parts) <= 3:
+        if is_skill_path(entry["path"]):
             return True
     names = {
         entry.get("name", "").lower()
@@ -243,12 +274,26 @@ def build_candidates(
     queries: list[str] | None = None,
     excludes: list[str] | None = None,
     allow_no_license: bool = False,
+    code_search: bool = True,
+    code_pages: int = 10,
+    max_code_repos: int = 300,
 ) -> list[dict]:
     known = existing_repos()
     skipped = {value.lower() for value in (excludes or [])}
     found: dict[str, dict] = {}
     for query in (queries or DEFAULT_QUERIES):
         found.update(search(query, min_stars, max_pages))
+
+    if code_search:
+        code_repos = search_code_repos(code_pages, max_code_repos)
+        for index, (key, repo) in enumerate(code_repos.items(), start=1):
+            if key in known or key in skipped or key in found:
+                continue
+            info = try_gh_json(f"repos/{repo['full_name']}")
+            if info:
+                found[key] = info
+            if index % 50 == 0:
+                print(f"  fetched metadata {index}/{len(code_repos)}", file=sys.stderr)
 
     ranked = sorted(found.values(), key=lambda repo: repo.get("stargazers_count", 0), reverse=True)
     candidates: list[dict] = []
@@ -445,6 +490,9 @@ def main() -> int:
     parser.add_argument("--query", action="append", default=[], help="search query (repeatable; replaces the defaults)")
     parser.add_argument("--exclude", action="append", default=[], help="owner/repo to skip (repeatable)")
     parser.add_argument("--allow-no-license", action="store_true", help="keep candidates without a license")
+    parser.add_argument("--no-code-search", dest="code_search", action="store_false", help="disable filename:SKILL.md code search")
+    parser.add_argument("--code-pages", type=int, default=10, help="code search pages (100 files/page)")
+    parser.add_argument("--max-code-repos", type=int, default=300, help="max repositories to resolve from code search")
     parser.add_argument("--apply", action="store_true", help="merge candidates into both catalog docs")
     parser.add_argument("--refresh", action="store_true", help="refresh stars and versions of existing rows")
     parser.add_argument("--refresh-stars-only", action="store_true", help="skip version lookups during refresh")
@@ -471,6 +519,9 @@ def main() -> int:
         queries=args.query or None,
         excludes=args.exclude,
         allow_no_license=args.allow_no_license,
+        code_search=args.code_search,
+        code_pages=args.code_pages,
+        max_code_repos=args.max_code_repos,
     )
     report = render_report(candidates, args.min_stars)
     print(json.dumps(candidates, ensure_ascii=False, indent=2) if args.json else report)
