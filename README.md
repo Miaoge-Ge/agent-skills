@@ -24,8 +24,9 @@
 
 | 技能 | 版本 | 说明 |
 |---|---|---|
-| cyg-dlcp-template | 4.0.1 | P90 智能成票模板编写与校验。 |
-| cyg-dlcp-ticket-check | 1.3.0 | P90 测试站按调令独立成票验票。 |
+| cyg-dlcp-order | 1.1.0 | 按实际设备编制 P90 一次设备就地、顺控调令。 |
+| cyg-dlcp-template | 4.1.1 | P90 智能成票模板编写与校验。 |
+| cyg-dlcp-ticket-check | 1.5.1 | P90 测试站按调令独立成票验票。 |
 
 ## 第三方技能
 
