@@ -14,6 +14,7 @@ Star 数取自 GitHub，统计于 2026-11-13，每个分类按 Star 数降序排
 | [patent-disclosure-skill](https://github.com/handsomestWei/patent-disclosure-skill) | 专利交底书编写 | 5.2.1 | 13,416 |
 | [SoftwareCopyright-Skill](https://github.com/Fokkyp/SoftwareCopyright-Skill) | 软著申请材料生成 | 2.6 | 6,351 |
 | [answer-me-with-html](https://github.com/QingYunA/answer-me-with-html) | 单页 HTML 解答 | 0.5.11 | 6,302 |
+| [learn-from-materials](https://github.com/dmoshehun-prog/learn-from-materials) | 资料转交互学习网页 | 1.1.0 | 1,399 |
 
 ## 代码质量与效率
 
@@ -29,11 +30,14 @@ Star 数取自 GitHub，统计于 2026-11-13，每个分类按 Star 数降序排
 | 技能 | 说明 | 版本 | Stars |
 | --- | --- | --- | ---: |
 | [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | 专业 UI/UX 设计 | 2.15.0 | 148,952 |
+| [shadcn-ui/ui](https://github.com/shadcn-ui/ui) | 可组合的无障碍 UI 组件库 | 4.23.0 | 128,094 |
+| [taste-skill](https://github.com/Leonxlnx/taste-skill) | 给编程智能体的审美指导 | 2.5.1 | 114,758 |
 | [archify](https://github.com/tt-a1i/archify) | 交互式架构图 | 3.2.0 | 96,140 |
 | [Understand-Anything](https://github.com/Egonex-AI/Understand-Anything) | 代码知识图谱 | 2.9.0 | 92,506 |
 | [diagram-design](https://github.com/cathrynlavery/diagram-design) | 45 种图表设计 | 2.6.164 | 66,847 |
 | [hallmark](https://github.com/Nutlope/hallmark) | 网页 UI 设计优化 | 2.0.0 | 54,328 |
 | [handraw-style](https://github.com/yang0/handraw-style) | 手绘风格生图提示词 | 1.9.1 | 7,593 |
+| [interface-design](https://github.com/Dammyjay93/interface-design) | Claude Code 的 UI 设计工程 | 2026.6.12.1248 | 5,971 |
 
 ## 逆向与安全
 
@@ -74,8 +78,10 @@ Star 数取自 GitHub，统计于 2026-11-13，每个分类按 Star 数降序排
 | [mattpocock/skills](https://github.com/mattpocock/skills) | 真实工程技能合集 | 1.3.2 | 323,520 |
 | [anthropics/skills](https://github.com/anthropics/skills) | 官方技能示例 | main@2c5958e | 193,994 |
 | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 生产级工程技能 | 0.6.15 | 117,023 |
+| [emilkowalski/skills](https://github.com/emilkowalski/skills) | 设计与工程技能合集 | main@f7ce8c0 | 56,554 |
 | [openai/skills](https://github.com/openai/skills) | 官方技能目录（已弃用） | main@49f948f | 28,725 |
 | [MiniMax-AI/skills](https://github.com/MiniMax-AI/skills) | 官方技能合集 | 1.0.0 | 13,832 |
+| [jakubkrehel/skills](https://github.com/jakubkrehel/skills) | 界面开发技能合集 | 1.20.0 | 12,107 |
 | [google-gemini/gemini-skills](https://github.com/google-gemini/gemini-skills) | Gemini 官方技能 | 2.7.0 | 4,473 |
 | [TheQtCompanyRnD/agent-skills](https://github.com/TheQtCompanyRnD/agent-skills) | Qt / QML 开发技能 | 1.8.1 | 539 |
 | [zai-org/GLM-skills](https://github.com/zai-org/GLM-skills) | GLM 官方技能 | main@2ecd31c | 475 |

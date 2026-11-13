@@ -14,6 +14,7 @@ Star counts are GitHub data as of 2026-11-13; entries are sorted by stars in des
 | [patent-disclosure-skill](https://github.com/handsomestWei/patent-disclosure-skill) | Chinese patent disclosure drafting | 5.2.1 | 13,416 |
 | [SoftwareCopyright-Skill](https://github.com/Fokkyp/SoftwareCopyright-Skill) | Software copyright application materials | 2.6 | 6,351 |
 | [answer-me-with-html](https://github.com/QingYunA/answer-me-with-html) | Answers as a single HTML page | 0.5.11 | 6,302 |
+| [learn-from-materials](https://github.com/dmoshehun-prog/learn-from-materials) | Materials to interactive learning pages | 1.1.0 | 1,399 |
 
 ## Code quality and efficiency
 
@@ -29,11 +30,14 @@ Star counts are GitHub data as of 2026-11-13; entries are sorted by stars in des
 | Skill | Description | Version | Stars |
 | --- | --- | --- | ---: |
 | [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Professional UI/UX design | 2.15.0 | 148,952 |
+| [shadcn-ui/ui](https://github.com/shadcn-ui/ui) | Composable, accessible UI components | 4.23.0 | 128,094 |
+| [taste-skill](https://github.com/Leonxlnx/taste-skill) | Design taste for coding agents | 2.5.1 | 114,758 |
 | [archify](https://github.com/tt-a1i/archify) | Interactive architecture diagrams | 3.2.0 | 96,140 |
 | [Understand-Anything](https://github.com/Egonex-AI/Understand-Anything) | Code to knowledge graph | 2.9.0 | 92,506 |
 | [diagram-design](https://github.com/cathrynlavery/diagram-design) | 45 diagram types as HTML/SVG | 2.6.164 | 66,847 |
 | [hallmark](https://github.com/Nutlope/hallmark) | Web UI design and polish | 2.0.0 | 54,328 |
 | [handraw-style](https://github.com/yang0/handraw-style) | Hand-drawn image prompts | 1.9.1 | 7,593 |
+| [interface-design](https://github.com/Dammyjay93/interface-design) | Design engineering for consistent UI | 2026.6.12.1248 | 5,971 |
 
 ## Reverse engineering and security
 
@@ -74,8 +78,10 @@ Star counts are GitHub data as of 2026-11-13; entries are sorted by stars in des
 | [mattpocock/skills](https://github.com/mattpocock/skills) | Everyday engineering skills | 1.3.2 | 323,520 |
 | [anthropics/skills](https://github.com/anthropics/skills) | Official Agent Skills examples | main@2c5958e | 193,994 |
 | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | Production-grade engineering skills | 0.6.15 | 117,023 |
+| [emilkowalski/skills](https://github.com/emilkowalski/skills) | Skills for designers and engineers | main@f7ce8c0 | 56,554 |
 | [openai/skills](https://github.com/openai/skills) | Official skill catalog (deprecated) | main@49f948f | 28,725 |
 | [MiniMax-AI/skills](https://github.com/MiniMax-AI/skills) | Official MiniMax skills | 1.0.0 | 13,832 |
+| [jakubkrehel/skills](https://github.com/jakubkrehel/skills) | Agent skills for building interfaces | 1.20.0 | 12,107 |
 | [google-gemini/gemini-skills](https://github.com/google-gemini/gemini-skills) | Official Gemini API skills | 2.7.0 | 4,473 |
 | [TheQtCompanyRnD/agent-skills](https://github.com/TheQtCompanyRnD/agent-skills) | Qt / QML development skills | 1.8.1 | 539 |
 | [zai-org/GLM-skills](https://github.com/zai-org/GLM-skills) | Official GLM model skills | main@2ecd31c | 475 |
