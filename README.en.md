@@ -24,9 +24,9 @@ All bundled skills live under `personal_skill/`; each is a self-contained direct
 
 | Skill | Version | Description |
 |---|---|---|
-| cyg-dlcp-order | 1.1.0 | Generate local and sequential P90 primary-equipment orders from actual devices. |
-| cyg-dlcp-template | 4.1.1 | P90 ticketing template authoring and validation. |
-| cyg-dlcp-ticket-check | 1.5.1 | Independent ticketing and verification on the P90 test station. |
+| cyg-dlcp-order | 1.2.0 | Generate local and sequential P90 primary-equipment orders from actual devices. |
+| cyg-dlcp-template | 4.2.0 | P90 ticketing template authoring and validation. |
+| cyg-dlcp-ticket-check | 2.0.0 | Generate P90 tickets and check only spaces and field/macro parsing errors. |
 
 ## Third-party skills
 
