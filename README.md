@@ -20,14 +20,6 @@
 | [git-workflow-standard](personal_skill/git-workflow-standard/SKILL.md) | 1.0.0 | Git 工作流规范：Conventional Commits 提交信息、分支命名、合并与发布、历史安全，附提交校验、暂存区扫描和钩子安装脚本。 |
 | [installer-extract](personal_skill/installer-extract/SKILL.md) | 1.0.2 | Windows 安装包解包部署、快捷方式、启动验证与更新处理。 |
 
-`cyg_skill/` 是私有 submodule，包含以下技能（需要该私有仓库权限）：
-
-| 技能 | 版本 | 说明 |
-|---|---|---|
-| cyg-dlcp-order | 1.2.0 | 按实际设备编制 P90 一次设备就地、顺控调令。 |
-| cyg-dlcp-template | 4.2.0 | P90 智能成票模板编写与校验。 |
-| cyg-dlcp-ticket-check | 2.0.0 | P90 按调令成票，仅检查空格和域／宏解析错误。 |
-
 ## 第三方技能
 
 第三方技能与工具按用途整理在 [third_parity_skill/](third_parity_skill/README.md)：[中文版](third_parity_skill/README.md) | [English](third_parity_skill/README.en.md)。

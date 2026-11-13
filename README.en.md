@@ -20,14 +20,6 @@ All bundled skills live under `personal_skill/`; each is a self-contained direct
 | [git-workflow-standard](personal_skill/git-workflow-standard/SKILL.md) | 1.0.0 | Git workflow standards: Conventional Commits, branch naming, merging and releases, and history safety, with commit linting, index scanning, and hook installation scripts. |
 | [installer-extract](personal_skill/installer-extract/SKILL.md) | 1.0.2 | Windows installer extraction and deployment, shortcuts, launch verification, and updates. |
 
-`cyg_skill/` is a private submodule with these skills (requires access to the private repository):
-
-| Skill | Version | Description |
-|---|---|---|
-| cyg-dlcp-order | 1.2.0 | Generate local and sequential P90 primary-equipment orders from actual devices. |
-| cyg-dlcp-template | 4.2.0 | P90 ticketing template authoring and validation. |
-| cyg-dlcp-ticket-check | 2.0.0 | Generate P90 tickets and check only spaces and field/macro parsing errors. |
-
 ## Third-party skills
 
 Third-party skills and tools are indexed by use under [third_parity_skill/](third_parity_skill/README.en.md): [Chinese](third_parity_skill/README.md) | [English](third_parity_skill/README.en.md).
