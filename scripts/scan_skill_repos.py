@@ -211,7 +211,7 @@ def display_name(repo: dict) -> str:
 
 
 def shorten(text: str, limit: int = 40) -> str:
-    text = re.sub(r"\s+", " ", text or "").strip()
+    text = re.sub(r"\s+", " ", text or "").strip().replace("|", "\\|")
     if len(text) <= limit:
         return text
     return text[: limit - 1].rstrip() + "…"
