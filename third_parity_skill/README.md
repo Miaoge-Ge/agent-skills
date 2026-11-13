@@ -14,6 +14,8 @@ Star 数取自 GitHub，统计于 2026-11-13，每个分类按 Star 数降序排
 | [patent-disclosure-skill](https://github.com/handsomestWei/patent-disclosure-skill) | 专利交底书编写 | 5.2.1 | 13,416 |
 | [SoftwareCopyright-Skill](https://github.com/Fokkyp/SoftwareCopyright-Skill) | 软著申请材料生成 | 2.6 | 6,351 |
 | [answer-me-with-html](https://github.com/QingYunA/answer-me-with-html) | 单页 HTML 解答 | 0.5.11 | 6,302 |
+| [anti-defensive-writing-Skill](https://github.com/Adkid-Zephyr/anti-defensive-writing-Skill) | 学术论文去防御性写作 | 1.0.0 | 6,075 |
+| [anti-defensive-writing](https://github.com/Kiterlin/anti-defensive-writing) | 去除防御性写作，强化文风 | main@f516147 | 1,946 |
 | [learn-from-materials](https://github.com/dmoshehun-prog/learn-from-materials) | 资料转交互学习网页 | 1.1.0 | 1,399 |
 
 ## 代码质量与效率
@@ -37,6 +39,7 @@ Star 数取自 GitHub，统计于 2026-11-13，每个分类按 Star 数降序排
 | [diagram-design](https://github.com/cathrynlavery/diagram-design) | 45 种图表设计 | 2.6.164 | 66,847 |
 | [hallmark](https://github.com/Nutlope/hallmark) | 网页 UI 设计优化 | 2.0.0 | 54,328 |
 | [handraw-style](https://github.com/yang0/handraw-style) | 手绘风格生图提示词 | 1.9.1 | 7,593 |
+| [cult-ui](https://github.com/nolly-studio/cult-ui) | 150+ 动画 shadcn/ui 组件 | main@d71b142 | 7,129 |
 | [interface-design](https://github.com/Dammyjay93/interface-design) | Claude Code 的 UI 设计工程 | 2026.6.12.1248 | 5,971 |
 
 ## 逆向与安全

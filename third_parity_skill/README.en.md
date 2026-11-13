@@ -14,6 +14,8 @@ Star counts are GitHub data as of 2026-11-13; entries are sorted by stars in des
 | [patent-disclosure-skill](https://github.com/handsomestWei/patent-disclosure-skill) | Chinese patent disclosure drafting | 5.2.1 | 13,416 |
 | [SoftwareCopyright-Skill](https://github.com/Fokkyp/SoftwareCopyright-Skill) | Software copyright application materials | 2.6 | 6,351 |
 | [answer-me-with-html](https://github.com/QingYunA/answer-me-with-html) | Answers as a single HTML page | 0.5.11 | 6,302 |
+| [anti-defensive-writing-Skill](https://github.com/Adkid-Zephyr/anti-defensive-writing-Skill) | Anti-defensive writing for academic papers | 1.0.0 | 6,075 |
+| [anti-defensive-writing](https://github.com/Kiterlin/anti-defensive-writing) | Remove defensive writing, strengthen prose | main@f516147 | 1,946 |
 | [learn-from-materials](https://github.com/dmoshehun-prog/learn-from-materials) | Materials to interactive learning pages | 1.1.0 | 1,399 |
 
 ## Code quality and efficiency
@@ -37,6 +39,7 @@ Star counts are GitHub data as of 2026-11-13; entries are sorted by stars in des
 | [diagram-design](https://github.com/cathrynlavery/diagram-design) | 45 diagram types as HTML/SVG | 2.6.164 | 66,847 |
 | [hallmark](https://github.com/Nutlope/hallmark) | Web UI design and polish | 2.0.0 | 54,328 |
 | [handraw-style](https://github.com/yang0/handraw-style) | Hand-drawn image prompts | 1.9.1 | 7,593 |
+| [cult-ui](https://github.com/nolly-studio/cult-ui) | 150+ animated shadcn/ui components | main@d71b142 | 7,129 |
 | [interface-design](https://github.com/Dammyjay93/interface-design) | Design engineering for consistent UI | 2026.6.12.1248 | 5,971 |
 
 ## Reverse engineering and security
