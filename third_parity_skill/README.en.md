@@ -85,6 +85,7 @@ Star counts are GitHub data as of 2026-11-13; entries are sorted by stars in des
 | [openai/skills](https://github.com/openai/skills) | Official skill catalog (deprecated) | main@49f948f | 28,725 |
 | [MiniMax-AI/skills](https://github.com/MiniMax-AI/skills) | Official MiniMax skills | 1.0.0 | 13,832 |
 | [jakubkrehel/skills](https://github.com/jakubkrehel/skills) | Agent skills for building interfaces | 1.20.0 | 12,107 |
+| [janestreet/agent_skills](https://github.com/janestreet/agent_skills) | Jane Street's agent skills collection | master@7c6715c | 8,093 |
 | [google-gemini/gemini-skills](https://github.com/google-gemini/gemini-skills) | Official Gemini API skills | 2.7.0 | 4,473 |
 | [TheQtCompanyRnD/agent-skills](https://github.com/TheQtCompanyRnD/agent-skills) | Qt / QML development skills | 1.8.1 | 539 |
 | [zai-org/GLM-skills](https://github.com/zai-org/GLM-skills) | Official GLM model skills | main@2ecd31c | 475 |

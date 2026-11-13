@@ -85,6 +85,7 @@ Star 数取自 GitHub，统计于 2026-11-13，每个分类按 Star 数降序排
 | [openai/skills](https://github.com/openai/skills) | 官方技能目录（已弃用） | main@49f948f | 28,725 |
 | [MiniMax-AI/skills](https://github.com/MiniMax-AI/skills) | 官方技能合集 | 1.0.0 | 13,832 |
 | [jakubkrehel/skills](https://github.com/jakubkrehel/skills) | 界面开发技能合集 | 1.20.0 | 12,107 |
+| [janestreet/agent_skills](https://github.com/janestreet/agent_skills) | Jane Street 的智能体技能合集 | master@7c6715c | 8,093 |
 | [google-gemini/gemini-skills](https://github.com/google-gemini/gemini-skills) | Gemini 官方技能 | 2.7.0 | 4,473 |
 | [TheQtCompanyRnD/agent-skills](https://github.com/TheQtCompanyRnD/agent-skills) | Qt / QML 开发技能 | 1.8.1 | 539 |
 | [zai-org/GLM-skills](https://github.com/zai-org/GLM-skills) | GLM 官方技能 | main@2ecd31c | 475 |
