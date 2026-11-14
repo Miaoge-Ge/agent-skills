@@ -1,90 +1,87 @@
-# 现代 C++ 规则（C++17/20/23）
+# 现代 C++ 规则
 
-命名、排版、注释与类型见本技能其余规则；本文补充资源管理、异常安全与现代 C++ 用法。
+命名、排版、注释与类型遵循本技能其余规则，仓库配置和实际语言版本优先。C 工程不套用 C++ 类型和语法。
 
-## 关键规则
+## 资源与类型
 
-- 内存安全：不要用裸指针管理资源，使用智能指针（`std::unique_ptr`/`std::shared_ptr`）或标准容器。
-- RAII：构造函数获取资源、析构函数释放；不抛异常的构造函数标记 `noexcept`。
-- 现代特性：优先 `auto`、范围 `for`、`constexpr`、`nullptr`；指针不要用 `NULL` 或 `0`。
-- 异常安全：明确异常保证（`noexcept` 或文档化）；析构函数必须 `noexcept`。
-- 类型安全：禁止 C 风格转换，使用 `static_cast`/`dynamic_cast`；避免 `reinterpret_cast`。
-- 模板约束：用 `concept`（C++20）或 `static_assert` 约束模板参数，给出清晰的编译错误。
-- 性能：优先移动语义与完美转发；避免不必要拷贝；热路径避免虚调用。
-- 编译安全：每个头文件使用 `#pragma once` 或包含保护；优先前向声明而不是 `#include`。
-- 零容忍裸 `new`/`delete`：使用 `std::make_unique` / `std::make_shared`。
-- 数组用 `std::vector` 或 `std::array`，不用 C 风格数组；字符串用 `std::string`，不用裸 `char*` 操作。
-- 锁用 `std::lock_guard` 或 `std::unique_lock`，不要裸 `mutex.lock()`。
+- 用 RAII 表达所有权，优先标准容器、流、智能指针或带清理器的句柄；裸指针可用于非拥有观察和必要的 C API 适配，不把所有裸指针都当作泄漏。
+- 智能指针按独占/共享所有权选型，不默认 shared_ptr。确需手工分配的底层适配应封装释放路径，普通业务代码避免裸 new/delete。
+- noexcept 要覆盖成员构造、分配与调用链；不能因为函数体没有 throw 就标记。析构函数不向外传播异常，移动操作仅在实际保证不抛时标记 noexcept。
+- auto、范围 for、constexpr、nullptr 按可读性和语言版本采用；concept 需要 C++20。不要用移动/完美转发取代正常的值语义，返回局部值时避免无理由的 std::move 破坏拷贝消除。
+- 标准容器和字符串优先；需要 C 数组布局或零结尾接口时保留适配边界。string_view 不拥有数据，也不保证结尾为零；传给 C 字符串 API 前处理长度和生命周期。
+- 使用具名转换并核对范围、符号和对象生命周期；不能把 static_cast 当成运行时检查。
+- 锁使用 RAII。性能决定依据测量和调用场景，不凭“热路径”一词禁止所有虚调用。
 
-## 代码组织
+## 组织与依赖
 
-- 头文件只暴露接口，实现放在 `.cpp`（模板类除外）。
-- 单一职责：类公开方法约 5 个以内，函数约 30 行以内（简单转发的除外）。
-- 包含顺序：对应头文件 → C 库 → C++ 库 → 第三方 → 项目头文件，组间空行。
-- 禁止 `using namespace std;`，改用 `using std::string` 这类定向引入。
+- 头文件应可独立包含。前向声明仅用于不需要完整定义且不会破坏公共接口的情况；需要完整类型时正确 include。
+- 模板、内联、constexpr 等定义按可见性要求放置，不机械要求所有实现进入 .cpp。
+- 类和函数按职责拆分，不用固定方法数/行数迫使无意义拆分。包含顺序和格式服从仓库配置，未指定时沿用本技能排版规则。
 
-## 示例
+## 完整示例
 
-正确：RAII、智能指针、异常安全。
+以下示例采用业务模块驼峰命名；显式复制路径，拒绝内嵌零字符，使用流管理资源，并保留文件中的零字节。调用方可用异常区分打开失败与读取失败。
 
 ```cpp
-class FileProcessor {
+/**
+ * @file  file_processor.hpp
+ * @brief 通过 RAII 流读取文件内容
+ */
+#pragma once
+
+#include <array>
+#include <fstream>
+#include <stdexcept>
+#include <string>
+#include <string_view>
+
+class FileProcessor
+{
 public:
+    /**
+     * @brief 打开指定文件
+     * @param[in] path 文件路径视图，不得包含零字符
+     * @throws std::invalid_argument 路径包含零字符
+     * @throws std::runtime_error 无法打开文件
+     */
     explicit FileProcessor(std::string_view path)
-        : file_(std::fopen(path.data(), "r")) {
-        if (!file_) {
-            throw std::runtime_error("Failed to open file: " + std::string(path));
+    {
+        if (path.find('\0') != std::string_view::npos)
+        {
+            throw std::invalid_argument("Path contains a NUL character");
+        }
+        m_file.open(std::string(path), std::ios::binary);
+        if (!m_file)
+        {
+            throw std::runtime_error("Cannot open file: " + std::string(path));
         }
     }
 
-    FileProcessor(const FileProcessor&) = delete;
-    FileProcessor& operator=(const FileProcessor&) = delete;
+    /**
+     * @brief 从当前位置读取剩余字节
+     * @return 文件剩余内容，允许包含零字节
+     * @throws std::runtime_error 读取失败
+     */
+    std::string readAll()
+    {
+        std::string            content;
+        std::array<char, 4096> buffer{};
 
-    FileProcessor(FileProcessor&& other) noexcept
-        : file_(std::exchange(other.file_, nullptr)) {}
-
-    ~FileProcessor() noexcept {
-        if (file_) std::fclose(file_);
-    }
-
-    std::string read_all() {
-        std::string content;
-        constexpr size_t buffer_size = 4096;
-        std::vector<char> buffer(buffer_size);
-
-        while (std::fgets(buffer.data(), buffer.size(), file_)) {
-            content.append(buffer.data());
+        while (m_file)
+        {
+            m_file.read(buffer.data(), static_cast<std::streamsize>(buffer.size()));
+            content.append(buffer.data(), static_cast<std::size_t>(m_file.gcount()));
+        }
+        if (!m_file.eof())
+        {
+            throw std::runtime_error("Cannot read file");
         }
         return content;
     }
 
 private:
-    std::FILE* file_;
+    std::ifstream m_file;
 };
 ```
 
-错误：裸指针、内存泄漏、非异常安全。
-
-```cpp
-class BadProcessor {
-public:
-    BadProcessor(const char* path) {
-        file = fopen(path, "r");   // 可能失败且未检查
-        buffer = new char[1024];    // 裸 new
-    }
-
-    ~BadProcessor() {
-        fclose(file);
-        delete[] buffer;            // 构造函数抛异常时泄漏
-    }
-
-    char* read() {
-        fgets(buffer, 1024, file);
-        return buffer;              // 悬垂指针风险
-    }
-
-private:
-    FILE* file;
-    char* buffer;
-};
-```
+该示例的路径语义由标准库和平台决定；Windows 上需要完整 Unicode 路径支持时，应使用项目已有的 filesystem/path 方案。它不承诺所有窄字符串编码均可作为系统路径。

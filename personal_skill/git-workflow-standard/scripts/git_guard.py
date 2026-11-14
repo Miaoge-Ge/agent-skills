@@ -28,7 +28,6 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 
 DEFAULT_MAX_SIZE_MB = 5
-SCAN_LIMIT = 2 * 1024 * 1024
 IGNORE_MARKER = "git-guard:ignore"
 
 BRANCH_RE = re.compile(
@@ -67,9 +66,9 @@ PLACEHOLDER_RE = re.compile(
 )
 GENERIC_RE = re.compile(
     r"""(?ix)
-    \b(password|passwd|pwd|secret|token|api[_-]?key|apikey|access[_-]?key|client[_-]?secret)\b
+    (?P<key_quote>['"]?)\b(password|passwd|pwd|secret|token|api[_-]?key|apikey|access[_-]?key|client[_-]?secret)\b(?P=key_quote)
     \s*[:=]\s*
-    (['"])(?P<value>[^'"]{8,})\2
+    (?P<value_quote>['"])(?P<value>[^'"]{8,})(?P=value_quote)
     """
 )
 
@@ -250,8 +249,6 @@ def scan_text(
     findings: list[Finding] = []
     if b"\0" in content[:8192]:
         return findings
-    if len(content) > SCAN_LIMIT:
-        content = content[:SCAN_LIMIT]
     text = content.decode("utf-8", errors="replace")
     in_fence = False
     previous_ignored = False
@@ -326,6 +323,8 @@ def check_staged(repo: str, args: argparse.Namespace) -> tuple[list[Finding], in
                     path,
                 )
             )
+            # Already blocked; do not load an arbitrarily large blob into memory.
+            continue
         content = staged_bytes(repo, path)
         findings.extend(scan_text(repo, path, content, args.allow_path))
 

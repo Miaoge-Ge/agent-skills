@@ -16,10 +16,10 @@ All bundled skills live under `personal_skill/`; each is a self-contained direct
 
 | Skill | Version | Description |
 |---|---|---|
-| [cpp-code-standard](personal_skill/cpp-code-standard/SKILL.md) | 1.0.3 | C/C++ naming, formatting, comments, types, and modern C++ practices, with a header checker. |
-| [git-workflow-standard](personal_skill/git-workflow-standard/SKILL.md) | 1.0.0 | Git workflow standards: Conventional Commits, branch naming, merging and releases, and history safety, with commit linting, index scanning, and hook installation scripts. |
-| [installer-extract](personal_skill/installer-extract/SKILL.md) | 1.0.2 | Windows installer extraction and deployment, shortcuts, launch verification, and updates. |
-| [scan-skill-repos](personal_skill/scan-skill-repos/SKILL.md) | 1.0.0 | Scan GitHub skill repositories, verify them, and maintain the third-party catalog and stars. |
+| [cpp-code-standard](personal_skill/cpp-code-standard/SKILL.md) | 1.0.4 | C/C++ naming, formatting, comments, types, and modern C++ practices, with a header checker. |
+| [git-workflow-standard](personal_skill/git-workflow-standard/SKILL.md) | 1.0.1 | Git workflow standards: Conventional Commits, branch naming, merging and releases, and history safety, with commit linting, index scanning, and hook installation scripts. |
+| [installer-extract](personal_skill/installer-extract/SKILL.md) | 1.0.3 | Windows installer extraction and deployment, shortcuts, launch verification, and updates. |
+| [scan-skill-repos](personal_skill/scan-skill-repos/SKILL.md) | 1.0.1 | Scan GitHub skill repositories, verify them, and maintain the third-party catalog and stars. |
 | [sqlite3-expert](personal_skill/sqlite3-expert/SKILL.md) | 0.1.0 | SQLite SQL, schema and index design, dialect features, transactions, migrations, and application integration, with a read-only inspector and executable example tests. |
 
 ## Third-party skills
@@ -61,7 +61,8 @@ agent-skills/
 │   ├── cpp-code-standard/
 │   │   ├── SKILL.md
 │   │   ├── references/
-│   │   └── scripts/check_headers.py
+│   │   ├── scripts/check_headers.py
+│   │   └── tests/
 │   ├── git-workflow-standard/
 │   │   ├── SKILL.md
 │   │   ├── references/
@@ -72,7 +73,8 @@ agent-skills/
 │   ├── scan-skill-repos/
 │   │   ├── SKILL.md
 │   │   ├── references/descriptions.json
-│   │   └── scripts/scan_skill_repos.py
+│   │   ├── scripts/  # scan_skill_repos.py, requirements.txt
+│   │   └── tests/
 │   └── sqlite3-expert/
 │       ├── SKILL.md
 │       ├── agents/openai.yaml

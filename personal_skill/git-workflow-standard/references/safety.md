@@ -54,7 +54,7 @@ python scripts/git_guard.py --staged
 | `git reset --hard` | 丢弃暂存区和工作区改动 | `git stash push -u`、`git restore` |
 | `git clean -fd` | 删除未跟踪文件和目录 | 先 `git clean -nd` 预览，再逐个删除 |
 | `git clean -fdx` | 连忽略文件一起删除（构建产物、本地配置） | 明确知道会删什么再用 |
-| `git push --force` | 无条件覆盖远端历史 | `git push --force-with-lease`，且仅限自有分支 |
+| `git push --force` | 无条件覆盖远端历史 | `git push --force-with-lease=<ref>:<已审查SHA>`，且仅限自有分支 |
 | `git branch -D` | 强制删除未合并分支 | `git branch -d`，或先确认已合并 |
 | `git checkout -- <file>` | 丢弃文件改动 | `git restore <file>`，先看 diff |
 | `git rebase` 共享分支 | 改写他人历史 | 只 rebase 本地未共享提交 |
@@ -64,7 +64,7 @@ python scripts/git_guard.py --staged
 破坏性命令执行前：
 
 1. `git status` 确认当前状态。
-2. 建备份分支 `git branch backup/<name>` 或 `git stash push -u -m "before ..."`。
+2. 分开保护两种内容：未提交修改使用 `git stash push -u -m "before ..."` 或独立副本，并验证内容已保存；已提交历史使用 `git branch backup/<name>` 保存位置。备份分支不会保存工作区或暂存区；`-u` 不包含忽略文件，涉及此类文件时另行备份。
 3. 向用户说明将丢失什么，取得明确同意。
 4. 执行后立即验证 `git status`、`git log` 和远端状态。
 
@@ -81,7 +81,7 @@ python scripts/git_guard.py --staged
 | 误 stash pop 冲突 | `git stash list`，必要时 `git stash branch <name> <stash>` |
 | 文件被误删未提交 | `git restore <file>`；已提交则 `git checkout <sha> -- <file>` |
 
-`git reflog` 默认保留 HEAD 移动记录 90 天、可达对象 30 天；发现误操作后尽快恢复，不要继续大量提交覆盖记录。
+reflog 条目默认一般保留 90 天，不可达提交对应的条目默认一般保留 30 天，且可由配置改变；这不是对象的恢复保证。发现误操作后尽快恢复，不要继续大量提交覆盖记录。
 
 ## 大文件与 LFS
 

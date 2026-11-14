@@ -86,11 +86,14 @@ git rebase -i --autosquash origin/main
 
 ```bash
 git fetch origin
-git log --oneline origin/feat/oauth-device-flow..HEAD   # 确认将要覆盖什么
-git push --force-with-lease origin feat/oauth-device-flow
+expected=$(git rev-parse refs/remotes/origin/feat/oauth-device-flow)
+git log --left-right --graph --oneline "HEAD...$expected"
+# 必须核实右侧的远端独有提交；若有尚未处理的他人工作，停止强推。
+# 确认该 SHA 对应的历史正是本次获准替换的版本后，才执行：
+git push --force-with-lease="refs/heads/feat/oauth-device-flow:$expected" origin HEAD:refs/heads/feat/oauth-device-flow
 ```
 
-- `--force-with-lease` 在远端被他人更新时拒绝覆盖；`--force` 会无条件覆盖，禁止使用。
+- 上例为 Bash；PowerShell 用 `$expected = git rev-parse ...` 取得同一 SHA。固定经过审查的预期 SHA，避免后台 fetch 改写跟踪引用后削弱保护。普通 `--force-with-lease` 不是“自动识别他人提交”的检查；`origin/branch..HEAD` 只显示本地独有提交，也不能替代双方差异审查。
 - 不要在 `main`、`develop`、`release/*`、`gh-pages` 等共享分支上强推。
 - 强推后通知协作者重新拉取，不要让他们把旧历史合并回来。
 - 平台的分支保护通常直接拒绝强推；不要尝试绕过保护规则。
@@ -119,7 +122,7 @@ git push --force-with-lease origin feat/oauth-device-flow
 | 暂存现场 | `git stash push -u -m "wip: ..."` | 含未跟踪文件用 `-u` |
 | 找回误删提交 | `git reflog` + `git branch rescue <sha>` | reflog 默认保留 90 天 |
 
-`git reset --hard` 会丢弃工作区和暂存区改动，只在明确要放弃时使用，并先 `git stash` 或建备份分支。已推送历史用 revert，不要 reset 后强推。
+`git reset --hard` 会丢弃工作区和暂存区改动，只在明确要放弃时使用，并先用 `git stash push -u` 或独立副本保存未提交内容，再按需建备份分支保存提交位置。备份分支不保存工作区/暂存区，stash 的 `-u` 也不包括被忽略文件。已推送历史用 revert，不要 reset 后强推。
 
 ## 标签与发布
 

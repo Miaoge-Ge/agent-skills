@@ -16,10 +16,10 @@
 
 | 技能 | 版本 | 说明 |
 |---|---|---|
-| [cpp-code-standard](personal_skill/cpp-code-standard/SKILL.md) | 1.0.3 | C/C++ 命名、排版、注释、类型及现代 C++ 用法规范，附文件头检查脚本。 |
-| [git-workflow-standard](personal_skill/git-workflow-standard/SKILL.md) | 1.0.0 | Git 工作流规范：Conventional Commits 提交信息、分支命名、合并与发布、历史安全，附提交校验、暂存区扫描和钩子安装脚本。 |
-| [installer-extract](personal_skill/installer-extract/SKILL.md) | 1.0.2 | Windows 安装包解包部署、快捷方式、启动验证与更新处理。 |
-| [scan-skill-repos](personal_skill/scan-skill-repos/SKILL.md) | 1.0.0 | 扫描 GitHub 技能仓库，校验后维护第三方目录及 Star/版本。 |
+| [cpp-code-standard](personal_skill/cpp-code-standard/SKILL.md) | 1.0.4 | C/C++ 命名、排版、注释、类型及现代 C++ 用法规范，附文件头检查脚本。 |
+| [git-workflow-standard](personal_skill/git-workflow-standard/SKILL.md) | 1.0.1 | Git 工作流规范：Conventional Commits 提交信息、分支命名、合并与发布、历史安全，附提交校验、暂存区扫描和钩子安装脚本。 |
+| [installer-extract](personal_skill/installer-extract/SKILL.md) | 1.0.3 | Windows 安装包解包部署、快捷方式、启动验证与更新处理。 |
+| [scan-skill-repos](personal_skill/scan-skill-repos/SKILL.md) | 1.0.1 | 扫描 GitHub 技能仓库，校验后维护第三方目录及 Star/版本。 |
 | [sqlite3-expert](personal_skill/sqlite3-expert/SKILL.md) | 0.1.0 | SQLite SQL、表结构与索引设计、特殊语法、事务迁移和应用集成，附只读检查工具与可执行示例测试。 |
 
 ## 第三方技能
@@ -61,7 +61,8 @@ agent-skills/
 │   ├── cpp-code-standard/
 │   │   ├── SKILL.md
 │   │   ├── references/
-│   │   └── scripts/check_headers.py
+│   │   ├── scripts/check_headers.py
+│   │   └── tests/
 │   ├── git-workflow-standard/
 │   │   ├── SKILL.md
 │   │   ├── references/
@@ -72,7 +73,8 @@ agent-skills/
 │   ├── scan-skill-repos/
 │   │   ├── SKILL.md
 │   │   ├── references/descriptions.json
-│   │   └── scripts/scan_skill_repos.py
+│   │   ├── scripts/  # scan_skill_repos.py, requirements.txt
+│   │   └── tests/
 │   └── sqlite3-expert/
 │       ├── SKILL.md
 │       ├── agents/openai.yaml

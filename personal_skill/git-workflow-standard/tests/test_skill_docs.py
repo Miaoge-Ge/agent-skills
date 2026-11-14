@@ -24,8 +24,8 @@ class TestSkillMetadata(unittest.TestCase):
         self.assertIn("name: git-workflow-standard", self.frontmatter)
         self.assertEqual("git-workflow-standard", SKILL_ROOT.name)
 
-    def test_version_is_1_0_0(self) -> None:
-        self.assertRegex(self.frontmatter, r'version:\s*"1\.0\.0"')
+    def test_version_is_semver(self) -> None:
+        self.assertRegex(self.frontmatter, r'version:\s*"(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)"')
 
     def test_description_is_present(self) -> None:
         self.assertRegex(self.frontmatter, r"description:\s*\S")

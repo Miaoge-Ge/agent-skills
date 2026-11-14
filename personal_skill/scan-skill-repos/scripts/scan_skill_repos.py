@@ -48,18 +48,29 @@ import unicodedata
 from pathlib import Path
 from urllib.parse import quote
 
+try:
+    import yaml
+except ImportError:
+    yaml = None
+
+
 def find_repo_root(start: Path) -> Path:
-    """Walk up until the catalog is found; works from source and installed copies."""
+    """Locate the target from the working directory or explicit --repo, not the skill."""
+    start = start.resolve(strict=True)
     for parent in (start, *start.parents):
-        if (parent / "third_party_skill" / "README.md").is_file():
+        if all((parent / "third_party_skill" / name).is_file()
+               for name in ("README.md", "README.en.md")):
             return parent
-    return start.parents[2]
+    raise FileNotFoundError(f"No bilingual third_party_skill catalog above {start}; use --repo")
 
 
-ROOT = find_repo_root(Path(__file__).resolve().parent)
-ZH_DOC = ROOT / "third_party_skill" / "README.md"
-EN_DOC = ROOT / "third_party_skill" / "README.en.md"
+ROOT: Path | None = None
 DESCRIPTIONS_PATH = Path(__file__).resolve().parent.parent / "references" / "descriptions.json"
+
+
+def catalog_paths() -> tuple[Path, Path]:
+    root = ROOT if ROOT is not None else find_repo_root(Path.cwd())
+    return root / "third_party_skill/README.md", root / "third_party_skill/README.en.md"
 
 
 def load_descriptions() -> dict[str, dict]:
@@ -162,6 +173,7 @@ def gh_json(path: str, retries: int = 3):
             text=True,
             encoding="utf-8",
             errors="replace",
+            timeout=30,
         )
         if proc.returncode == 0:
             return json.loads(proc.stdout)
@@ -176,8 +188,10 @@ def gh_json(path: str, retries: int = 3):
 def try_gh_json(path: str):
     try:
         return gh_json(path)
-    except Exception:
-        return None
+    except RuntimeError as error:
+        if re.search(r"\bHTTP 404\b", str(error)):
+            return None
+        raise
 
 
 def gh_graphql(query: str, retries: int = 3):
@@ -190,6 +204,7 @@ def gh_graphql(query: str, retries: int = 3):
             text=True,
             encoding="utf-8",
             errors="replace",
+            timeout=30,
         )
         if proc.returncode == 0:
             return json.loads(proc.stdout).get("data", {})
@@ -241,7 +256,8 @@ def graphql_repo_metadata(full_names: list[str]) -> dict[str, dict]:
         query = "query {\n" + "\n".join(parts) + "\n}"
         try:
             data = gh_graphql(query)
-        except Exception:
+        except (RuntimeError, OSError, subprocess.TimeoutExpired) as error:
+            print(f"warning: GraphQL lookup failed; trying REST: {error}", file=sys.stderr)
             continue
         for index, full_name in enumerate(chunk):
             node = data.get(f"r{index}")
@@ -252,7 +268,7 @@ def graphql_repo_metadata(full_names: list[str]) -> dict[str, dict]:
 
 def existing_repos() -> set[str]:
     repos: set[str] = set()
-    for doc in (ZH_DOC, EN_DOC):
+    for doc in catalog_paths():
         if not doc.exists():
             continue
         for match in re.finditer(r"github\.com/([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)", doc.read_text(encoding="utf-8")):
@@ -282,17 +298,9 @@ def search(query: str, min_stars: int, max_pages: int) -> dict[str, dict]:
 
 
 def is_skill_path(path: str) -> bool:
-    """True for a root SKILL.md or a ``skills/<name>/SKILL.md`` layout.
-
-    This deliberately rejects lookalikes such as ``docs/skill/SKILL.md`` or
-    ``examples/demo/SKILL.md`` while accepting nested plugin layouts.
-    """
+    """A skill can live under any collection directory; content decides validity."""
     parts = path.split("/")
-    if len(parts) == 1:
-        return parts[0].lower() == "skill.md"
-    if len(parts) == 2:
-        return parts[0].lower() == "skills" and parts[1].lower() == "skill.md"
-    return parts[-3].lower() == "skills" and parts[-1].lower() == "skill.md"
+    return parts[-1] == "SKILL.md" and all(part not in ("", ".", "..") for part in parts)
 
 
 def search_code_repos(max_pages: int, max_repos: int) -> dict[str, dict]:
@@ -326,53 +334,71 @@ def search_code_repos(max_pages: int, max_repos: int) -> dict[str, dict]:
     return repos
 
 
-def find_skill(repo: dict) -> tuple[bool, str | None]:
+def find_skill(repo: dict, verify: bool = False) -> tuple[bool, str | None]:
     """Return (has_skill_layout, SKILL.md path)."""
     stored = repo.get("_skill_path")
-    if stored:
+    if stored and is_skill_path(stored) and (not verify or verify_skill(repo, stored)):
         return True, stored
     full_name = repo["full_name"]
     branch = repo.get("default_branch") or "main"
     tree = try_gh_json(f"repos/{full_name}/git/trees/{branch}?recursive=1")
     for entry in (tree or {}).get("tree", []):
-        if is_skill_path(entry["path"]):
+        if (entry.get("type") == "blob" and is_skill_path(entry["path"])
+                and (not verify or verify_skill(repo, entry["path"]))):
             return True, entry["path"]
-    names = {
-        entry.get("name", "").lower()
-        for entry in (try_gh_json(f"repos/{full_name}/contents") or [])
-        if isinstance(entry, dict)
-    }
-    return bool(names & {"skills", ".claude-plugin", "plugin.json"}), None
+    if tree and tree.get("truncated"):
+        raise RuntimeError(f"Repository tree truncated for {full_name}; verification is incomplete")
+    return False, None
 
 
 def verify_skill(repo: dict, skill_path: str) -> bool:
     """Check that the SKILL.md has Agent Skills frontmatter and real content."""
+    if yaml is None:
+        raise RuntimeError("SKILL.md validation requires PyYAML; install scripts/requirements.txt")
     entry = try_gh_json(f"repos/{repo['full_name']}/contents/{quote(skill_path)}")
     if not entry or not entry.get("content"):
         return False
     try:
-        text = base64.b64decode(entry["content"]).decode("utf-8", errors="replace")
-    except Exception:
+        text = base64.b64decode(entry["content"]).decode("utf-8-sig")
+    except (ValueError, UnicodeError):
         return False
-    match = re.match(r"^---\r?\n(.*?)\r?\n---", text, re.S)
+    match = re.match(r"^---\r?\n(.*?)\r?\n---(?:\r?\n|$)", text, re.S)
     if not match:
         return False
-    frontmatter = match.group(1)
-    if not re.search(r"(?m)^name:\s*\S", frontmatter):
+    try:
+        data = yaml.safe_load(match.group(1))
+    except yaml.YAMLError:
         return False
-    if not re.search(r"(?m)^description:\s*\S", frontmatter):
+    if not isinstance(data, dict):
         return False
-    return len(text[match.end():].strip()) >= 100
+    name, description = data.get("name"), data.get("description")
+    if not isinstance(name, str) or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", name):
+        return False
+    if (len(name) > 64 or not isinstance(description, str)
+            or not description.strip() or len(description) > 1024):
+        return False
+    parent = skill_path.split("/")[-2] if "/" in skill_path else repo["full_name"].split("/")[-1]
+    if name != parent:
+        return False
+    metadata = data.get("metadata", {})
+    if not isinstance(metadata, dict) or any(not isinstance(k, str) or not isinstance(v, str)
+                                            for k, v in metadata.items()):
+        return False
+    return bool(text[match.end():].strip())
 
 
 def normalize_tag(tag: str) -> str:
     tag = tag.strip()
     # shadcn@4.23.0, plugin-v1.0.0, rea-agents-6.9.0 -> 4.23.0, 1.0.0, 6.9.0
-    match = re.search(r"(\d+(?:\.\d+)*(?:[-.][0-9A-Za-z]+)?)$", tag)
+    match = re.search(
+        r"(?<![0-9.])((?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)"
+        r"(?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?"
+        r"(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?)$", tag,
+    )
     return match.group(1) if match else tag
 
 
-def resolve_version(full_name: str, branch: str) -> str:
+def resolve_version(full_name: str, branch: str) -> str | None:
     release = try_gh_json(f"repos/{full_name}/releases/latest")
     if release and release.get("tag_name"):
         return normalize_tag(release["tag_name"])
@@ -397,7 +423,7 @@ def resolve_version(full_name: str, branch: str) -> str:
     commits = try_gh_json(f"repos/{full_name}/commits")
     if commits:
         return f"{branch}@{commits[0]['sha'][:7]}"
-    return f"{branch}@unknown"
+    return None
 
 
 def infer_category(repo: dict) -> tuple[str, str]:
@@ -486,15 +512,13 @@ def build_candidates(
         if not allow_no_license and not repo.get("license"):
             continue
         branch = repo.get("default_branch") or "main"
-        has_layout, skill_path = find_skill(repo)
+        has_layout, skill_path = find_skill(repo, verify=verify)
         if not has_layout:
-            continue
-        if verify and (not skill_path or not verify_skill(repo, skill_path)):
             continue
         seen.add(key)
         zh, en = infer_category(repo)
         name = display_name(repo)
-        version = resolve_version(full_name, branch)
+        version = resolve_version(full_name, branch) or f"{branch}@unknown"
         budget = min(40, max(16, 88 - display_width(name) - display_width(version) - 8))
         description = shorten(repo.get("description") or f"Skill repository: {full_name}", budget)
         override = DESCRIPTIONS.get(key)
@@ -600,8 +624,20 @@ def refresh_metadata(records: list[dict], stars_only: bool = False) -> dict[str,
         if not info:
             continue
         branch = info.get("default_branch") or "main"
-        version = record["version"] if stars_only else resolve_version(repo, branch)
+        version = record["version"]
+        version_error = None
+        if not stars_only:
+            try:
+                resolved = resolve_version(repo, branch)
+                if resolved is None:
+                    raise RuntimeError("No version or commit could be resolved")
+                version = resolved
+            except (RuntimeError, OSError, subprocess.TimeoutExpired) as error:
+                version_error = str(error)
+                print(f"warning: {repo}: keeping version {version}: {error}", file=sys.stderr)
         updates[repo.lower()] = {"stars": info["stargazers_count"], "version": version}
+        if version_error:
+            updates[repo.lower()]["version_error"] = version_error
     return updates
 
 
@@ -666,8 +702,10 @@ def render_report(candidates: list[dict], min_stars: int) -> str:
     return "\n".join(lines) + "\n"
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    global ROOT
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--repo", type=Path, help="Target catalog repository (default: search from working directory)")
     parser.add_argument("--min-stars", type=int, default=3000)
     parser.add_argument("--limit", type=int, default=50, help="max candidates to verify")
     parser.add_argument("--max-pages", type=int, default=3, help="search pages per query (100 repos/page)")
@@ -683,19 +721,22 @@ def main() -> int:
     parser.add_argument("--refresh-stars-only", action="store_true", help="skip version lookups during refresh")
     parser.add_argument("--json", action="store_true", help="print candidates as JSON")
     parser.add_argument("--report", type=Path, help="write the Markdown report to this path")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
+
+    ROOT = find_repo_root(args.repo if args.repo is not None else Path.cwd())
+    zh_doc, en_doc = catalog_paths()
 
     if args.refresh or args.refresh_stars_only:
-        records = catalog_records(ZH_DOC)
+        records = catalog_records(zh_doc)
         updates = refresh_metadata(records, stars_only=args.refresh_stars_only)
         print(f"refreshed metadata for {len(updates)} repositories", file=sys.stderr)
         if args.apply:
-            zh_count = apply_refresh(ZH_DOC, updates)
-            en_count = apply_refresh(EN_DOC, updates)
+            zh_count = apply_refresh(zh_doc, updates)
+            en_count = apply_refresh(en_doc, updates)
             print(f"updated {zh_count} Chinese rows and {en_count} English rows", file=sys.stderr)
         else:
             print("dry run: pass --apply to write the refreshed rows", file=sys.stderr)
-        return 0
+        return 1 if any("version_error" in item for item in updates.values()) else 0
 
     candidates = build_candidates(
         args.min_stars,
@@ -717,12 +758,16 @@ def main() -> int:
         print(f"report written to {args.report}", file=sys.stderr)
 
     if args.apply:
-        zh_count = update_doc(ZH_DOC, candidates, "zh", "zh_desc")
-        en_count = update_doc(EN_DOC, candidates, "en", "en_desc")
+        zh_count = update_doc(zh_doc, candidates, "zh", "zh_desc")
+        en_count = update_doc(en_doc, candidates, "en", "en_desc")
         print(f"applied {zh_count} Chinese rows and {en_count} English rows", file=sys.stderr)
         print("review the diff and translate upstream descriptions where needed", file=sys.stderr)
     return 0
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    try:
+        raise SystemExit(main())
+    except (OSError, RuntimeError, ValueError, subprocess.TimeoutExpired) as error:
+        print(f"error: {error}", file=sys.stderr)
+        raise SystemExit(2)

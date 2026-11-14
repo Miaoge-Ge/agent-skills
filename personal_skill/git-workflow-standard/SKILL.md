@@ -2,7 +2,7 @@
 name: git-workflow-standard
 description: "按统一规范执行 Git 操作：Conventional Commits 提交信息、分支命名、提交粒度、变基与合并、标签发布和历史安全。用于编写或审查提交信息、创建分支、整理历史、发起评审、准备发布，或排查误提交与强制推送风险时。"
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Git 工作流规范
@@ -34,7 +34,7 @@ metadata:
 - `scope` 可选、小写，用模块、目录或功能名，不用人名和工单号。
 - `description` 紧跟 `: `，动词开头；英文用祈使句小写，中文直接写动作，不加句号，标题总长不超过 72 字符。
 - `body` 与标题之间空一行，说明动机、影响和取舍，不重复代码已经表达的内容；每行建议不超过 72 字符。
-- `footer` 与正文空一行，使用 `BREAKING CHANGE:`、`Refs:`、`Closes:`、`Co-authored-by:` 等键；破坏性变更同时用 `!` 和 `BREAKING CHANGE:` 标明。
+- `footer` 与正文空一行，使用 `BREAKING CHANGE:`、`Refs:`、`Closes:`、`Co-authored-by:` 等键；破坏性变更推荐同时用 `!` 和 `BREAKING CHANGE:` 标明。
 - 不提交 `WIP`、`update`、`fix bug` 这类无信息量的标题；临时提交在合并前用交互式变基整理。
 
 示例：
@@ -52,7 +52,7 @@ Refs: #412
 feat(api)!: drop the legacy /v1/session endpoint
 
 BREAKING CHANGE: /v1/session is removed; use /v2/auth/session instead.
-Clients pinned to v1 must upgrade before 2026-06-01.
+  Clients pinned to v1 must upgrade before 2026-06-01.
 ```
 
 类型选择、正反例和页脚细则见[提交信息规范](references/commit-message.md)。
@@ -62,7 +62,7 @@ Clients pinned to v1 must upgrade before 2026-06-01.
 - 从最新的默认分支创建短生命周期分支，命名 `<type>/<kebab-case-summary>`，如 `feat/oauth-device-flow`、`fix/123-null-pointer`、`release/v1.4.0`。
 - 先 `git fetch --prune`，再用 `git rebase origin/main` 同步；拉取用 `git pull --rebase`，保持线性历史。
 - 只在自己尚未共享的功能分支上改写历史。`main`、`develop`、`release/*` 等共享分支禁止变基、禁止强制推送。
-- 必须强推时用 `git push --force-with-lease`，推送前确认远端没有他人提交；不要用 `--force`。
+- 必须强推时，先审查本地与远端双方独有提交，再用 `--force-with-lease=<ref>:<已审查SHA>` 固定预期远端位置；完整流程见分支与历史参考。不要用 `--force`。
 - 已经推送的错误提交用 `git revert` 生成反向提交；只有未推送的本地提交才用 `reset`。
 - 合并默认 squash：PR 标题即最终提交信息，保留一个可回滚、可解释的提交；只有发布同步才用 merge commit。
 
@@ -84,7 +84,7 @@ Clients pinned to v1 must upgrade before 2026-06-01.
 - 不直接向受保护分支推送；不在未知状态下执行 `git reset --hard`、`git clean -fd`、`git push --force`、`git branch -D`。
 - 不用 `git add -A` 或 `git add .` 盲目暂存；不在分离 HEAD 上直接提交。
 - 不绕过 pre-commit / commit-msg 钩子（`--no-verify`）；钩子报错先修问题或修钩子。
-- 破坏性操作前先 `git status`、`git stash` 或建临时分支，并让用户明确确认。
+- 破坏性操作前先 `git status`，分别保存未提交内容与提交位置；临时分支不能代替 stash 或文件备份。执行范围必须已有明确授权，不重复索取相同授权。
 
 恢复误操作、清理密钥和危险命令清单见[安全与恢复](references/safety.md)。
 
@@ -129,3 +129,9 @@ python ../../scripts/validate_skills.py
 ```
 
 单元与集成测试覆盖提交信息解析、密钥与文件扫描、钩子安装和真实 Git 仓库提交；测试只使用标准库，可在任意平台运行。
+
+## 工具边界与升级
+
+- 文本扫描覆盖大小限制内的完整暂存内容，包括 JSON/YAML 的带引号键名；已超限文件直接阻断，不把截断扫描当作通过。二进制文件不做文本凭据扫描，通用凭据匹配默认告警，`--strict` 可阻断；启发式工具不能证明没有密钥。
+- 钩子配套脚本通过哈希清单记录归属。卸载只删除哈希仍匹配的已登记文件，保留额外文件、用户修改、备份和链接；没有清单的旧版本目录保留并报告。
+- 旧版本升级或已有同名脚本时先检查差异；确需替换可用 `--force`，脚本会先备份。不要直接删除整个 hooks 或 git-standard 目录。

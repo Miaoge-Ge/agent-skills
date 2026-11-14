@@ -82,7 +82,7 @@
 feat(api)!: drop the legacy /v1/session endpoint
 
 BREAKING CHANGE: /v1/session is removed; use /v2/auth/session instead.
-Clients pinned to v1 must upgrade before 2026-06-01.
+  Clients pinned to v1 must upgrade before 2026-06-01.
 ```
 
 - `!` 放在类型或范围之后、冒号之前：`feat!:`、`feat(api)!:`。
