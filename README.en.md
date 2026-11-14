@@ -19,6 +19,7 @@ All bundled skills live under `personal_skill/`; each is a self-contained direct
 | [cpp-code-standard](personal_skill/cpp-code-standard/SKILL.md) | 1.0.3 | C/C++ naming, formatting, comments, types, and modern C++ practices, with a header checker. |
 | [git-workflow-standard](personal_skill/git-workflow-standard/SKILL.md) | 1.0.0 | Git workflow standards: Conventional Commits, branch naming, merging and releases, and history safety, with commit linting, index scanning, and hook installation scripts. |
 | [installer-extract](personal_skill/installer-extract/SKILL.md) | 1.0.2 | Windows installer extraction and deployment, shortcuts, launch verification, and updates. |
+| [scan-skill-repos](personal_skill/scan-skill-repos/SKILL.md) | 1.0.0 | Scan GitHub skill repositories, verify them, and maintain the third-party catalog and stars. |
 
 ## Third-party skills
 
@@ -65,8 +66,12 @@ agent-skills/
 │   │   ├── references/
 │   │   ├── scripts/
 │   │   └── tests/
-│   └── installer-extract/
-│       └── SKILL.md
+│   ├── installer-extract/
+│   │   └── SKILL.md
+│   └── scan-skill-repos/
+│       ├── SKILL.md
+│       ├── references/descriptions.json
+│       └── scripts/scan_skill_repos.py
 ├── third_party_skill/ # third-party skill index
 │   ├── README.md
 │   └── README.en.md

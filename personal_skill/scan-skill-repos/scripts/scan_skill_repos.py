@@ -13,19 +13,20 @@ handling out of this script and uses the same credentials as the rest of the
 repository workflow. All GitHub reads are public read-only API calls.
 
 Usage:
-    python scripts/scan_skill_repos.py                     # dry run, default 3k stars
-    python scripts/scan_skill_repos.py --min-stars 5000 --limit 50
-    python scripts/scan_skill_repos.py --apply             # write both catalog docs
-    python scripts/scan_skill_repos.py --report candidates.md
-    python scripts/scan_skill_repos.py --json              # machine-readable output
-    python scripts/scan_skill_repos.py --query "topic:agent-skills" \
-        --exclude some/repo                                # custom search
-    python scripts/scan_skill_repos.py --refresh --refresh-stars-only --apply
+    python personal_skill/scan-skill-repos/scripts/scan_skill_repos.py
+    python personal_skill/scan-skill-repos/scripts/scan_skill_repos.py --min-stars 5000 --limit 50
+    python personal_skill/scan-skill-repos/scripts/scan_skill_repos.py --apply
+    python personal_skill/scan-skill-repos/scripts/scan_skill_repos.py --report candidates.md
+    python personal_skill/scan-skill-repos/scripts/scan_skill_repos.py --json
+    python personal_skill/scan-skill-repos/scripts/scan_skill_repos.py \
+        --query "topic:agent-skills" --exclude some/repo
+    python personal_skill/scan-skill-repos/scripts/scan_skill_repos.py \
+        --refresh --refresh-stars-only --apply
 
 Notes:
-  * ``--apply`` copies the upstream GitHub description verbatim, so auto-added
-    rows may be English in the Chinese catalog. Review and translate them before
-    committing if that matters.
+  * ``--apply`` uses ``references/descriptions.json`` (repo -> zh/en) when it has
+    an entry; otherwise it copies the upstream description, which may be English
+    in the Chinese catalog. Review and translate new rows before committing.
   * Descriptions are truncated to keep one skill per table row; literal pipes are
     escaped so they do not break the table.
   * Candidates without a license are skipped unless ``--allow-no-license`` is set.
@@ -47,9 +48,30 @@ import unicodedata
 from pathlib import Path
 from urllib.parse import quote
 
-ROOT = Path(__file__).resolve().parent.parent
+def find_repo_root(start: Path) -> Path:
+    """Walk up until the catalog is found; works from source and installed copies."""
+    for parent in (start, *start.parents):
+        if (parent / "third_party_skill" / "README.md").is_file():
+            return parent
+    return start.parents[2]
+
+
+ROOT = find_repo_root(Path(__file__).resolve().parent)
 ZH_DOC = ROOT / "third_party_skill" / "README.md"
 EN_DOC = ROOT / "third_party_skill" / "README.en.md"
+DESCRIPTIONS_PATH = Path(__file__).resolve().parent.parent / "references" / "descriptions.json"
+
+
+def load_descriptions() -> dict[str, dict]:
+    """Load known bilingual descriptions keyed by lower-case repo name."""
+    try:
+        data = json.loads(DESCRIPTIONS_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    return {key.lower(): value for key, value in data.items()}
+
+
+DESCRIPTIONS = load_descriptions()
 
 DEFAULT_QUERIES = [
     "topic:agent-skills",
@@ -433,6 +455,9 @@ def build_candidates(
         version = resolve_version(full_name, branch)
         budget = min(40, max(16, 88 - display_width(name) - display_width(version) - 8))
         description = shorten(repo.get("description") or f"Skill repository: {full_name}", budget)
+        override = DESCRIPTIONS.get(key)
+        zh_desc = override["zh"] if override else description
+        en_desc = override["en"] if override else description
         candidates.append(
             {
                 "full_name": full_name,
@@ -440,6 +465,8 @@ def build_candidates(
                 "url": repo["html_url"],
                 "stars": repo["stargazers_count"],
                 "description": description,
+                "zh_desc": zh_desc,
+                "en_desc": en_desc,
                 "zh": zh,
                 "en": en,
                 "branch": branch,
@@ -462,7 +489,7 @@ def parse_stars(row: str) -> int:
     return int(split_row(row)[-1].replace(",", ""))
 
 
-def update_doc(path: Path, candidates: list[dict], heading_key: str) -> int:
+def update_doc(path: Path, candidates: list[dict], heading_key: str, desc_key: str = "description") -> int:
     lines = path.read_text(encoding="utf-8").splitlines()
     updated = 0
     for candidate in candidates:
@@ -477,7 +504,7 @@ def update_doc(path: Path, candidates: list[dict], heading_key: str) -> int:
         block = lines[start:end]
         row = (
             f"| [{candidate['name']}]({candidate['url']}) "
-            f"| {candidate['description']} "
+            f"| {candidate.get(desc_key) or candidate['description']} "
             f"| {candidate['version']} "
             f"| {candidate['stars']:,} |"
         )
@@ -648,8 +675,8 @@ def main() -> int:
         print(f"report written to {args.report}", file=sys.stderr)
 
     if args.apply:
-        zh_count = update_doc(ZH_DOC, candidates, "zh")
-        en_count = update_doc(EN_DOC, candidates, "en")
+        zh_count = update_doc(ZH_DOC, candidates, "zh", "zh_desc")
+        en_count = update_doc(EN_DOC, candidates, "en", "en_desc")
         print(f"applied {zh_count} Chinese rows and {en_count} English rows", file=sys.stderr)
         print("review the diff and translate upstream descriptions where needed", file=sys.stderr)
     return 0

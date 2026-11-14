@@ -1,0 +1,578 @@
+{
+  "Adkid-Zephyr/anti-defensive-writing-Skill": {
+    "en": "Anti-defensive writing for academic papers",
+    "zh": "学术论文去防御性写作"
+  },
+  "Agents365-ai/drawio-skill": {
+    "en": "Editable draw.io diagrams",
+    "zh": "生成 draw.io 架构图"
+  },
+  "AgriciDaniel/claude-ads": {
+    "en": "Paid-media operations skill",
+    "zh": "付费广告运营技能"
+  },
+  "AgriciDaniel/claude-obsidian": {
+    "en": "Self-organizing Obsidian second brain",
+    "zh": "Obsidian 第二大脑"
+  },
+  "BaaRai/ARTEX": {
+    "en": "Autonomous AI penetration testing system",
+    "zh": "AI 自主渗透测试系统"
+  },
+  "ChenLiu-1996/figures4papers": {
+    "en": "Publication figure scripts",
+    "zh": "论文配图脚本"
+  },
+  "ComposioHQ/awesome-claude-skills": {
+    "en": "Curated Claude skills",
+    "zh": "Claude 技能清单"
+  },
+  "ConardLi/garden-skills": {
+    "en": "Web design and image skills",
+    "zh": "网页设计与图像技能集"
+  },
+  "D4Vinci/Scrapling": {
+    "en": "Adaptive web scraping framework",
+    "zh": "自适应网页采集"
+  },
+  "Dammyjay93/interface-design": {
+    "en": "Design engineering for consistent UI",
+    "zh": "Claude Code 的 UI 设计工程"
+  },
+  "DietrichGebert/ponytail": {
+    "en": "Trim code and over-engineering",
+    "zh": "精简代码与过度设计"
+  },
+  "Dryxio/reagent": {
+    "en": "Binary to validated C/C++",
+    "zh": "二进制逆向重建"
+  },
+  "Egonex-AI/Understand-Anything": {
+    "en": "Code to knowledge graph",
+    "zh": "代码知识图谱"
+  },
+  "EveryInc/compound-engineering-plugin": {
+    "en": "Engineering skills plugin",
+    "zh": "工程技能插件合集"
+  },
+  "Fokkyp/SoftwareCopyright-Skill": {
+    "en": "Software copyright application materials",
+    "zh": "软著申请材料生成"
+  },
+  "GoogleChrome/modern-web-guidance": {
+    "en": "Modern web best practices",
+    "zh": "现代 Web 最佳实践"
+  },
+  "Graphify-Labs/graphify": {
+    "en": "Turn code, docs, and SQL into a knowledge graph",
+    "zh": "把代码、文档与 SQL 转成知识图谱"
+  },
+  "Imbad0202/academic-research-skills": {
+    "en": "Academic research workflow skills",
+    "zh": "学术研究全流程技能"
+  },
+  "Imbad0202/academic-research-skills-codex": {
+    "en": "Codex academic research skills",
+    "zh": "Codex 学术研究技能"
+  },
+  "JCodesMore/ai-website-cloner-template": {
+    "en": "Clone a website with one command",
+    "zh": "一键克隆网站"
+  },
+  "Jeffallan/claude-skills": {
+    "en": "Full-stack developer skills",
+    "zh": "全栈开发技能集"
+  },
+  "JimLiu/baoyu-skills": {
+    "en": "Baoyu's skills collection",
+    "zh": "宝玉技能合集"
+  },
+  "JuliusBrussee/caveman": {
+    "en": "Shorter replies, less context",
+    "zh": "压缩回复与上下文"
+  },
+  "K-Dense-AI/scientific-agent-skills": {
+    "en": "Scientific agent skills library",
+    "zh": "科研智能体技能库"
+  },
+  "KKKKhazix/khazix-skills": {
+    "en": "Khazix's open-source AI skills collection",
+    "zh": "卡兹克 AI 技能合集"
+  },
+  "Kiterlin/anti-defensive-writing": {
+    "en": "Remove defensive writing, strengthen prose",
+    "zh": "去除防御性写作，强化文风"
+  },
+  "Leonxlnx/taste-skill": {
+    "en": "Design taste for coding agents",
+    "zh": "给编程智能体的审美指导"
+  },
+  "MiniMax-AI/skills": {
+    "en": "Official MiniMax skills",
+    "zh": "官方技能合集"
+  },
+  "NVIDIA/SkillSpector": {
+    "en": "Security scanner for agent skills",
+    "zh": "技能安全扫描器"
+  },
+  "NevaMind-AI/memU": {
+    "en": "Personal memory across agents",
+    "zh": "跨智能体个人记忆"
+  },
+  "Nutlope/hallmark": {
+    "en": "Web UI design and polish",
+    "zh": "网页 UI 设计优化"
+  },
+  "OpenMontageInc/OpenMontage": {
+    "en": "Agentic video production system",
+    "zh": "智能体视频制作系统"
+  },
+  "Orchestra-Research/AI-Research-SKILLs": {
+    "en": "AI research skills library",
+    "zh": "AI 科研技能库"
+  },
+  "OthmanAdi/planning-with-files": {
+    "en": "File-based persistent planning",
+    "zh": "文件式持久计划"
+  },
+  "QingYunA/answer-me-with-html": {
+    "en": "Answers as a single HTML page",
+    "zh": "单页 HTML 解答"
+  },
+  "Shubhamsaboo/awesome-llm-apps": {
+    "en": "Collection of LLM apps",
+    "zh": "LLM 应用合集"
+  },
+  "SnailSploit/Claude-Red": {
+    "en": "Offensive security skill library",
+    "zh": "攻击性安全技能库"
+  },
+  "TheQtCompanyRnD/agent-skills": {
+    "en": "Qt / QML development skills",
+    "zh": "Qt / QML 开发技能"
+  },
+  "Vincentwei1021/video-shotcraft": {
+    "en": "Cinematic product video skill",
+    "zh": "电影感产品视频技能"
+  },
+  "Yuan1z0825/nature-skills": {
+    "en": "Academic writing and figures for Nature-style papers",
+    "zh": "Nature 风格学术写作与绘图"
+  },
+  "addyosmani/agent-skills": {
+    "en": "Production-grade engineering skills",
+    "zh": "生产级工程技能"
+  },
+  "affaan-m/ECC": {
+    "en": "Agent performance optimization",
+    "zh": "智能体性能优化"
+  },
+  "alchaincyf/huashu-design": {
+    "en": "Deliverable design from one sentence",
+    "zh": "一句话生成可交付设计"
+  },
+  "alchaincyf/nuwa-skill": {
+    "en": "Distill anyone's thinking into skills",
+    "zh": "蒸馏任何人的思维"
+  },
+  "alchaincyf/zhangxuefeng-skill": {
+    "en": "Zhang Xuefeng's cognitive framework for exams and careers",
+    "zh": "张雪峰认知框架技能"
+  },
+  "alibaba/open-code-review": {
+    "en": "Code review at Alibaba scale",
+    "zh": "大规模代码审查"
+  },
+  "alirezarezvani/claude-skills": {
+    "en": "410 Claude Code skills",
+    "zh": "410 个 Claude 技能"
+  },
+  "android/skills": {
+    "en": "Official Android agent skills",
+    "zh": "Android 官方技能"
+  },
+  "anthropics/claude-plugins-official": {
+    "en": "Official Claude Code plugin directory",
+    "zh": "Anthropic 官方插件目录"
+  },
+  "anthropics/skills": {
+    "en": "Official Agent Skills examples",
+    "zh": "官方技能示例"
+  },
+  "ayghri/i-have-adhd": {
+    "en": "Answer-first, ADHD-friendly output",
+    "zh": "结论优先的简短输出"
+  },
+  "blader/humanizer": {
+    "en": "Remove AI-generated writing signs",
+    "zh": "去除 AI 写作痕迹"
+  },
+  "bradautomates/claude-video": {
+    "en": "Video evidence for agents: frames and transcript",
+    "zh": "让智能体看视频：抽帧与转写"
+  },
+  "browser-use/video-use": {
+    "en": "Edit videos with coding agents",
+    "zh": "用编程智能体剪辑视频"
+  },
+  "career-ops-hq/career-ops": {
+    "en": "AI job search agent",
+    "zh": "AI 求职代理"
+  },
+  "cathrynlavery/diagram-design": {
+    "en": "45 diagram types as HTML/SVG",
+    "zh": "45 种图表设计"
+  },
+  "chuspeeism/dashi-ppt-skill": {
+    "en": "Browser-editable presentations",
+    "zh": "浏览器可编辑演示文稿"
+  },
+  "citrolabs/ego-lite": {
+    "en": "Browser automation for AI agents",
+    "zh": "智能体浏览器自动化"
+  },
+  "cloudflare/security-audit-skill": {
+    "en": "Code and architecture security audit",
+    "zh": "代码安全审计"
+  },
+  "composio-community/awesome-codex-skills": {
+    "en": "Curated Codex skills",
+    "zh": "Codex 技能清单"
+  },
+  "coreyhaines31/marketingskills": {
+    "en": "Marketing and growth skills",
+    "zh": "营销与增长技能"
+  },
+  "davila7/claude-code-templates": {
+    "en": "Claude Code component registry",
+    "zh": "Claude Code 组件仓库"
+  },
+  "dmoshehun-prog/learn-from-materials": {
+    "en": "Materials to interactive learning pages",
+    "zh": "资料转交互学习网页"
+  },
+  "dreammis/social-auto-upload": {
+    "en": "Auto-upload videos to social platforms",
+    "zh": "视频自动上传社交媒体"
+  },
+  "elayadesign/ai-design-skills": {
+    "en": "AI design skills",
+    "zh": "AI 设计技能集"
+  },
+  "emilkowalski/skills": {
+    "en": "Skills for designers and engineers",
+    "zh": "设计与工程技能合集"
+  },
+  "genspark-ai/genoffice": {
+    "en": "AI Office suite",
+    "zh": "AI Office 套件"
+  },
+  "github/awesome-copilot": {
+    "en": "Copilot instructions and skills",
+    "zh": "Copilot 指令与技能集"
+  },
+  "google-gemini/gemini-skills": {
+    "en": "Official Gemini API skills",
+    "zh": "Gemini 官方技能"
+  },
+  "google/elephant-goldfish-model": {
+    "en": "Agent plugin for software design review",
+    "zh": "智能体软件设计插件"
+  },
+  "google/skills": {
+    "en": "Agent skills for Google products",
+    "zh": "Google 产品技能"
+  },
+  "googleworkspace/cli": {
+    "en": "Google Workspace CLI with agent skills",
+    "zh": "Google Workspace CLI 工具"
+  },
+  "greensock/gsap-skills": {
+    "en": "Official GSAP animation skills",
+    "zh": "GSAP 动画官方技能"
+  },
+  "guillaumemeyer/watermarks-remover": {
+    "en": "Remove AI watermarks",
+    "zh": "去除 AI 水印"
+  },
+  "handsomestWei/patent-disclosure-skill": {
+    "en": "Chinese patent disclosure drafting",
+    "zh": "专利交底书编写"
+  },
+  "hardikpandya/stop-slop": {
+    "en": "Remove AI tells from prose",
+    "zh": "去除 AI 腔调"
+  },
+  "helloianneo/ian-xiaohei-illustrations": {
+    "en": "Hand-drawn illustration skill for article images",
+    "zh": "小黑怪诞正文配图生成"
+  },
+  "huggingface/skills": {
+    "en": "Hugging Face ecosystem skills",
+    "zh": "Hugging Face 生态技能"
+  },
+  "hugohe3/ppt-master": {
+    "en": "Native PowerPoint decks from documents",
+    "zh": "文档转原生 PPT"
+  },
+  "iOfficeAI/OfficeCLI": {
+    "en": "Office suite built for AI agents",
+    "zh": "面向智能体的 Office 套件"
+  },
+  "jakubkrehel/skills": {
+    "en": "Agent skills for building interfaces",
+    "zh": "界面开发技能合集"
+  },
+  "janestreet/agent_skills": {
+    "en": "Jane Street's agent skills collection",
+    "zh": "Jane Street 的智能体技能合集"
+  },
+  "kangarooking/cangjie-skill": {
+    "en": "Distill books and long content into skills",
+    "zh": "把书与长内容蒸馏成技能"
+  },
+  "krillinai/OpenCreator": {
+    "en": "Video translation and creation workspace",
+    "zh": "视频翻译与创作工作台"
+  },
+  "kubesphere/kubesphere": {
+    "en": "Kubernetes container platform",
+    "zh": "Kubernetes 容器平台"
+  },
+  "larksuite/cli": {
+    "en": "Official Lark/Feishu CLI",
+    "zh": "飞书官方 CLI"
+  },
+  "latent-spaces/brag": {
+    "en": "Turn a project into a launch video",
+    "zh": "项目生成发布视频"
+  },
+  "lemomo-ai/lemo-opuscar": {
+    "en": "Film-style toolbox generated with code",
+    "zh": "代码生成影片风格库"
+  },
+  "lobehub/lobehub": {
+    "en": "Super-agents for your team",
+    "zh": "团队超级智能体"
+  },
+  "mattpocock/skills": {
+    "en": "Everyday engineering skills",
+    "zh": "真实工程技能合集"
+  },
+  "microsoft/SkillOpt": {
+    "en": "Text-space skill optimizer",
+    "zh": "文本空间技能优化器"
+  },
+  "mksglu/context-mode": {
+    "en": "Keep tool output out of context",
+    "zh": "把工具输出移出上下文"
+  },
+  "morluto/rea": {
+    "en": "Reverse engineering and behavior analysis",
+    "zh": "逆向与行为分析"
+  },
+  "mukul975/Anthropic-Cybersecurity-Skills": {
+    "en": "Structured cybersecurity skills",
+    "zh": "结构化网络安全技能"
+  },
+  "muratcankoylan/Agent-Skills-for-Context-Engineering": {
+    "en": "Context engineering skills",
+    "zh": "上下文工程技能集"
+  },
+  "mvanhorn/last30days-skill": {
+    "en": "Research topics across platforms",
+    "zh": "多平台话题研究"
+  },
+  "nextlevelbuilder/ui-ux-pro-max-skill": {
+    "en": "Professional UI/UX design",
+    "zh": "专业 UI/UX 设计"
+  },
+  "nexu-io/open-design": {
+    "en": "Collaborative AI design workspace",
+    "zh": "协作式 AI 设计工作台"
+  },
+  "nicobailon/visual-explainer": {
+    "en": "Rich HTML diagrams and slides",
+    "zh": "HTML 图表与幻灯片"
+  },
+  "nidhinjs/prompt-master": {
+    "en": "Accurate prompts for any AI tool",
+    "zh": "精准提示词生成"
+  },
+  "nocobase/nocobase": {
+    "en": "AI business systems platform",
+    "zh": "AI 业务系统平台"
+  },
+  "nolly-studio/cult-ui": {
+    "en": "150+ animated shadcn/ui components",
+    "zh": "150+ 动画 shadcn/ui 组件"
+  },
+  "numman-ali/openskills": {
+    "en": "Universal skills loader",
+    "zh": "通用技能加载器"
+  },
+  "obra/superpowers": {
+    "en": "Agent skills framework",
+    "zh": "智能体技能框架"
+  },
+  "obsidianmd/obsidian-skills": {
+    "en": "Agent skills for Obsidian",
+    "zh": "Obsidian 智能体技能"
+  },
+  "op7418/Humanizer-zh": {
+    "en": "Chinese localization of Humanizer",
+    "zh": "Humanizer 中文版"
+  },
+  "op7418/guizang-ppt-skill": {
+    "en": "HTML slide deck generation",
+    "zh": "HTML 演示文稿生成"
+  },
+  "openai/skills": {
+    "en": "Official skill catalog (deprecated)",
+    "zh": "官方技能目录（已弃用）"
+  },
+  "oso95/scroll-world": {
+    "en": "Scrollable 3D brand landing page",
+    "zh": "品牌 3D 滚动落地页"
+  },
+  "paperclipai/paperclip": {
+    "en": "App for managing agents at work",
+    "zh": "团队智能体管理应用"
+  },
+  "pascalorg/editor": {
+    "en": "Open-source 3D architecture software",
+    "zh": "开源 3D 建筑软件"
+  },
+  "pbakaus/impeccable": {
+    "en": "Design vocabulary and review",
+    "zh": "设计词汇与审查"
+  },
+  "petergyang/no-ai-slop": {
+    "en": "Remove AI slop from writing",
+    "zh": "清除 AI 写作腔"
+  },
+  "phuryn/pm-skills": {
+    "en": "Product management skills marketplace",
+    "zh": "产品经理技能市场"
+  },
+  "reactive-resume/reactive-resume": {
+    "en": "Privacy-first resume builder",
+    "zh": "隐私优先简历生成器"
+  },
+  "shadcn-ui/ui": {
+    "en": "Composable, accessible UI components",
+    "zh": "可组合的无障碍 UI 组件库"
+  },
+  "shadcn/improve": {
+    "en": "Audit code, plan for cheaper models",
+    "zh": "代码审计与计划生成"
+  },
+  "sickn33/agentic-awesome-skills": {
+    "en": "2,900+ reusable agent skills",
+    "zh": "近 3000 个智能体技能"
+  },
+  "simonlin1212/a-stock-data": {
+    "en": "A-share market data toolkit",
+    "zh": "A 股数据工具包"
+  },
+  "storytold/craft-anything": {
+    "en": "Study and rebuild any software",
+    "zh": "软件研究与重建"
+  },
+  "tanweai/pua": {
+    "en": "High-agency PIP-style agent skill",
+    "zh": "高能动性 PIP 风格技能"
+  },
+  "teng-lin/notebooklm-py": {
+    "en": "Unofficial NotebookLM API and skill",
+    "zh": "NotebookLM 非官方 API"
+  },
+  "thedotmack/claude-mem": {
+    "en": "Persistent memory across sessions",
+    "zh": "跨会话持久记忆"
+  },
+  "tigerless-labs/autoharness": {
+    "en": "Self-learning agent layer",
+    "zh": "自学习智能体层"
+  },
+  "titanwings/distilly": {
+    "en": "Distill thinking into reusable skills",
+    "zh": "蒸馏思维为技能"
+  },
+  "togg53192-cmd/jailbreaks": {
+    "en": "Jailbreak prompts and persona setups",
+    "zh": "越狱提示词与角色设定"
+  },
+  "topoteretes/cognee": {
+    "en": "Long-term memory platform for agents",
+    "zh": "智能体长期记忆平台"
+  },
+  "tt-a1i/archify": {
+    "en": "Interactive architecture diagrams",
+    "zh": "交互式架构图"
+  },
+  "tw93/Kami": {
+    "en": "Layout rules for PDF, PNG, PPTX export",
+    "zh": "排版与 PDF/PPT 导出"
+  },
+  "vercel-labs/agent-browser": {
+    "en": "Browser automation CLI for agents",
+    "zh": "浏览器自动化 CLI"
+  },
+  "vercel-labs/agent-skills": {
+    "en": "Vercel's official agent skills",
+    "zh": "Vercel 官方技能集"
+  },
+  "vercel-labs/skills": {
+    "en": "Open agent skills tool",
+    "zh": "开放技能工具 npx skills"
+  },
+  "virgiliojr94/book-to-skill": {
+    "en": "Turn technical book PDFs into skills",
+    "zh": "技术书 PDF 转技能"
+  },
+  "wanshuiyin/Auto-claude-code-research-in-sleep": {
+    "en": "Autonomous ML research skills",
+    "zh": "自动 ML 研究技能"
+  },
+  "wheresryan22/anatomy": {
+    "en": "Isometric illustration skill",
+    "zh": "等距插画生成技能"
+  },
+  "wshobson/agents": {
+    "en": "Plugins, agents, and skills for many tools",
+    "zh": "多工具插件与技能集"
+  },
+  "yang0/handraw-style": {
+    "en": "Hand-drawn image prompts",
+    "zh": "手绘风格生图提示词"
+  },
+  "yikart/AiToEarn": {
+    "en": "AI earning tools",
+    "zh": "AI 变现工具"
+  },
+  "yizhiyanhua-ai/fireworks-tech-graph": {
+    "en": "Technical diagrams from natural language",
+    "zh": "自然语言生成技术图"
+  },
+  "yusufkaraaslan/Skill_Seekers": {
+    "en": "Turn docs and repos into skills",
+    "zh": "文档网站转技能"
+  },
+  "zai-org/GLM-skills": {
+    "en": "Official GLM model skills",
+    "zh": "GLM 官方技能"
+  },
+  "zarazhangrui/frontend-slides": {
+    "en": "Web slides with frontend skills",
+    "zh": "前端技能生成网页幻灯片"
+  },
+  "zhaoxuya520/reverse-skill": {
+    "en": "Reverse engineering and pentest skill router",
+    "zh": "逆向与渗透技能路由包"
+  },
+  "zubair-trabzada/geo-seo-claude": {
+    "en": "GEO-first SEO skill",
+    "zh": "GEO SEO 优化技能"
+  }
+}
