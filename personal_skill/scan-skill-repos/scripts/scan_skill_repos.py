@@ -81,33 +81,72 @@ DEFAULT_QUERIES = [
 ]
 
 CATEGORY_KEYWORDS = [
-    ("设计与可视化", "Design and visualization", [
-        "design", "ui ", "ux", "figma", "css", "component", "diagram",
-        "visual", "style", "theme", "frontend", "shadcn",
+    ("论文与学术", "Academic research", [
+        "academic", "paper", "research", "thesis", "citation", "scholar",
+        "scientific", "论文", "学术",
     ]),
-    ("逆向与安全", "Reverse engineering and security", [
-        "security", "reverse", "pentest", "vulnerab", "audit", "jailbreak",
-        "exploit", "malware", "penetration",
+    ("写作与润色", "Writing and editing", [
+        "writing", "prose", "humanize", "slop", "tone", "copywriting",
+        "写作", "润色",
     ]),
-    ("数据采集", "Data collection", [
-        "scrap", "crawl", "spider", "data extraction", "browser automation",
+    ("文档与演示", "Documents and presentations", [
+        "ppt", "slide", "deck", "docx", "word", "pdf", "office",
+        "presentation", "document", "文档", "演示",
+    ]),
+    ("设计与 UI", "Design and UI", [
+        "design", "ui ", "ux", "figma", "css", "component", "shadcn",
+        "interface", "设计",
+    ]),
+    ("图表与可视化", "Diagrams and visualization", [
+        "diagram", "graph", "chart", "visualiz", "drawio",
+        "knowledge graph", "图表",
+    ]),
+    ("图像与插画", "Images and illustration", [
+        "image", "illustration", "drawing", "插画", "图像",
+    ]),
+    ("视频与媒体", "Video and media", [
+        "video", "film", "movie", "media", "subtitle", "caption", "视频",
+    ]),
+    ("代码质量与效率", "Code quality and efficiency", [
+        "code review", "lint", "refactor", "debug", "code quality", "代码",
+    ]),
+    ("逆向工程", "Reverse engineering", [
+        "reverse", "binary", "decompile", "ghidra", "逆向",
+    ]),
+    ("安全与审计", "Security and audit", [
+        "security", "audit", "vulnerab", "pentest", "jailbreak", "安全",
+    ]),
+    ("网页采集", "Web scraping", [
+        "scrap", "crawl", "browser automation", "data extraction", "seo",
+        "采集",
+    ]),
+    ("记忆与上下文", "Memory and context", [
+        "memory", "context", "recall", "knowledge base", "second brain",
+        "记忆",
+    ]),
+    ("技能管理与加载", "Skill management", [
+        "skill loader", "skills manager", "plugin", "marketplace", "catalog",
+        "技能管理",
+    ]),
+    ("智能体框架", "Agent frameworks", [
+        "agent", "workflow", "mcp", "orchestrat", "framework", "prompt",
+        "智能体",
+    ]),
+    ("学习与知识", "Learning and knowledge", [
+        "learn", "tutor", "study", "course", "book", "学习",
+    ]),
+    ("AI 工具与应用", "AI tools and apps", [
+        "app", "tool", "assistant", "productivity", "工具",
+    ]),
+    ("技能合集", "Skill collections", [
+        "awesome", "collection", "curated", "合集",
     ]),
     ("网站克隆", "Website cloning", [
         "clone website", "website clone", "clone any website",
     ]),
-    ("办公", "Office", [
-        "ppt", "powerpoint", "docx", "word", "pdf", "patent", "copyright",
-        "writing", "paper", "academic", "excel", "slides",
-    ]),
-    ("代码质量与效率", "Code quality and efficiency", [
-        "code quality", "lint", "code review", "refactor", "test",
-        "token", "context", "coding", "debug",
-    ]),
 ]
 
-DEFAULT_CATEGORY = ("智能体与工程方法", "Agent methods", [
-    "agent", "mcp", "workflow", "framework", "memory", "prompt",
-])
+DEFAULT_CATEGORY = ("智能体框架", "Agent frameworks")
 
 
 def gh_json(path: str, retries: int = 3):
