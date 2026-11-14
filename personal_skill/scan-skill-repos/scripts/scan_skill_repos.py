@@ -138,8 +138,11 @@ CATEGORY_KEYWORDS = [
     ("AI 工具与应用", "AI tools and apps", [
         "app", "tool", "assistant", "productivity", "工具",
     ]),
-    ("技能合集", "Skill collections", [
-        "awesome", "collection", "curated", "合集",
+    ("官方技能合集", "Official skill collections", [
+        "official", "官方",
+    ]),
+    ("社区技能合集", "Community skill collections", [
+        "awesome", "community", "collection", "curated", "合集",
     ]),
     ("网站克隆", "Website cloning", [
         "clone website", "website clone", "clone any website",
