@@ -43,6 +43,7 @@ import re
 import subprocess
 import sys
 import time
+import unicodedata
 from pathlib import Path
 from urllib.parse import quote
 
@@ -113,6 +114,76 @@ def try_gh_json(path: str):
         return gh_json(path)
     except Exception:
         return None
+
+
+def gh_graphql(query: str, retries: int = 3):
+    """Run a GraphQL query through ``gh api graphql`` with the same retries."""
+    last_error = ""
+    for attempt in range(retries):
+        proc = subprocess.run(
+            ["gh", "api", "graphql", "-f", f"query={query}"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+        if proc.returncode == 0:
+            return json.loads(proc.stdout).get("data", {})
+        last_error = proc.stderr.strip() or "gh graphql failed"
+        if "rate limit" in last_error.lower() or "secondary rate" in last_error.lower():
+            time.sleep(5 * (attempt + 1))
+            continue
+        break
+    raise RuntimeError(last_error)
+
+
+def normalize_graphql_repo(node: dict) -> dict:
+    full_name = node["nameWithOwner"]
+    owner, name = full_name.split("/", 1)
+    topics = [
+        entry["topic"]["name"]
+        for entry in (node.get("repositoryTopics") or {}).get("nodes", [])
+        if entry and entry.get("topic")
+    ]
+    return {
+        "full_name": full_name,
+        "name": name,
+        "html_url": f"https://github.com/{full_name}",
+        "stargazers_count": node.get("stargazerCount", 0),
+        "archived": bool(node.get("isArchived")),
+        "fork": bool(node.get("isFork")),
+        "description": node.get("description"),
+        "license": {"spdx_id": node["licenseInfo"]["spdxId"]} if node.get("licenseInfo") else None,
+        "default_branch": (node.get("defaultBranchRef") or {}).get("name") or "main",
+        "topics": topics,
+    }
+
+
+def graphql_repo_metadata(full_names: list[str]) -> dict[str, dict]:
+    """Batch repository metadata (stars, license, topics, ...) via GraphQL."""
+    result: dict[str, dict] = {}
+    for start in range(0, len(full_names), 40):
+        chunk = full_names[start : start + 40]
+        parts = []
+        for index, full_name in enumerate(chunk):
+            owner, name = full_name.split("/", 1)
+            parts.append(
+                f'r{index}: repository(owner: "{owner}", name: "{name}") {{'
+                " nameWithOwner stargazerCount isArchived isFork description"
+                " licenseInfo { spdxId }"
+                " defaultBranchRef { name }"
+                " repositoryTopics(first: 20) { nodes { topic { name } } } }"
+            )
+        query = "query {\n" + "\n".join(parts) + "\n}"
+        try:
+            data = gh_graphql(query)
+        except Exception:
+            continue
+        for index, full_name in enumerate(chunk):
+            node = data.get(f"r{index}")
+            if node:
+                result[full_name.lower()] = normalize_graphql_repo(node)
+    return result
 
 
 def existing_repos() -> set[str]:
@@ -254,6 +325,8 @@ def resolve_version(full_name: str, branch: str) -> str:
             data = json.loads(base64.b64decode(entry["content"]).decode("utf-8"))
         except Exception:
             continue
+        if data.get("private"):
+            continue
         if data.get("version"):
             return str(data["version"])
 
@@ -282,6 +355,10 @@ def display_name(repo: dict) -> str:
     if name.lower() in {"skills", "agent-skills", "agent_skills"}:
         return repo["full_name"]
     return name
+
+
+def display_width(text: str) -> int:
+    return sum(2 if unicodedata.east_asian_width(char) in {"W", "F"} else 1 for char in text)
 
 
 def shorten(text: str, limit: int = 40) -> str:
@@ -314,15 +391,19 @@ def build_candidates(
 
     if code_search:
         code_repos = search_code_repos(code_pages, max_code_repos)
-        for index, (key, repo) in enumerate(code_repos.items(), start=1):
-            if key in known or key in skipped or key in found:
-                continue
-            info = try_gh_json(f"repos/{repo['full_name']}")
+        pending = {
+            key: repo
+            for key, repo in code_repos.items()
+            if key not in known and key not in skipped and key not in found
+        }
+        metadata = graphql_repo_metadata([repo["full_name"] for repo in pending.values()])
+        for key, repo in pending.items():
+            info = metadata.get(key) or try_gh_json(f"repos/{repo['full_name']}")
             if info:
                 info["_skill_path"] = repo.get("_skill_path")
                 found[key] = info
-            if index % 50 == 0:
-                print(f"  fetched metadata {index}/{len(code_repos)}", file=sys.stderr)
+        if pending:
+            print(f"  resolved metadata for {len(pending)} code-search repositories", file=sys.stderr)
 
     ranked = sorted(found.values(), key=lambda repo: repo.get("stargazers_count", 0), reverse=True)
     candidates: list[dict] = []
@@ -348,18 +429,21 @@ def build_candidates(
             continue
         seen.add(key)
         zh, en = infer_category(repo)
-        description = shorten(repo.get("description") or f"Skill repository: {full_name}")
+        name = display_name(repo)
+        version = resolve_version(full_name, branch)
+        budget = min(40, max(16, 88 - display_width(name) - display_width(version) - 8))
+        description = shorten(repo.get("description") or f"Skill repository: {full_name}", budget)
         candidates.append(
             {
                 "full_name": full_name,
-                "name": display_name(repo),
+                "name": name,
                 "url": repo["html_url"],
                 "stars": repo["stargazers_count"],
                 "description": description,
                 "zh": zh,
                 "en": en,
                 "branch": branch,
-                "version": resolve_version(full_name, branch),
+                "version": version,
             }
         )
     return candidates
@@ -440,16 +524,15 @@ def catalog_records(path: Path) -> list[dict]:
 
 def refresh_metadata(records: list[dict], stars_only: bool = False) -> dict[str, dict]:
     updates: dict[str, dict] = {}
-    for index, record in enumerate(records, start=1):
+    metadata = graphql_repo_metadata([record["repo"] for record in records])
+    for record in records:
         repo = record["repo"]
-        info = try_gh_json(f"repos/{repo}")
+        info = metadata.get(repo.lower()) or try_gh_json(f"repos/{repo}")
         if not info:
             continue
         branch = info.get("default_branch") or "main"
         version = record["version"] if stars_only else resolve_version(repo, branch)
         updates[repo.lower()] = {"stars": info["stargazers_count"], "version": version}
-        if index % 25 == 0:
-            print(f"  refreshed {index}/{len(records)}", file=sys.stderr)
     return updates
 
 
