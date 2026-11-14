@@ -1,0 +1,4 @@
+interface:
+  display_name: "SQLite3 Expert"
+  short_description: "Design, review, and optimize reliable SQLite SQL"
+  default_prompt: "Use $sqlite3-expert to write or review SQLite SQL, check runtime compatibility, and validate schema and index decisions."

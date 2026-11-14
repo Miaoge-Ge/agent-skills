@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [English](README.en.md)
 
-一套面向 AI 编程助手的 Agent Skills：把工程规范写成智能体可执行的指令，让它在写 C/C++、处理 Git 提交和部署 Windows 环境时保持一致的习惯；同时整理了一份按用途分类的第三方技能索引，供继续探索。自带技能遵循标准 Agent Skills 格式，复制到支持该格式的工具中即可使用。
+一套面向 AI 编程助手的 Agent Skills：把工程规范写成智能体可执行的指令，覆盖 C/C++、SQLite、Git 工作流和 Windows 部署；同时整理了一份按用途分类的第三方技能索引，供继续探索。自带技能遵循标准 Agent Skills 格式，复制到支持该格式的工具中即可使用。
 
 - [本仓库技能](#本仓库技能)
 - [第三方技能](#第三方技能)
@@ -20,6 +20,7 @@
 | [git-workflow-standard](personal_skill/git-workflow-standard/SKILL.md) | 1.0.0 | Git 工作流规范：Conventional Commits 提交信息、分支命名、合并与发布、历史安全，附提交校验、暂存区扫描和钩子安装脚本。 |
 | [installer-extract](personal_skill/installer-extract/SKILL.md) | 1.0.2 | Windows 安装包解包部署、快捷方式、启动验证与更新处理。 |
 | [scan-skill-repos](personal_skill/scan-skill-repos/SKILL.md) | 1.0.0 | 扫描 GitHub 技能仓库，校验后维护第三方目录及 Star/版本。 |
+| [sqlite3-expert](personal_skill/sqlite3-expert/SKILL.md) | 0.1.0 | SQLite SQL、表结构与索引设计、特殊语法、事务迁移和应用集成，附只读检查工具与可执行示例测试。 |
 
 ## 第三方技能
 
@@ -68,10 +69,17 @@ agent-skills/
 │   │   └── tests/
 │   ├── installer-extract/
 │   │   └── SKILL.md
-│   └── scan-skill-repos/
+│   ├── scan-skill-repos/
+│   │   ├── SKILL.md
+│   │   ├── references/descriptions.json
+│   │   └── scripts/scan_skill_repos.py
+│   └── sqlite3-expert/
 │       ├── SKILL.md
-│       ├── references/descriptions.json
-│       └── scripts/scan_skill_repos.py
+│       ├── agents/openai.yaml
+│       ├── references/
+│       ├── assets/order_schema.sql
+│       ├── scripts/inspect_sqlite.py
+│       └── tests/
 ├── third_party_skill/ # 第三方技能索引
 │   ├── README.md
 │   └── README.en.md
@@ -98,6 +106,10 @@ agent-skills/
 
 ```text
 用 git-workflow-standard 检查当前分支的提交信息，并按 Conventional Commits 生成提交。
+```
+
+```text
+用 sqlite3-expert 审查当前 SQLite 表结构和查询，检查约束与重复索引，给出优化 SQL 并验证结果。
 ```
 
 ## 许可证

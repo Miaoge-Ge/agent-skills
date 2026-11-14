@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [English](README.en.md)
 
-Agent Skills for AI coding assistants: engineering standards written as instructions an agent can follow, so C/C++, Git commits, and Windows deployments stay consistent; plus a curated, use-based index of third-party skills to explore. Bundled skills follow the standard Agent Skills format and work in any tool that supports it.
+Agent Skills for AI coding assistants: actionable engineering guidance for C/C++, SQLite, Git workflows, and Windows deployments; plus a curated, use-based index of third-party skills to explore. Bundled skills follow the standard Agent Skills format and work in any tool that supports it.
 
 - [Repository skills](#repository-skills)
 - [Third-party skills](#third-party-skills)
@@ -20,6 +20,7 @@ All bundled skills live under `personal_skill/`; each is a self-contained direct
 | [git-workflow-standard](personal_skill/git-workflow-standard/SKILL.md) | 1.0.0 | Git workflow standards: Conventional Commits, branch naming, merging and releases, and history safety, with commit linting, index scanning, and hook installation scripts. |
 | [installer-extract](personal_skill/installer-extract/SKILL.md) | 1.0.2 | Windows installer extraction and deployment, shortcuts, launch verification, and updates. |
 | [scan-skill-repos](personal_skill/scan-skill-repos/SKILL.md) | 1.0.0 | Scan GitHub skill repositories, verify them, and maintain the third-party catalog and stars. |
+| [sqlite3-expert](personal_skill/sqlite3-expert/SKILL.md) | 0.1.0 | SQLite SQL, schema and index design, dialect features, transactions, migrations, and application integration, with a read-only inspector and executable example tests. |
 
 ## Third-party skills
 
@@ -68,10 +69,17 @@ agent-skills/
 │   │   └── tests/
 │   ├── installer-extract/
 │   │   └── SKILL.md
-│   └── scan-skill-repos/
+│   ├── scan-skill-repos/
+│   │   ├── SKILL.md
+│   │   ├── references/descriptions.json
+│   │   └── scripts/scan_skill_repos.py
+│   └── sqlite3-expert/
 │       ├── SKILL.md
-│       ├── references/descriptions.json
-│       └── scripts/scan_skill_repos.py
+│       ├── agents/openai.yaml
+│       ├── references/
+│       ├── assets/order_schema.sql
+│       ├── scripts/inspect_sqlite.py
+│       └── tests/
 ├── third_party_skill/ # third-party skill index
 │   ├── README.md
 │   └── README.en.md
@@ -98,6 +106,10 @@ Use installer-extract to unpack the installer and verify shortcuts and launch.
 
 ```text
 Use git-workflow-standard to check the commit messages on this branch and write a Conventional Commits commit.
+```
+
+```text
+Use sqlite3-expert to review my SQLite schema and queries, check constraints and redundant indexes, and validate the proposed SQL improvements.
 ```
 
 ## License
