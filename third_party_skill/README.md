@@ -2,7 +2,7 @@
 
 [English](README.en.md) | [返回仓库首页](../README.md)
 
-收录并维护第三方 Agent Skills 与工具，按用途分为 18 类。本目录只做索引，技能代码均来自上游仓库；版权与开源协议归各自作者或组织所有，使用、修改或分发前请阅读对应仓库的 LICENSE。收录不代表本仓库为其背书，也不改变其原有协议。
+收录并维护第三方 Agent Skills 与工具，按用途分为 19 类。本目录只做索引，技能代码均来自上游仓库；版权与开源协议归各自作者或组织所有，使用、修改或分发前请阅读对应仓库的 LICENSE。收录不代表本仓库为其背书，也不改变其原有协议。
 
 Star 数取自 GitHub，统计于 2026-11-13，每个分类按 Star 数降序排列。版本取上游最新 Release 或 Tag；没有发布版本的仓库取默认分支最新提交，如 `main@c1c8a8c`。
 
@@ -204,35 +204,40 @@ Star 数取自 GitHub，统计于 2026-11-13，每个分类按 Star 数降序排
 | [kubesphere](https://github.com/kubesphere/kubesphere) | Kubernetes 容器平台 | 4.1.3 | 17,079 |
 | [claude-ads](https://github.com/AgriciDaniel/claude-ads) | 付费广告运营技能 | 2.1.0 | 11,006 |
 
-## 技能合集
+## 官方技能合集
 
 | 技能 | 说明 | 版本 | Stars |
 | --- | --- | --- | ---: |
-| [mattpocock/skills](https://github.com/mattpocock/skills) | 真实工程技能合集 | 1.3.2 | 323,520 |
 | [anthropics/skills](https://github.com/anthropics/skills) | 官方技能示例 | main@2c5958e | 193,994 |
-| [awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | LLM 应用合集 | main@ff2016e | 144,564 |
-| [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 生产级工程技能 | 0.6.15 | 117,023 |
 | [awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills) | Claude 技能清单 | master@be2a406 | 79,406 |
-| [emilkowalski/skills](https://github.com/emilkowalski/skills) | 设计与工程技能合集 | main@f7ce8c0 | 56,554 |
-| [agentic-awesome-skills](https://github.com/sickn33/agentic-awesome-skills) | 近 3000 个智能体技能 | 20.8.0 | 49,649 |
-| [agents](https://github.com/wshobson/agents) | 多工具插件与技能集 | main@9c61ab2 | 42,478 |
 | [awesome-copilot](https://github.com/github/awesome-copilot) | Copilot 指令与技能集 | 1.0.0 | 41,119 |
 | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | Vercel 官方技能集 | 62 | 34,000 |
-| [claude-skills](https://github.com/alirezarezvani/claude-skills) | 410 个 Claude 技能 | 2.14.11 | 29,748 |
 | [openai/skills](https://github.com/openai/skills) | 官方技能目录（已弃用） | main@49f948f | 28,725 |
-| [baoyu-skills](https://github.com/JimLiu/baoyu-skills) | 宝玉技能合集 | 2.5.2 | 27,519 |
 | [google/skills](https://github.com/google/skills) | Google 产品技能 | main@85f227e | 24,124 |
-| [khazix-skills](https://github.com/KKKKhazix/khazix-skills) | 卡兹克 AI 技能合集 | 1.2.2 | 22,227 |
-| [awesome-codex-skills](https://github.com/composio-community/awesome-codex-skills) | Codex 技能清单 | master@0930e13 | 17,307 |
 | [MiniMax-AI/skills](https://github.com/MiniMax-AI/skills) | 官方技能合集 | 1.0.0 | 13,832 |
-| [claude-skills](https://github.com/Jeffallan/claude-skills) | 全栈开发技能集 | 0.4.20 | 12,350 |
-| [jakubkrehel/skills](https://github.com/jakubkrehel/skills) | 界面开发技能合集 | 1.20.0 | 12,107 |
 | [huggingface/skills](https://github.com/huggingface/skills) | Hugging Face 生态技能 | 1.0.37 | 11,342 |
 | [android/skills](https://github.com/android/skills) | Android 官方技能 | 1.0.21 | 10,498 |
 | [janestreet/agent_skills](https://github.com/janestreet/agent_skills) | Jane Street 的智能体技能合集 | master@7c6715c | 8,093 |
 | [google-gemini/gemini-skills](https://github.com/google-gemini/gemini-skills) | Gemini 官方技能 | 2.7.0 | 4,473 |
 | [TheQtCompanyRnD/agent-skills](https://github.com/TheQtCompanyRnD/agent-skills) | Qt / QML 开发技能 | 1.8.1 | 539 |
 | [zai-org/GLM-skills](https://github.com/zai-org/GLM-skills) | GLM 官方技能 | main@2ecd31c | 475 |
+
+## 社区技能合集
+
+| 技能 | 说明 | 版本 | Stars |
+| --- | --- | --- | ---: |
+| [mattpocock/skills](https://github.com/mattpocock/skills) | 真实工程技能合集 | 1.3.2 | 323,520 |
+| [awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | LLM 应用合集 | main@ff2016e | 144,564 |
+| [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 生产级工程技能 | 0.6.15 | 117,023 |
+| [emilkowalski/skills](https://github.com/emilkowalski/skills) | 设计与工程技能合集 | main@f7ce8c0 | 56,554 |
+| [agentic-awesome-skills](https://github.com/sickn33/agentic-awesome-skills) | 近 3000 个智能体技能 | 20.8.0 | 49,649 |
+| [agents](https://github.com/wshobson/agents) | 多工具插件与技能集 | main@9c61ab2 | 42,478 |
+| [claude-skills](https://github.com/alirezarezvani/claude-skills) | 410 个 Claude 技能 | 2.14.11 | 29,748 |
+| [baoyu-skills](https://github.com/JimLiu/baoyu-skills) | 宝玉技能合集 | 2.5.2 | 27,519 |
+| [khazix-skills](https://github.com/KKKKhazix/khazix-skills) | 卡兹克 AI 技能合集 | 1.2.2 | 22,227 |
+| [awesome-codex-skills](https://github.com/composio-community/awesome-codex-skills) | Codex 技能清单 | master@0930e13 | 17,307 |
+| [claude-skills](https://github.com/Jeffallan/claude-skills) | 全栈开发技能集 | 0.4.20 | 12,350 |
+| [jakubkrehel/skills](https://github.com/jakubkrehel/skills) | 界面开发技能合集 | 1.20.0 | 12,107 |
 
 ## 网站克隆
 

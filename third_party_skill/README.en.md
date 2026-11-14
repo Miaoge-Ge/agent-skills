@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [Back to repository](../README.en.md)
 
-A maintained index of third-party Agent Skills and tools, grouped into 18 categories by use. This directory is an index only; all skill code lives in its upstream repository. Copyright and licenses belong to the respective authors and organizations. Read the upstream LICENSE before using, modifying, or redistributing a skill. Inclusion here does not imply endorsement and does not change the upstream license.
+A maintained index of third-party Agent Skills and tools, grouped into 19 categories by use. This directory is an index only; all skill code lives in its upstream repository. Copyright and licenses belong to the respective authors and organizations. Read the upstream LICENSE before using, modifying, or redistributing a skill. Inclusion here does not imply endorsement and does not change the upstream license.
 
 Star counts are GitHub data as of 2026-11-13; entries are sorted by stars in descending order within each category. Versions come from the upstream latest release or tag; repositories without one use the latest commit on the default branch, e.g. `main@c1c8a8c`.
 
@@ -204,35 +204,40 @@ Star counts are GitHub data as of 2026-11-13; entries are sorted by stars in des
 | [kubesphere](https://github.com/kubesphere/kubesphere) | Kubernetes container platform | 4.1.3 | 17,079 |
 | [claude-ads](https://github.com/AgriciDaniel/claude-ads) | Paid-media operations skill | 2.1.0 | 11,006 |
 
-## Skill collections
+## Official skill collections
 
 | Skill | Description | Version | Stars |
 | --- | --- | --- | ---: |
-| [mattpocock/skills](https://github.com/mattpocock/skills) | Everyday engineering skills | 1.3.2 | 323,520 |
 | [anthropics/skills](https://github.com/anthropics/skills) | Official Agent Skills examples | main@2c5958e | 193,994 |
-| [awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | Collection of LLM apps | main@ff2016e | 144,564 |
-| [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | Production-grade engineering skills | 0.6.15 | 117,023 |
 | [awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills) | Curated Claude skills | master@be2a406 | 79,406 |
-| [emilkowalski/skills](https://github.com/emilkowalski/skills) | Skills for designers and engineers | main@f7ce8c0 | 56,554 |
-| [agentic-awesome-skills](https://github.com/sickn33/agentic-awesome-skills) | 2,900+ reusable agent skills | 20.8.0 | 49,649 |
-| [agents](https://github.com/wshobson/agents) | Plugins, agents, and skills for many tools | main@9c61ab2 | 42,478 |
 | [awesome-copilot](https://github.com/github/awesome-copilot) | Copilot instructions and skills | 1.0.0 | 41,119 |
 | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | Vercel's official agent skills | 62 | 34,000 |
-| [claude-skills](https://github.com/alirezarezvani/claude-skills) | 410 Claude Code skills | 2.14.11 | 29,748 |
 | [openai/skills](https://github.com/openai/skills) | Official skill catalog (deprecated) | main@49f948f | 28,725 |
-| [baoyu-skills](https://github.com/JimLiu/baoyu-skills) | Baoyu's skills collection | 2.5.2 | 27,519 |
 | [google/skills](https://github.com/google/skills) | Agent skills for Google products | main@85f227e | 24,124 |
-| [khazix-skills](https://github.com/KKKKhazix/khazix-skills) | Khazix's open-source AI skills collection | 1.2.2 | 22,227 |
-| [awesome-codex-skills](https://github.com/composio-community/awesome-codex-skills) | Curated Codex skills | master@0930e13 | 17,307 |
 | [MiniMax-AI/skills](https://github.com/MiniMax-AI/skills) | Official MiniMax skills | 1.0.0 | 13,832 |
-| [claude-skills](https://github.com/Jeffallan/claude-skills) | Full-stack developer skills | 0.4.20 | 12,350 |
-| [jakubkrehel/skills](https://github.com/jakubkrehel/skills) | Agent skills for building interfaces | 1.20.0 | 12,107 |
 | [huggingface/skills](https://github.com/huggingface/skills) | Hugging Face ecosystem skills | 1.0.37 | 11,342 |
 | [android/skills](https://github.com/android/skills) | Official Android agent skills | 1.0.21 | 10,498 |
 | [janestreet/agent_skills](https://github.com/janestreet/agent_skills) | Jane Street's agent skills collection | master@7c6715c | 8,093 |
 | [google-gemini/gemini-skills](https://github.com/google-gemini/gemini-skills) | Official Gemini API skills | 2.7.0 | 4,473 |
 | [TheQtCompanyRnD/agent-skills](https://github.com/TheQtCompanyRnD/agent-skills) | Qt / QML development skills | 1.8.1 | 539 |
 | [zai-org/GLM-skills](https://github.com/zai-org/GLM-skills) | Official GLM model skills | main@2ecd31c | 475 |
+
+## Community skill collections
+
+| Skill | Description | Version | Stars |
+| --- | --- | --- | ---: |
+| [mattpocock/skills](https://github.com/mattpocock/skills) | Everyday engineering skills | 1.3.2 | 323,520 |
+| [awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) | Collection of LLM apps | main@ff2016e | 144,564 |
+| [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | Production-grade engineering skills | 0.6.15 | 117,023 |
+| [emilkowalski/skills](https://github.com/emilkowalski/skills) | Skills for designers and engineers | main@f7ce8c0 | 56,554 |
+| [agentic-awesome-skills](https://github.com/sickn33/agentic-awesome-skills) | 2,900+ reusable agent skills | 20.8.0 | 49,649 |
+| [agents](https://github.com/wshobson/agents) | Plugins, agents, and skills for many tools | main@9c61ab2 | 42,478 |
+| [claude-skills](https://github.com/alirezarezvani/claude-skills) | 410 Claude Code skills | 2.14.11 | 29,748 |
+| [baoyu-skills](https://github.com/JimLiu/baoyu-skills) | Baoyu's skills collection | 2.5.2 | 27,519 |
+| [khazix-skills](https://github.com/KKKKhazix/khazix-skills) | Khazix's open-source AI skills collection | 1.2.2 | 22,227 |
+| [awesome-codex-skills](https://github.com/composio-community/awesome-codex-skills) | Curated Codex skills | master@0930e13 | 17,307 |
+| [claude-skills](https://github.com/Jeffallan/claude-skills) | Full-stack developer skills | 0.4.20 | 12,350 |
+| [jakubkrehel/skills](https://github.com/jakubkrehel/skills) | Agent skills for building interfaces | 1.20.0 | 12,107 |
 
 ## Website cloning
 
