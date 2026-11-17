@@ -162,6 +162,31 @@ class TestVersionsAndApi(unittest.TestCase):
             resolver.assert_not_called()
             self.assertEqual('1.2.3', updates['sample/toolbox']['version'])
 
+    def test_transient_transport_errors_are_retried(self):
+        failure = mock.Mock(returncode=1, stdout='', stderr='Get "https://api.github.com/x": EOF')
+        success = mock.Mock(returncode=0, stdout='{"stargazers_count": 200}', stderr='')
+        with mock.patch.object(scan.subprocess, 'run', side_effect=[failure, success]) as run, \
+             mock.patch.object(scan.time, 'sleep'):
+            self.assertEqual({'stargazers_count': 200}, scan.gh_json('repos/sample/toolbox'))
+            self.assertEqual(2, run.call_count)
+
+    def test_terminal_transport_errors_are_not_retried(self):
+        failure = mock.Mock(returncode=1, stdout='', stderr='Not Found (HTTP 404)')
+        with mock.patch.object(scan.subprocess, 'run', return_value=failure) as run, \
+             mock.patch.object(scan.time, 'sleep'):
+            with self.assertRaises(RuntimeError):
+                scan.gh_json('repos/sample/toolbox')
+            self.assertEqual(1, run.call_count)
+
+    def test_refresh_keeps_stars_when_metadata_fetch_fails(self):
+        records = [{'repo': 'sample/toolbox', 'version': '1.2.3', 'stars': 100}]
+        with mock.patch.object(scan, 'graphql_repo_metadata', return_value={}), \
+             mock.patch.object(scan, 'try_gh_json', side_effect=RuntimeError('EOF')), \
+             contextlib.redirect_stderr(io.StringIO()) as errors:
+            updates = scan.refresh_metadata(records)
+            self.assertNotIn('sample/toolbox', updates)
+            self.assertIn('keeping stars', errors.getvalue())
+
 
 class TestCatalogSelectionAndRefresh(unittest.TestCase):
     def setUp(self):

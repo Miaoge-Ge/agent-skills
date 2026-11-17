@@ -163,8 +163,24 @@ CATEGORY_KEYWORDS = [
 DEFAULT_CATEGORY = ("智能体框架", "Agent frameworks")
 
 
+TRANSIENT_PATTERNS = re.compile(
+    r"\bEOF\b|TLS handshake timeout|connection reset|connection refused|i/o timeout|HTTP 5\d\d",
+    re.IGNORECASE,
+)
+
+
+def retry_delay(last_error: str, attempt: int) -> float | None:
+    """Return the delay before the next attempt, or ``None`` when the error is terminal."""
+    lowered = last_error.lower()
+    if "rate limit" in lowered or "secondary rate" in lowered:
+        return 5.0 * (attempt + 1)
+    if TRANSIENT_PATTERNS.search(last_error):
+        return 1.0 * (attempt + 1)
+    return None
+
+
 def gh_json(path: str, retries: int = 3):
-    """Run ``gh api <path>`` and parse JSON, retrying on rate limits."""
+    """Run ``gh api <path>`` and parse JSON, retrying on rate limits and transient errors."""
     last_error = ""
     for attempt in range(retries):
         proc = subprocess.run(
@@ -178,10 +194,10 @@ def gh_json(path: str, retries: int = 3):
         if proc.returncode == 0:
             return json.loads(proc.stdout)
         last_error = proc.stderr.strip() or f"gh api failed: {path}"
-        if "rate limit" in last_error.lower() or "secondary rate" in last_error.lower():
-            time.sleep(5 * (attempt + 1))
-            continue
-        break
+        delay = retry_delay(last_error, attempt)
+        if delay is None:
+            break
+        time.sleep(delay)
     raise RuntimeError(last_error)
 
 
@@ -209,10 +225,10 @@ def gh_graphql(query: str, retries: int = 3):
         if proc.returncode == 0:
             return json.loads(proc.stdout).get("data", {})
         last_error = proc.stderr.strip() or "gh graphql failed"
-        if "rate limit" in last_error.lower() or "secondary rate" in last_error.lower():
-            time.sleep(5 * (attempt + 1))
-            continue
-        break
+        delay = retry_delay(last_error, attempt)
+        if delay is None:
+            break
+        time.sleep(delay)
     raise RuntimeError(last_error)
 
 
@@ -620,7 +636,13 @@ def refresh_metadata(records: list[dict], stars_only: bool = False) -> dict[str,
     metadata = graphql_repo_metadata([record["repo"] for record in records])
     for record in records:
         repo = record["repo"]
-        info = metadata.get(repo.lower()) or try_gh_json(f"repos/{repo}")
+        info = metadata.get(repo.lower())
+        if not info:
+            try:
+                info = try_gh_json(f"repos/{repo}")
+            except RuntimeError as error:
+                print(f"warning: {repo}: keeping stars {record['stars']}: {error}", file=sys.stderr)
+                continue
         if not info:
             continue
         branch = info.get("default_branch") or "main"
