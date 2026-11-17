@@ -16,6 +16,7 @@ Star counts are GitHub data as of 2026-11-13; entries are sorted by stars in des
 | [Auto-claude-code-research-in-sleep](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) | Autonomous ML research skills | 0.4.28 | 19,141 |
 | [AI-Research-SKILLs](https://github.com/Orchestra-Research/AI-Research-SKILLs) | AI research skills library | 1.7.2 | 14,518 |
 | [academic-research-skills-codex](https://github.com/Imbad0202/academic-research-skills-codex) | Codex academic research skills | 3.24.2 | 14,514 |
+| [Supervisor-Skills](https://github.com/HKUSTDial/Supervisor-Skills) | PhD supervisor research skills | 2.1.0 | 12,634 |
 | [figures4papers](https://github.com/ChenLiu-1996/figures4papers) | Publication figure scripts | main@e78584f | 11,217 |
 
 ## Writing and editing
@@ -128,6 +129,7 @@ Star counts are GitHub data as of 2026-11-13; entries are sorted by stars in des
 | [Anthropic-Cybersecurity-Skills](https://github.com/mukul975/Anthropic-Cybersecurity-Skills) | Structured cybersecurity skills | 1.3.0 | 36,062 |
 | [SkillSpector](https://github.com/NVIDIA/SkillSpector) | Security scanner for agent skills | 2.13.4 | 25,805 |
 | [jailbreaks](https://github.com/togg53192-cmd/jailbreaks) | Jailbreak prompts and persona setups | main@4c06343 | 16,878 |
+| [SkillEvaluator](https://github.com/NVIDIA/SkillEvaluator) | Skill and plugin evaluation framework | 0.9.0 | 2,913 |
 
 ## Web scraping
 

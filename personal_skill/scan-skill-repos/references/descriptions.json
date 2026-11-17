@@ -67,6 +67,10 @@
     "en": "Turn code, docs, and SQL into a knowledge graph",
     "zh": "把代码、文档与 SQL 转成知识图谱"
   },
+  "HKUSTDial/Supervisor-Skills": {
+    "en": "PhD supervisor research skills",
+    "zh": "博导经验炼化的科研技能集"
+  },
   "Imbad0202/academic-research-skills": {
     "en": "Academic research workflow skills",
     "zh": "学术研究全流程技能"
@@ -110,6 +114,10 @@
   "MiniMax-AI/skills": {
     "en": "Official MiniMax skills",
     "zh": "官方技能合集"
+  },
+  "NVIDIA/SkillEvaluator": {
+    "en": "Skill and plugin evaluation framework",
+    "zh": "技能与插件质量评测框架"
   },
   "NVIDIA/SkillSpector": {
     "en": "Security scanner for agent skills",

@@ -16,6 +16,7 @@ Star 数取自 GitHub，统计于 2026-11-13，每个分类按 Star 数降序排
 | [Auto-claude-code-research-in-sleep](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) | 自动 ML 研究技能 | 0.4.28 | 19,141 |
 | [AI-Research-SKILLs](https://github.com/Orchestra-Research/AI-Research-SKILLs) | AI 科研技能库 | 1.7.2 | 14,518 |
 | [academic-research-skills-codex](https://github.com/Imbad0202/academic-research-skills-codex) | Codex 学术研究技能 | 3.24.2 | 14,514 |
+| [Supervisor-Skills](https://github.com/HKUSTDial/Supervisor-Skills) | 博导经验炼化的科研技能集 | 2.1.0 | 12,634 |
 | [figures4papers](https://github.com/ChenLiu-1996/figures4papers) | 论文配图脚本 | main@e78584f | 11,217 |
 
 ## 写作与润色
@@ -128,6 +129,7 @@ Star 数取自 GitHub，统计于 2026-11-13，每个分类按 Star 数降序排
 | [Anthropic-Cybersecurity-Skills](https://github.com/mukul975/Anthropic-Cybersecurity-Skills) | 结构化网络安全技能 | 1.3.0 | 36,062 |
 | [SkillSpector](https://github.com/NVIDIA/SkillSpector) | 技能安全扫描器 | 2.13.4 | 25,805 |
 | [jailbreaks](https://github.com/togg53192-cmd/jailbreaks) | 越狱提示词与角色设定 | main@4c06343 | 16,878 |
+| [SkillEvaluator](https://github.com/NVIDIA/SkillEvaluator) | 技能与插件质量评测框架 | 0.9.0 | 2,913 |
 
 ## 网页采集
 
