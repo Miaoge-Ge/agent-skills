@@ -706,7 +706,7 @@ def main(argv: list[str] | None = None) -> int:
     global ROOT
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--repo", type=Path, help="Target catalog repository (default: search from working directory)")
-    parser.add_argument("--min-stars", type=int, default=3000)
+    parser.add_argument("--min-stars", type=int, default=2000)
     parser.add_argument("--limit", type=int, default=50, help="max candidates to verify")
     parser.add_argument("--max-pages", type=int, default=3, help="search pages per query (100 repos/page)")
     parser.add_argument("--query", action="append", default=[], help="search query (repeatable; replaces the defaults)")
