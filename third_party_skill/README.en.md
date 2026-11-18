@@ -109,6 +109,7 @@ Star counts are GitHub data as of 2026-11-17; entries are sorted by stars in des
 | [modern-web-guidance](https://github.com/GoogleChrome/modern-web-guidance) | Modern web best practices | 1.0.1 | 21,058 |
 | [elephant-goldfish-model](https://github.com/google/elephant-goldfish-model) | Agent plugin for software design review | 0.1.1 | 20,488 |
 | [improve](https://github.com/shadcn/improve) | Audit code, plan for cheaper models | 1.0.0 | 12,005 |
+| [rust-anything](https://github.com/erkamyaman/rust-anything) | Rewrite apps in Rust piece by piece | 1.4.0 | 2,058 |
 
 ## Reverse engineering
 

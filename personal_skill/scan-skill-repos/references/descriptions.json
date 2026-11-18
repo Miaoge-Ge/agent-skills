@@ -55,6 +55,10 @@
     "en": "Engineering skills plugin",
     "zh": "工程技能插件合集"
   },
+  "erkamyaman/rust-anything": {
+    "en": "Rewrite apps in Rust piece by piece",
+    "zh": "把应用逐步重写为 Rust"
+  },
   "Fokkyp/SoftwareCopyright-Skill": {
     "en": "Software copyright application materials",
     "zh": "软著申请材料生成"

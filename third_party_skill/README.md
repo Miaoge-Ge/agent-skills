@@ -109,6 +109,7 @@ Star 数取自 GitHub，统计于 2026-11-17，每个分类按 Star 数降序排
 | [modern-web-guidance](https://github.com/GoogleChrome/modern-web-guidance) | 现代 Web 最佳实践 | 1.0.1 | 21,058 |
 | [elephant-goldfish-model](https://github.com/google/elephant-goldfish-model) | 智能体软件设计插件 | 0.1.1 | 20,488 |
 | [improve](https://github.com/shadcn/improve) | 代码审计与计划生成 | 1.0.0 | 12,005 |
+| [rust-anything](https://github.com/erkamyaman/rust-anything) | 把应用逐步重写为 Rust | 1.4.0 | 2,058 |
 
 ## 逆向工程
 
